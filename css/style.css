@@ -8355,15 +8355,18 @@ h1, h2, h3, h4, h5,
     content: '';
     opacity: .8;
     background: #000000;
-    background: #207dff;
-    background: -moz-linear-gradient(left, #207dff 0%, #a16ae8 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, #207dff), color-stop(100%, #a16ae8));
-    background: -webkit-linear-gradient(left, #207dff 0%, #a16ae8 100%);
-    background: -o-linear-gradient(left, #207dff 0%, #a16ae8 100%);
-    background: -ms-linear-gradient(left, #207dff 0%, #a16ae8 100%);
-    background: -webkit-gradient(linear, left top, right top, from(#207dff), to(#a16ae8));
-    background: linear-gradient(to right, #207dff 0%, #a16ae8 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207dff', endColorstr='#a16ae8', GradientType=1 ); }
+    background: #4b0082;
+    background: -moz-linear-gradient(left, #4b0082 0%, #8a2be2 100%);
+    background: -webkit-linear-gradient(left, #4b0082 0%, #8a2be2 100%);
+    background: -o-linear-gradient(left, #4b0082 0%, #8a2be2 100%);
+    background: -ms-linear-gradient(left, #4b0082 0%, #8a2be2 100%);
+    background: linear-gradient(to right, #4b0082 0%, #8a2be2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr='#4b0082',
+      endColorstr='#8a2be2',
+      GradientType=1
+    );
+  }
   .hero-wrap .slider-text {
     height: 800px;
     z-index: 0;
@@ -8600,17 +8603,23 @@ h1, h2, h3, h4, h5,
     color: #206dfb; }
   .top-category p {
     color: rgba(0, 0, 0, 0.7); }
-  .top-category.active, .top-category:hover {
-    background: #fdab44;
-    border-left: none; }
     .top-category.active h3 a, .top-category:hover h3 a {
       color: #fff; }
     .top-category.active .icon, .top-category:hover .icon {
       color: #fff; }
     .top-category.active p, .top-category:hover p {
       color: rgba(255, 255, 255, 0.9); }
-  .top-category:hover {
-    background: #206dfb; }
+    .top-category.active,
+    .top-category:hover {
+      border-left: none;
+
+      background: #6a2cbf;
+      background: -moz-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
+      background: -webkit-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
+      background: -o-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
+      background: -ms-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
+      background: linear-gradient(to right, #6a2cbf 0%, #a077ff 100%);
+    }  
 
 .category {
   padding: 0; }
