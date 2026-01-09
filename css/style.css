@@ -8677,6 +8677,40 @@ h1, h2, h3, h4, h5,
         .category li a:hover .number, .category li a:focus .number {
           color: #fdab44; }
 
+.single-process{
+  padding:44px 28px;
+  background:#26317f
+}
+@media (max-width: 767px){
+  .single-process{
+    padding:34px 10px
+  }
+}
+.single-process:hover .process-ion{
+  transform-style:preserve-3d;
+  transform:rotateY(-180deg)
+}
+.single-process .process-ion{
+  transition:transform 650ms ease-in-out,
+ filter 650ms ease-in-out
+}
+.single-process .process-ion span{
+  font-size:60px;
+  margin-bottom:13px;
+  color:#fff;
+  margin-bottom:20px
+}
+.single-process .process-cap h5{
+  font-weight:700;
+  font-size:24px;
+  color:#fff;
+  line-height:1.4;
+  margin-bottom:20px
+}
+.single-process .process-cap p{
+  color:#a5aaca
+}
+
 .job-post-item {
   z-index: 0;
   background: #fff;

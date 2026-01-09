@@ -672,6 +672,44 @@ h1, h2, h3, h4, h5,
 	}
 }
 
+.single-process{
+	padding: 44px 28px;
+	background:#26317f;
+	@media #{$xs}{
+		padding: 34px 10px;
+	}
+	// Hover
+	&:hover {
+		.process-ion{
+			transform-style: preserve-3d;
+			transform: rotateY(-180deg);
+		}
+	}
+	// icon
+	.process-ion{
+		span{
+			font-size: 60px;
+			margin-bottom: 13px;
+			color: #fff;
+			margin-bottom: 20px;
+		}
+		transition: transform 650ms ease-in-out,
+		filter 650ms ease-in-out;
+	}
+	// Caption
+	.process-cap{
+		h5{
+			font-weight: 700;
+			font-size: 24px;
+			color: #fff;
+			line-height: 1.4;
+			margin-bottom: 20px;
+		}
+		p{
+			color: #a5aaca;
+		}
+	}
+}
 
 .job-post-item{
 	// border: 1px solid lighten($black,94%);

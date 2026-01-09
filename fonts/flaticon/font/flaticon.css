@@ -25,7 +25,7 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
-        font-size: 20px;
+        
 font-style: normal;
 margin-left: 20px;
 }
@@ -42,3 +42,6 @@ margin-left: 20px;
 .flaticon-stethoscope:before { content: "\f109"; }
 .flaticon-worldwide:before { content: "\f10a"; }
 .flaticon-visitor:before { content: "\f10b"; }
+.flaticon-tour:before { content: "\f100"; }
+.flaticon-search:before { content: "\f108"; }
+.flaticon-curriculum-vitae:before { content: "\f109"; }
