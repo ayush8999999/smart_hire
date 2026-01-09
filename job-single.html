@@ -20,6 +20,128 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ftco-section.bg-light {
+            background: linear-gradient(180deg, #fffef4, #fff9e6) !important;
+        }
+
+        .yellow-card {
+            background: #ffffff;
+            border: 1px solid #f0e6a0;
+            border-radius: 14px;
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .yellow-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .yellow-title {
+            color: #6d5c00;
+            font-weight: 700;
+        }
+
+        .job-single-company h4,
+        .job-single-company h5 {
+            color: #7a6a00;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .job-single-company h4::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, #fdd835, #f9a825);
+            margin-top: 6px;
+            border-radius: 5px;
+        }
+
+        .subadge {
+            background: linear-gradient(to right, #fff3b0, #ffe082);
+            color: #6d5c00;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .subadge:hover {
+            transform: scale(1.05);
+        }
+
+        .salary-wrap .salary {
+            background: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            font-weight: 600;
+            color: #333;
+            box-shadow: none !important;
+        }
+
+
+        .job-list li {
+            background: #fffdf3;
+            padding: 12px 16px;
+            border-left: 4px solid #f0d84c;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .job-list li:hover {
+            transform: translateX(6px);
+            background: #fff7cc;
+        }
+
+        .yellow-divider {
+            border-top: 1px dashed #f3e7a0;
+            margin: 40px 0;
+        }
+
+        .info-box {
+            background: #fffdf3;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #f0e6a0;
+            transition: all 0.25s ease;
+        }
+
+        .info-box:hover {
+            background: #fff7cc;
+        }
+
+        .btn-yellow {
+            background: linear-gradient(to right, #fdd835, #f9a825);
+            color: #000;
+            border: none;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-yellow:hover {
+            background: linear-gradient(to right, #f9a825, #f57f17);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .job-single-company p,
+        .job-single-company span,
+        .job-single-company li,
+        .job-single-company div,
+        .job-single-company strong {
+            color: #000 !important;
+            font-weight: 700 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,7 +180,7 @@
                         <span><a href="browsejobs.html">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
                         <span>Job Details</span>
                     </p>
-                    <h1 class="mb-3 bread">Frontend Developer</h1>
+                    <h1 class="mb-3 bread" id="hero-job-title">Loading...</h1>
                 </div>
             </div>
         </div>
@@ -70,117 +192,114 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 ftco-animate">
 
-                    <div class="job-single-company bg-white p-4 p-md-5">
+                    <div class="job-single-company yellow-card">
 
-                        <!-- Top section - Title + Badge + Company + Location + Salary -->
+                        <!-- Header -->
                         <div class="row align-items-start mb-4">
                             <div class="col-md-8">
-                                <h2 class="mb-2" id="job-title">Job Title</h2>
-                                <div class="d-flex flex-wrap align-items-center mb-3" id="job-basic-info">
-                                    <span class="subadge mr-3 mb-2" id="job-type">Type</span>
-                                    <div class="mr-4 mb-2"><span class="icon-layers"></span> <span
-                                            id="job-company">Company</span></div>
-                                    <div class="mb-2"><span class="icon-my_location"></span> <span
-                                            id="job-location">Location</span></div>
+                                <h2 class="mb-2 yellow-title" id="job-title">Job Title</h2>
+
+                                <div class="d-flex flex-wrap align-items-center mb-3">
+                                    <span class="subadge mr-3 mb-2" id="job-type">Full Time</span>
+
+                                    <div class="mr-4 mb-2">
+                                        <span class="icon-layers"></span>
+                                        <span id="job-company">Company</span>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <span class="icon-my_location"></span>
+                                        <span id="job-location">Location</span>
+                                    </div>
                                 </div>
-                                <div class="salary-wrap" id="job-salary-wrap">
-                                    <span class="salary"><span class="icon-money mr-2"></span><span
-                                            id="job-salary">Salary</span></span>
+
+                                <div class="salary-wrap mt-2">
+                                    <span class="salary">
+                                        <span class="icon-money mr-2"></span>
+                                        <span id="job-salary">Salary</span>
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="col-md-4 mt-4 mt-md-0 text-md-right">
-                                <a href="#" class="btn py-3 px-5 w-100 w-md-auto"
-                                    style="background-color:#ede7f6; border-color:#ede7f6; color:#4a148c;"
-                                    onmouseover="this.style.backgroundColor='#7c4dff'; this.style.color='#ffffff';"
-                                    onmouseout="this.style.backgroundColor='#ede7f6'; this.style.color='#4a148c';">
+                                <a id="applyNowBtn" href="#" class="btn btn-yellow py-3 px-5 w-100 w-md-auto">
                                     Apply Now
                                 </a>
-                            </div>
 
+                            </div>
                         </div>
 
-                        <hr class="my-4">
+                        <hr class="yellow-divider">
 
-                        <!-- Job Description -->
-                        <h4 class="mt-5 mb-3">Job Description</h4>
+                        <h4>Job Description</h4>
                         <p id="job-description">Loading description...</p>
 
-                        <!-- Responsibilities -->
-                        <h4 class="mt-5 mb-3">Responsibilities</h4>
-                        <ul class="list-unstyled job-list" id="job-responsibilities">
-                            <!-- Filled dynamically -->
-                        </ul>
+                        <h4>Responsibilities</h4>
+                        <ul class="list-unstyled job-list" id="job-responsibilities"></ul>
 
-                        <!-- Requirements -->
-                        <h4 class="mt-5 mb-3">Requirements</h4>
-                        <ul class="list-unstyled job-list" id="job-requirements">
-                            <!-- Filled dynamically -->
-                        </ul>
+                        <h4>Requirements</h4>
+                        <ul class="list-unstyled job-list" id="job-requirements"></ul>
 
-                        <!-- Languages -->
-                        <h4 class="mt-5 mb-3">Language Requirements</h4>
-                        <div id="job-languages">
+                        <h4>Language Requirements</h4>
+                        <div class="info-box">
                             <p><strong>Required:</strong> <span id="lang-required">Loading...</span></p>
-                            <p id="lang-preferred-wrapper"><strong>Preferred:</strong> <span
-                                    id="lang-preferred">Loading...</span></p>
+                            <p id="lang-preferred-wrapper">
+                                <strong>Preferred:</strong> <span id="lang-preferred">Loading...</span>
+                            </p>
                         </div>
 
-                        <!-- Skills -->
-                        <h4 class="mt-5 mb-3" id="skills-heading">Required Skills</h4>
-                        <ul class="list-unstyled job-list" id="job-skills">
-                            <!-- Filled dynamically -->
-                        </ul>
+                        <h4 id="skills-heading">Required Skills</h4>
+                        <ul class="list-unstyled job-list" id="job-skills"></ul>
 
-                        <!-- Additional Information -->
-                        <h4 class="mt-5 mb-3">Additional Information</h4>
-                        <ul class="list-unstyled" id="additional-info-list">
-                            <!-- Filled dynamically -->
-                        </ul>
+                        <h4>Additional Information</h4>
+                        <ul class="list-unstyled job-list" id="additional-info-list"></ul>
 
-                        <!-- Bottom Info + Buttons -->
                         <div class="row mt-5 pt-4 border-top">
                             <div class="col-md-6 mb-4 mb-md-0">
-                                <h5 class="mb-2">Experience</h5>
-                                <p class="mb-3" id="job-experience">
-                                    5+ years of experience in the full sales cycle, specifically commercial
-                                    experience in payment products or B2B SaaS sales
-                                </p>
-
-                                <h5 class="mt-4 mb-2">Education</h5>
-                                <p class="mb-0" id="job-education">
-                                    Not strictly specified (experience-focused role)
-                                </p>
+                                <div class="info-box">
+                                    <h5>Experience</h5>
+                                    <p id="job-experience">—</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Buttons CENTERED below -->
-                        <div class="row mt-4 pt-md-4">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="d-flex flex-column flex-sm-row align-items-center">
-                                    <a href="browsejobs.html"
-                                        class="btn btn-outline-primary py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center"
-                                        style="min-width: 220px;">
-                                        Back to Jobs
-                                    </a>
-
-                                    <a href="#"
-                                        class="btn btn-primary py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center border border-primary"
-                                        style="min-width: 220px;">
-                                        Apply for this Job
-                                    </a>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <h5>Education</h5>
+                                    <p id="job-education">—</p>
                                 </div>
                             </div>
                         </div>
 
-                    </div><!-- end job-single-company -->
-                </div><!-- end col-lg-10 -->
+                        <div class="row mt-4 pt-md-4">
+                            <div class="col-12 d-flex justify-content-center">
+                                <div class="d-flex flex-column flex-sm-row align-items-center">
+
+                                    <a href="browsejobs.html"
+                                        class="btn py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center border text-nowrap"
+                                        style="min-width:220px; background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
+                                        Back to Jobs
+                                    </a>
+
+                                    <a href="#"
+                                        class="btn btn-yellow py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center text-nowrap"
+                                        style="min-width:220px;">
+                                        Apply for this Job
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
 
+
     <!-- Newsletter Section - same as original -->
-    <section class="ftco-section-parallax">
+    <!-- <section class="ftco-section-parallax">
         <div class="parallax-img d-flex align-items-center">
             <div class="container">
                 <div class="row d-flex justify-content-center">
@@ -202,7 +321,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer - exact same as original browsejobs page -->
     <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -602,6 +721,7 @@
             document.getElementById('job-type').textContent = job.type;
             document.getElementById('job-company').textContent = job.company;
             document.getElementById('job-location').textContent = job.location;
+            document.getElementById('hero-job-title').textContent = job.title;
 
             // Salary
             let salaryDisplay = job.salary || 'Not specified';
@@ -704,6 +824,15 @@
             document.getElementById('job-education').textContent = job.education || 'Not specified';
         });
     </script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const jobId = params.get('id');
+
+        if (jobId) {
+            document.getElementById('applyNowBtn').href = `apply-job.html?id=${jobId}`;
+        }
+    </script>
+
 
 </body>
 

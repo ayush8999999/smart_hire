@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Apply Job - SmartHire</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      background-color: #fffde7;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .yellow-card {
+      background: #fffde0;
+      border: 2px solid #fdd835;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(251, 192, 45, 0.2);
+    }
+
+    .yellow-title {
+      color: #f57f17;
+      font-weight: 700;
+      border-bottom: 3px solid #fdd835;
+      padding-bottom: 10px;
+    }
+
+    h3.yellow-title {
+      font-size: 2rem;
+    }
+
+    h4.yellow-title {
+      font-size: 1.75rem;
+    }
+
+    h5 {
+      color: #ffab00;
+      font-weight: 600;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-left: 5px solid #fdd835;
+      padding-left: 15px;
+    }
+
+    .btn-yellow {
+      background: linear-gradient(to right, #fdd835, #f9a825);
+      color: #000;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn-yellow:hover {
+      background: linear-gradient(to right, #f9a825, #f57f17);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    label {
+      font-weight: 600;
+      color: #5d4037;
+    }
+
+    .form-control {
+      border: 1px solid #fdd835;
+      border-radius: 8px;
+      padding: 10px;
+      transition: border 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: #f57f17;
+      box-shadow: 0 0 8px rgba(245, 127, 23, 0.3);
+    }
+
+    hr {
+      border-top: 2px dashed #fdd835;
+      margin: 40px 0;
+    }
+
+    .hero-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(253, 216, 53, 0.4));
+      z-index: 1;
+    }
+
+    .slider-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bread {
+      color: #f57f17 !important;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .navbar-brand {
+      color: #fdd835 !important;
+      font-weight: 700;
+    }
+
+    .nav-link {
+      color: #fff !important;
+    }
+
+    footer {
+      background: #5d4037;
+      color: #fffde7;
+      padding: 40px 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .company-info {
+      background: #fff8e1;
+      border-left: 5px solid #fdd835;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4">
+      <a class="navbar-brand" href="index.html">Skillhunt</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">About us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item cta cta-colored"><a href="#" class="nav-link">Apply Job</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-start">
+        <div class="col-md-12 text-center mb-5">
+          <h1 class="mb-3 bread" id="hero-job-title">Apply for Job</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="ftco-section">
+    <div class="container">
+
+      <!-- Job & Company Info Card -->
+      <div class="yellow-card">
+        <h3 class="yellow-title" id="job-title">Customer Support / Operations Role</h3>
+
+        <!-- Company Info Box -->
+        <div class="company-info">
+          <p><strong>Company:</strong> <span id="job-company">SmartHire Technologies</span></p>
+          <p><strong>Location:</strong> <span id="job-location">Mumbai, Maharashtra (Hybrid)</span></p>
+          <p><strong>Job Type:</strong> Full-Time</p>
+        </div>
+
+        <p id="job-description">
+          We are looking for a motivated and customer-focused professional. The ideal candidate should have strong
+          communication skills, problem-solving ability, and a passion for delivering exceptional customer experiences.
+        </p>
+      </div>
+
+      <!-- Application Form -->
+      <div class="yellow-card">
+        <h4 class="yellow-title mb-4">Candidate Job Application Form</h4>
+
+        <form>
+
+          <h5>SECTION 1: PERSONAL DETAILS</h5>
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" placeholder="Enter your full name">
+          </div>
+
+          <div class="form-group">
+            <label>Gender</label><br>
+            <label><input type="radio" name="gender"> Male</label>
+            <label class="ml-3"><input type="radio" name="gender"> Female</label>
+            <label class="ml-3"><input type="radio" name="gender"> Other</label>
+          </div>
+
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text" class="form-control" placeholder="e.g. +91 9876543210">
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" placeholder="your.email@example.com">
+          </div>
+
+          <div class="form-group">
+            <label>Current Address</label>
+            <textarea class="form-control" rows="3" placeholder="Full address"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>City & State</label>
+            <input type="text" class="form-control" placeholder="e.g. Mumbai, Maharashtra">
+          </div>
+
+          <div class="form-group">
+            <label>Nationality</label>
+            <input type="text" class="form-control" placeholder="e.g. Indian">
+          </div>
+
+          <div class="form-group">
+            <label>Willing to Relocate?</label><br>
+            <label><input type="radio" name="relocate"> Yes</label>
+            <label class="ml-3"><input type="radio" name="relocate"> No</label>
+            <label class="ml-3"><input type="radio" name="relocate"> Maybe</label>
+          </div>
+
+          <hr>
+
+          <h5>SECTION 2: EDUCATIONAL QUALIFICATION</h5>
+
+          <div class="form-group">
+            <label>Highest Qualification</label>
+            <input type="text" class="form-control" placeholder="e.g. Bachelor's Degree">
+          </div>
+
+          <div class="form-group">
+            <label>Specialization</label>
+            <input type="text" class="form-control" placeholder="e.g. Computer Science">
+          </div>
+
+          <div class="form-group">
+            <label>College / University</label>
+            <input type="text" class="form-control" placeholder="Name of institution">
+          </div>
+
+          <div class="form-group">
+            <label>Year of Passing</label>
+            <input type="text" class="form-control" placeholder="e.g. 2023">
+          </div>
+
+          <hr>
+
+          <h5>SECTION 3: WORK EXPERIENCE</h5>
+
+          <div class="form-group">
+            <label>Total Experience</label><br>
+            <label><input type="radio" name="exp"> Fresher</label>
+            <label class="ml-2"><input type="radio" name="exp"> 0–1 Year</label>
+            <label class="ml-2"><input type="radio" name="exp"> 1–3 Years</label>
+            <label class="ml-2"><input type="radio" name="exp"> 3–5 Years</label>
+            <label class="ml-2"><input type="radio" name="exp"> 5+ Years</label>
+          </div>
+
+          <div class="form-group">
+            <label>Current / Last Job Title</label>
+            <input type="text" class="form-control" placeholder="e.g. Customer Support Executive">
+          </div>
+
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" class="form-control" placeholder="Previous or current company">
+          </div>
+
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" class="form-control" placeholder="e.g. 2 years">
+          </div>
+
+          <div class="form-group">
+            <label>Key Skills & Responsibilities</label>
+            <textarea class="form-control" rows="4" placeholder="Describe your key skills and responsibilities"></textarea>
+          </div>
+
+          <hr>
+
+          <h5>DECLARATION</h5>
+          <p>
+            I hereby declare that the information provided above is true and correct to the best of my knowledge.
+          </p>
+
+          <div class="form-group">
+            <label>Signature</label>
+            <input type="text" class="form-control" placeholder="Type your full name as signature">
+          </div>
+
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control">
+          </div>
+
+          <div class="text-center mt-5">
+            <button type="submit" class="btn btn-yellow btn-lg px-5 py-3">Submit Application</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ftco-footer ftco-section">
+    <div class="container text-center">
+      <p>
+        © <script>document.write(new Date().getFullYear());</script> SmartHire — Connecting Talent with Opportunity.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Dynamic Job & Company Data Script -->
+  <script>
+    // Read job ID from URL parameter ?id=
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobId = urlParams.get('id');
+
+    const jobs = {
+      '1': {
+        title: 'Sales Executive - Payments',
+        company: 'Revolut',
+        location: 'Dublin, London, Madrid, Krakow',
+        description: 'Join a leading fintech company as a Sales Executive specializing in payment solutions. Drive sales and build client relationships across international markets.'
+      },
+      '2': {
+        title: 'Customer Service Agent',
+        company: 'Foundever',
+        location: 'Lisbon & Porto, Portugal',
+        description: 'Provide exceptional customer support for global clients. Handle inquiries and ensure high customer satisfaction in a dynamic BPO environment.'
+      },
+      '3': {
+        title: 'Customer Support Specialist',
+        company: 'Gepard Media',
+        location: 'Estonia',
+        description: 'Deliver technical and non-technical support to customers. Ideal role for someone passionate about helping users and solving problems.'
+      },
+      '4': {
+        title: 'Customer Support Lead',
+        company: 'Localcoin',
+        location: 'Toronto, Canada',
+        description: 'Lead a customer support team, manage escalations, and improve service quality in the cryptocurrency space.'
+      },
+      '5': {
+        title: 'Customer Experience Agent',
+        company: 'PlayOrbit Ltd',
+        location: 'Milan, Italy',
+        description: 'Enhance customer journeys and provide top-tier support in the gaming and entertainment industry.'
+      },
+      '6': {
+        title: 'Customer Support Agent',
+        company: 'Decentralized',
+        location: 'Phnom Penh, Cambodia',
+        description: 'Support users in a blockchain/decentralized technology company with a focus on excellent communication.'
+      },
+      '7': {
+        title: 'Customer Engagement Executive',
+        company: 'Decentralized',
+        location: 'Phnom Penh, Cambodia',
+        description: 'Engage with customers, build relationships, and drive retention through proactive outreach.'
+      },
+      '8': {
+        title: 'Customer Support / Operations Role',
+        company: 'SmartHire Technologies',
+        location: 'Mumbai, Maharashtra (Hybrid)',
+        description: 'We are looking for a motivated and customer-focused professional. The ideal candidate should have strong communication skills, problem-solving ability, and a passion for delivering exceptional customer experiences.'
+      }
+    };
+
+    const job = jobs[jobId] || jobs['8']; // fallback to job 8
+
+    // Update page content
+    document.getElementById('job-title').textContent = job.title;
+    document.getElementById('job-company').textContent = job.company;
+    document.getElementById('job-location').textContent = job.location;
+    document.getElementById('job-description').textContent = job.description;
+    document.getElementById('hero-job-title').textContent = `Apply for ${job.title}`;
+  </script>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
