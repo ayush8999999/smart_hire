@@ -8622,12 +8622,12 @@ h1, h2, h3, h4, h5,
     .top-category:hover {
       border-left: none;
 
-      background: #6a2cbf;
-      background: -moz-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
-      background: -webkit-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
-      background: -o-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
-      background: -ms-linear-gradient(left, #6a2cbf 0%, #a077ff 100%);
-      background: linear-gradient(to right, #6a2cbf 0%, #a077ff 100%);
+  background: #fde047;
+  background: -moz-linear-gradient(left, #fde047 0%, #f59e0b 100%);
+  background: -webkit-linear-gradient(left, #fde047 0%, #f59e0b 100%);
+  background: -o-linear-gradient(left, #fde047 0%, #f59e0b 100%);
+  background: -ms-linear-gradient(left, #fde047 0%, #f59e0b 100%);
+  background: linear-gradient(to right, #fde047 0%, #f59e0b 100%);
     }  
 
 .ratio {
@@ -9246,7 +9246,7 @@ textarea.form-control {
     background: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     position: relative;
-    color: #206dfb; }
+    color: #f59e0b ; }
     .ftco-footer-social li a span {
       position: absolute;
       font-size: 20px;
@@ -9255,7 +9255,7 @@ textarea.form-control {
       -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
-      color: #206dfb !important; }
+      color: #f59e0b  !important; }
     .ftco-footer-social li a:hover {
       color: #fff; }
 

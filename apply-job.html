@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Apply Job - SmartHire</title>
+  <title>Apply Job - EasyHire</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -65,13 +66,13 @@
       border: none;
       font-weight: 600;
       transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .btn-yellow:hover {
       background: linear-gradient(to right, #f9a825, #f57f17);
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
     label {
@@ -96,13 +97,16 @@
       margin: 40px 0;
     }
 
-    .hero-wrap::before {
+    /* .hero-wrap::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(253, 216, 53, 0.4));
       z-index: 1;
-    }
+    } */
 
     .slider-text {
       position: relative;
@@ -111,11 +115,11 @@
 
     .bread {
       color: #f57f17 !important;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     .navbar-brand {
-      color: #fdd835 !important;
+      /* color: #fdd835 !important; */
       font-weight: 700;
     }
 
@@ -142,6 +146,17 @@
       margin-bottom: 20px;
       border-radius: 0 8px 8px 0;
     }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+    .block-23 ul li:last-child .text {
+			padding-left: 25px !important;
+		}
   </style>
 </head>
 
@@ -150,7 +165,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid px-md-4">
-      <a class="navbar-brand" href="index.html">Skillhunt</a>
+      <a class="navbar-brand" href="index.html">EasyHire</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
         <span class="oi oi-menu"></span> Menu
       </button>
@@ -189,7 +204,7 @@
 
         <!-- Company Info Box -->
         <div class="company-info">
-          <p><strong>Company:</strong> <span id="job-company">SmartHire Technologies</span></p>
+          <p><strong>Company:</strong> <span id="job-company">EasyHire Technologies</span></p>
           <p><strong>Location:</strong> <span id="job-location">Mumbai, Maharashtra (Hybrid)</span></p>
           <p><strong>Job Type:</strong> Full-Time</p>
         </div>
@@ -201,138 +216,294 @@
       </div>
 
       <!-- Application Form -->
-      <div class="yellow-card">
+      <div class="yellow-card" id="application-form">
         <h4 class="yellow-title mb-4">Candidate Job Application Form</h4>
 
-        <form>
+        <form id="applyForm">
+          <input type="hidden" name="job_id" id="job_id">
+          <input type="hidden" name="job_title" id="job_title_field">
+          <input type="hidden" name="company_name" id="company_name_field">
 
-          <h5>SECTION 1: PERSONAL DETAILS</h5>
+          <div class="form-step active">
+            <h5>SECTION 1: PERSONAL DETAILS</h5>
 
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" class="form-control" placeholder="Enter your full name">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your full name"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>Gender</label><br>
+              <label><input type="radio" name="gender" value="Male" required> Male</label>
+              <label class="ml-3"><input type="radio" name="gender" value="Female"> Female</label>
+              <label class="ml-3"><input type="radio" name="gender" value="Other"> Other</label>
+            </div>
+
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+            </div>
+
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="text" class="form-control" id="mobile_number" name="mobile_number" pattern="[0-9]{10}"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label>Current Address</label>
+              <textarea class="form-control" id="current_address" name="current_address" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>City & State</label>
+              <input type="text" class="form-control" id="city_state" name="city_state" required>
+            </div>
+
+            <div class="form-group">
+              <label>Nationality</label>
+              <input type="text" class="form-control" name="nationality" placeholder="e.g. Indian" value="Indian">
+            </div>
+
+            <div class="form-group">
+              <label>Willing to Relocate?</label><br>
+              <label><input type="radio" name="willing_to_relocate" value="Yes"> Yes</label>
+              <label class="ml-3"><input type="radio" name="willing_to_relocate" value="No"> No</label>
+              <label class="ml-3"><input type="radio" name="willing_to_relocate" value="Maybe"> Maybe</label>
+            </div>
+
+            <div class="text-right mt-4">
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Gender</label><br>
-            <label><input type="radio" name="gender"> Male</label>
-            <label class="ml-3"><input type="radio" name="gender"> Female</label>
-            <label class="ml-3"><input type="radio" name="gender"> Other</label>
+          <div class="form-step">
+            <h5>SECTION 2: EDUCATIONAL QUALIFICATION</h5>
+
+            <div class="form-group">
+              <label>Highest Qualification</label>
+              <input type="text" class="form-control" name="highest_qualification" placeholder="e.g. Undergraduate" required>
+            </div>
+
+            <div class="form-group">
+              <label>Specialization</label>
+              <input type="text" class="form-control" name="specialization" placeholder="e.g. Computer Science">
+            </div>
+
+            <div class="form-group">
+              <label>College / University</label>
+              <input type="text" class="form-control" name="college_university" placeholder="Name of institution">
+            </div>
+
+            <div class="form-group">
+              <label>Year of Passing</label>
+              <input type="text" class="form-control" name="year_of_passing" placeholder="e.g. 2023">
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Date of Birth</label>
-            <input type="date" class="form-control">
+          <div class="form-step">
+            <h5>SECTION 3: WORK EXPERIENCE</h5>
+
+            <div class="form-group">
+              <label>Total Experience</label><br>
+              <label><input type="radio" name="experience_level" value="Fresher"> Fresher</label>
+              <label class="ml-2"><input type="radio" name="experience_level" value="0-1"> 0–1 Year</label>
+              <label class="ml-2"><input type="radio" name="experience_level" value="1-3"> 1–3 Years</label>
+              <label class="ml-2"><input type="radio" name="experience_level" value="3-5"> 3–5 Years</label>
+              <label class="ml-2"><input type="radio" name="experience_level" value="5+"> 5+ Years</label>
+            </div>
+
+            <div class="form-group">
+              <label>Current / Last Job Title</label>
+              <input type="text" class="form-control" name="current_job_title"
+                placeholder="e.g. Customer Support Executive">
+            </div>
+
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" class="form-control" name="previous_company" placeholder="Previous or current company">
+            </div>
+
+            <div class="form-group">
+              <label>Duration</label>
+              <input type="text" class="form-control" name="experience_duration" placeholder="e.g. 2 years">
+            </div>
+
+            <div class="form-group">
+              <label>Key Skills & Responsibilities</label>
+              <textarea class="form-control" name="key_skills_responsibilities" rows="4"></textarea>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Mobile Number</label>
-            <input type="text" class="form-control" placeholder="e.g. +91 9876543210">
+          <div class="form-step">
+            <h5>SECTION 4: JOB PREFERENCES</h5>
+
+            <div class="form-group">
+              <label>Preferred Job Role(s)</label>
+              <input type="text" class="form-control" name="preferred_job_roles">
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Industry</label>
+              <input type="text" class="form-control" name="preferred_industry">
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Job Location(s)</label>
+              <input type="text" class="form-control" name="preferred_job_locations">
+            </div>
+
+            <div class="form-group">
+              <label>Work Mode Preference</label><br>
+              <label><input type="radio" name="work_mode_preference" value="On-site"> On-site</label>
+              <label class="ml-3"><input type="radio" name="work_mode_preference" value="Remote"> Remote</label>
+              <label class="ml-3"><input type="radio" name="work_mode_preference" value="Hybrid"> Hybrid</label>
+            </div>
+
+            <div class="form-group">
+              <label>Shift Preference</label><br>
+              <label><input type="radio" name="shift_preference" value="Day"> Day</label>
+              <label class="ml-3"><input type="radio" name="shift_preference" value="Night"> Night</label>
+              <label class="ml-3"><input type="radio" name="shift_preference" value="Rotational"> Rotational</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" class="form-control" placeholder="your.email@example.com">
+          <div class="form-step">
+            <h5>SECTION 5: SALARY & AVAILABILITY</h5>
+
+            <div class="form-group">
+              <label>Current Salary (CTC)</label>
+              <input type="text" class="form-control" name="current_salary">
+            </div>
+
+            <div class="form-group">
+              <label>Expected Salary (CTC)</label>
+              <input type="text" class="form-control" name="expected_salary">
+            </div>
+
+            <div class="form-group">
+              <label>Notice Period</label><br>
+              <label><input type="radio" name="notice_period" value="Immediate"> Immediate</label>
+              <label class="ml-2"><input type="radio" name="notice_period" value="15 Days"> 15 Days</label>
+              <label class="ml-2"><input type="radio" name="notice_period" value="30 Days"> 30 Days</label>
+              <label class="ml-2"><input type="radio" name="notice_period" value="60 Days"> 60 Days</label>
+              <label class="ml-2"><input type="radio" name="notice_period" value="90 Days"> 90 Days</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Current Address</label>
-            <textarea class="form-control" rows="3" placeholder="Full address"></textarea>
+          <div class="form-step">
+            <h5>SECTION 6: DOCUMENTS & LINKS</h5>
+
+            <div class="form-group">
+              <label>Resume Submitted</label><br>
+              <label><input type="radio" name="resume_submitted" value="Yes"> Yes</label>
+              <label class="ml-3"><input type="radio" name="resume_submitted" value="No"> No</label>
+            </div>
+
+            <div class="form-group">
+              <label>LinkedIn Profile</label>
+              <input type="url" class="form-control" name="linkedin_profile">
+            </div>
+
+            <div class="form-group">
+              <label>Portfolio / Website / GitHub</label>
+              <input type="url" class="form-control" name="portfolio_link">
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
+              <button type="button" class="btn btn-yellow next-btn">
+                Next
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>City & State</label>
-            <input type="text" class="form-control" placeholder="e.g. Mumbai, Maharashtra">
-          </div>
+          <div class="form-step">
+            <h5>SECTION 7: ADDITIONAL INFORMATION</h5>
 
-          <div class="form-group">
-            <label>Nationality</label>
-            <input type="text" class="form-control" placeholder="e.g. Indian">
-          </div>
+            <div class="form-group">
+              <label>Do you have any job offer in hand?</label><br>
+              <label><input type="radio" name="has_job_offer" value="Yes"> Yes</label>
+              <label class="ml-3"><input type="radio" name="has_job_offer" value="No"> No</label>
+            </div>
 
-          <div class="form-group">
-            <label>Willing to Relocate?</label><br>
-            <label><input type="radio" name="relocate"> Yes</label>
-            <label class="ml-3"><input type="radio" name="relocate"> No</label>
-            <label class="ml-3"><input type="radio" name="relocate"> Maybe</label>
-          </div>
+            <div class="form-group">
+              <label>If yes, please mention details</label>
+              <textarea class="form-control" name="job_offer_details"></textarea>
+            </div>
 
-          <hr>
+            <div class="form-group">
+              <label>Any additional information</label>
+              <textarea class="form-control" name="additional_information"></textarea>
+            </div>
 
-          <h5>SECTION 2: EDUCATIONAL QUALIFICATION</h5>
+            <h5>DECLARATION</h5>
+            <p>
+              I hereby declare that the information provided above is true and correct to the best of my knowledge.
+            </p>
 
-          <div class="form-group">
-            <label>Highest Qualification</label>
-            <input type="text" class="form-control" placeholder="e.g. Bachelor's Degree">
-          </div>
+            <div class="form-group">
+              <label>Signature</label>
+              <input type="text" class="form-control" name="declaration_signed"
+                placeholder="Type your full name as signature" required>
+            </div>
 
-          <div class="form-group">
-            <label>Specialization</label>
-            <input type="text" class="form-control" placeholder="e.g. Computer Science">
-          </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-control" name="declaration_date" required>
+            </div>
 
-          <div class="form-group">
-            <label>College / University</label>
-            <input type="text" class="form-control" placeholder="Name of institution">
-          </div>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-yellow prev-btn">
+                Previous
+              </button>
 
-          <div class="form-group">
-            <label>Year of Passing</label>
-            <input type="text" class="form-control" placeholder="e.g. 2023">
-          </div>
-
-          <hr>
-
-          <h5>SECTION 3: WORK EXPERIENCE</h5>
-
-          <div class="form-group">
-            <label>Total Experience</label><br>
-            <label><input type="radio" name="exp"> Fresher</label>
-            <label class="ml-2"><input type="radio" name="exp"> 0–1 Year</label>
-            <label class="ml-2"><input type="radio" name="exp"> 1–3 Years</label>
-            <label class="ml-2"><input type="radio" name="exp"> 3–5 Years</label>
-            <label class="ml-2"><input type="radio" name="exp"> 5+ Years</label>
-          </div>
-
-          <div class="form-group">
-            <label>Current / Last Job Title</label>
-            <input type="text" class="form-control" placeholder="e.g. Customer Support Executive">
-          </div>
-
-          <div class="form-group">
-            <label>Company Name</label>
-            <input type="text" class="form-control" placeholder="Previous or current company">
-          </div>
-
-          <div class="form-group">
-            <label>Duration</label>
-            <input type="text" class="form-control" placeholder="e.g. 2 years">
-          </div>
-
-          <div class="form-group">
-            <label>Key Skills & Responsibilities</label>
-            <textarea class="form-control" rows="4" placeholder="Describe your key skills and responsibilities"></textarea>
-          </div>
-
-          <hr>
-
-          <h5>DECLARATION</h5>
-          <p>
-            I hereby declare that the information provided above is true and correct to the best of my knowledge.
-          </p>
-
-          <div class="form-group">
-            <label>Signature</label>
-            <input type="text" class="form-control" placeholder="Type your full name as signature">
-          </div>
-
-          <div class="form-group">
-            <label>Date</label>
-            <input type="date" class="form-control">
-          </div>
-
-          <div class="text-center mt-5">
-            <button type="submit" class="btn btn-yellow btn-lg px-5 py-3">Submit Application</button>
+              <!-- ONLY PLACE WITH SUBMIT -->
+              <button type="submit" class="btn btn-yellow">
+                Submit Application
+              </button>
+            </div>
           </div>
 
         </form>
@@ -342,13 +513,87 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="ftco-footer ftco-section">
-    <div class="container text-center">
-      <p>
-        © <script>document.write(new Date().getFullYear());</script> SmartHire — Connecting Talent with Opportunity.
-      </p>
-    </div>
-  </footer>
+  <footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">EasyHire Jobboard</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+							there live the blind texts.</p>
+						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Employers</h2>
+						<ul class="list-unstyled">
+							<li><a href="#" class="pb-1 d-block">Browse Candidates</a></li>
+							<li><a href="#" class="pb-1 d-block">Post a Job</a></li>
+							<li><a href="#" class="pb-1 d-block">Employer Listing</a></li>
+							<li><a href="#" class="pb-1 d-block">Resume Page</a></li>
+							<li><a href="#" class="pb-1 d-block">Dashboard</a></li>
+							<li><a href="#" class="pb-1 d-block">Job Packages</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4 ml-md-4">
+						<h2 class="ftco-heading-2">Candidate</h2>
+						<ul class="list-unstyled">
+							<li><a href="#" class="pb-1 d-block">Browse Jobs</a></li>
+							<li><a href="#" class="pb-1 d-block">Submit Resume</a></li>
+							<li><a href="#" class="pb-1 d-block">Dashboard</a></li>
+							<li><a href="#" class="pb-1 d-block">Browse Categories</a></li>
+							<li><a href="#" class="pb-1 d-block">My Bookmarks</a></li>
+							<li><a href="#" class="pb-1 d-block">Candidate Listing</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4 ml-md-4">
+						<h2 class="ftco-heading-2">Account</h2>
+						<ul class="list-unstyled">
+							<li><a href="#" class="pb-1 d-block">My Account</a></li>
+							<li><a href="#" class="pb-1 d-block">Sign In</a></li>
+							<li><a href="#" class="pb-1 d-block">Create Account</a></li>
+							<li><a href="#" class="pb-1 d-block">Checkout</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Have a Questions?</h2>
+						<div class="block-23 mb-3">
+							<ul>
+								<li><span class="icon icon-map-marker"></span><span class="text">Amss Central Tower
+										St. 63, BKK1, Phnom Penh. Cambodia</span></li>
+								<li><a href="#"><span class="icon icon-phone"></span><span
+											class="text">+919145749130</span></a></li>
+								<li><a href="#"><span class="icon icon-envelope"></span><span
+											class="text">growwithuseasyhire@gmail.com</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+
+					<p>
+						©
+						<script>document.write(new Date().getFullYear());</script> EasyHire — Connecting Talent with
+						Opportunity.
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</footer>
 
   <!-- Dynamic Job & Company Data Script -->
   <script>
@@ -401,7 +646,7 @@
       },
       '8': {
         title: 'Customer Support / Operations Role',
-        company: 'SmartHire Technologies',
+        company: 'EasyHire Technologies',
         location: 'Mumbai, Maharashtra (Hybrid)',
         description: 'We are looking for a motivated and customer-focused professional. The ideal candidate should have strong communication skills, problem-solving ability, and a passion for delivering exceptional customer experiences.'
       }
@@ -423,5 +668,96 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
 
+  <script>
+    document.getElementById('applyForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((v, k) => data[k] = v);
+
+      const res = await fetch('apply.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        alert('✅ Job applied successfully!');
+        this.reset();
+      } else {
+        alert('❌ ' + result.message);
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('job_id').value = jobId || '8';
+      document.getElementById('job_title_field').value = job.title;
+      document.getElementById('company_name_field').value = job.company;
+    });
+  </script>
+  <script>
+    const steps = document.querySelectorAll('.form-step');
+    let currentStep = 0;
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+    }
+
+    function validateCurrentStep() {
+      const currentFormStep = steps[currentStep];
+      const inputs = currentFormStep.querySelectorAll(
+        'input, textarea, select'
+      );
+
+      for (let input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity(); // show browser validation message
+          return false;
+        }
+      }
+      return true;
+    }
+
+    document.addEventListener('click', function (e) {
+
+      // NEXT
+      if (e.target.classList.contains('next-btn')) {
+
+        // 🚫 stop if validation fails
+        if (!validateCurrentStep()) {
+          return;
+        }
+
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+
+          document
+            .getElementById('application-form')
+            .scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      // PREVIOUS
+      if (e.target.classList.contains('prev-btn')) {
+        if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+        }
+      }
+    });
+
+    showStep(currentStep);
+  </script>
+
+
 </body>
+
 </html>
