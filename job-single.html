@@ -293,7 +293,7 @@
                                         Back to Jobs
                                     </a>
 
-                                    <a href="#"
+                                    <a id="applyBottomBtn" href="#"
                                         class="btn btn-yellow py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center text-nowrap"
                                         style="min-width:220px;">
                                         Apply for this Job
@@ -828,9 +828,9 @@
 
         if (jobId) {
             document.getElementById('applyNowBtn').href = `apply-job.html?id=${jobId}`;
+            document.getElementById('applyBottomBtn').href = `apply-job.html?id=${jobId}`;
         }
     </script>
-
 
 </body>
 

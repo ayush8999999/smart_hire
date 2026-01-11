@@ -205,6 +205,7 @@
       opacity: 0;
       cursor: pointer;
     }
+
     input[type="radio"] {
       transform: scale(1.3);
       margin-right: 6px;
@@ -275,7 +276,7 @@
       <div class="yellow-card" id="application-form">
         <h4 class="yellow-title mb-4">Candidate Job Application Form</h4>
 
-        <form id="applyForm">
+        <form id="applyForm" enctype="multipart/form-data">
           <input type="hidden" name="job_id" id="job_id">
           <input type="hidden" name="job_title" id="job_title_field">
           <input type="hidden" name="company_name" id="company_name_field">
@@ -310,23 +311,26 @@
 
             <div class="form-group">
               <label>Mobile Number</label>
-              <input type="text" class="form-control" id="mobile_number" name="mobile_number" pattern="[0-9]{10}" placeholder="Enter your 10-digit mobile number"
-                required>
+              <input type="text" class="form-control" id="mobile_number" name="mobile_number" pattern="[0-9]{10}"
+                placeholder="Enter your 10-digit mobile number" required>
             </div>
 
             <div class="form-group">
               <label>Email Address</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address"
+                required>
             </div>
 
             <div class="form-group">
               <label>Current Address</label>
-              <textarea class="form-control" id="current_address" name="current_address" placeholder="Enter your complete current address" required></textarea>
+              <textarea class="form-control" id="current_address" name="current_address"
+                placeholder="Enter your complete current address" required></textarea>
             </div>
 
             <div class="form-group">
               <label>City & State</label>
-              <input type="text" class="form-control" id="city_state" name="city_state" placeholder="e.g. Mumbai, Maharashtra" required>
+              <input type="text" class="form-control" id="city_state" name="city_state"
+                placeholder="e.g. Mumbai, Maharashtra" required>
             </div>
 
             <div class="form-group">
@@ -398,27 +402,48 @@
 
             <div class="form-group">
               <label>Total Experience</label><br>
-              <label><input type="radio" name="experience_level" value="Fresher"> Fresher</label>
-              <label class="ml-2"><input type="radio" name="experience_level" value="0-1"> 0–1 Year</label>
-              <label class="ml-2"><input type="radio" name="experience_level" value="1-3"> 1–3 Years</label>
-              <label class="ml-2"><input type="radio" name="experience_level" value="3-5"> 3–5 Years</label>
-              <label class="ml-2"><input type="radio" name="experience_level" value="5+"> 5+ Years</label>
+              <label>
+                <input type="radio" name="experience_level" value="Fresher">
+                Fresher
+              </label>
+
+              <label class="ml-2">
+                <input type="radio" name="experience_level" value="0–1 Year">
+                0–1 Year
+              </label>
+
+              <label class="ml-2">
+                <input type="radio" name="experience_level" value="1–3 Years">
+                1–3 Years
+              </label>
+
+              <label class="ml-2">
+                <input type="radio" name="experience_level" value="3–5 Years">
+                3–5 Years
+              </label>
+
+              <label class="ml-2">
+                <input type="radio" name="experience_level" value="5+ Years">
+                5+ Years
+              </label>
+
             </div>
 
-            <div class="form-group">
-              <label>Current / Last Job Title</label>
-              <input type="text" class="form-control" name="current_job_title"
-                placeholder="e.g. Customer Support Executive">
-            </div>
+            <div id="experienceFields">
+              <div class="form-group">
+                <label>Current / Last Job Title</label>
+                <input type="text" class="form-control" name="current_job_title">
+              </div>
 
-            <div class="form-group">
-              <label>Company Name</label>
-              <input type="text" class="form-control" name="previous_company" placeholder="Previous or current company">
-            </div>
+              <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" class="form-control" name="previous_company">
+              </div>
 
-            <div class="form-group">
-              <label>Duration</label>
-              <input type="text" class="form-control" name="experience_duration" placeholder="e.g. 2 years">
+              <div class="form-group">
+                <label>Duration</label>
+                <input type="text" class="form-control" name="experience_duration">
+              </div>
             </div>
 
             <div class="form-group">
@@ -548,25 +573,46 @@
             <!-- NEW: PASSPORT UPLOAD -->
             <div class="form-group">
               <label class="d-block mb-2">Upload Passport</label>
-              <div class="upload-box">
+
+              <div class="upload-box" id="passportBox">
                 <span class="icon ion-ios-paper"></span>
                 <div>
                   <strong>Passport Document</strong>
                   <small class="d-block text-muted">PDF / JPG / PNG (Max 5MB)</small>
+
+                  <!-- File info -->
+                  <div class="mt-2 d-none" id="passportInfo">
+                    <a href="#" target="_blank" class="text-warning font-weight-bold" id="passportPreview">
+                      View uploaded file
+                    </a>
+                    <span class="text-muted ml-2" id="passportName"></span>
+                  </div>
                 </div>
-                <input type="file" name="passport_file" accept=".pdf,.jpg,.jpeg,.png">
+
+                <input type="file" name="passport_file" accept=".pdf,.jpg,.jpeg,.png"
+                  onchange="handleFilePreview(this, 'passport')">
               </div>
             </div>
 
             <div class="form-group">
               <label class="d-block mb-2">Upload CV / Resume</label>
-              <div class="upload-box">
+
+              <div class="upload-box" id="cvBox">
                 <span class="icon ion-ios-document"></span>
                 <div>
                   <strong>Resume / CV</strong>
                   <small class="d-block text-muted">PDF / DOC / DOCX (Max 2MB)</small>
+
+                  <!-- File info -->
+                  <div class="mt-2 d-none" id="cvInfo">
+                    <a href="#" target="_blank" class="text-warning font-weight-bold" id="cvPreview">
+                      View uploaded file
+                    </a>
+                    <span class="text-muted ml-2" id="cvName"></span>
+                  </div>
                 </div>
-                <input type="file" name="cv_file" accept=".pdf,.doc,.docx">
+
+                <input type="file" name="cv_file" accept=".pdf,.doc,.docx" onchange="handleFilePreview(this, 'cv')">
               </div>
             </div>
 
@@ -604,6 +650,61 @@
 
     </div>
   </section>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius:16px;border:2px solid #fdd835;">
+
+        <div class="modal-body text-center p-5" style="background:#fffde7;">
+
+          <!-- ICON -->
+          <div style="
+          width:80px;
+          height:80px;
+          border-radius:50%;
+          background:linear-gradient(to right,#fdd835,#f9a825);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin:0 auto 20px;
+          box-shadow:0 6px 18px rgba(0,0,0,.2);
+        ">
+            <span class="ion-ios-checkmark" style="font-size:48px;color:#000;"></span>
+          </div>
+
+          <!-- TEXT -->
+          <h3 style="color:#f57f17;font-weight:700;">
+            Application Submitted!
+          </h3>
+
+          <p class="mt-3" style="color:#5d4037;font-size:16px;">
+            Your application for
+            <strong id="successJobTitle">this position</strong>
+            has been submitted successfully.
+          </p>
+
+          <p style="color:#6d4c41;font-size:14px;">
+            Our team will review your profile and get back to you soon.
+          </p>
+
+          <p style="color:#5d4037;font-size:14px;">
+            For any queries, contact us at
+            <a href="mailto:growwithuseasyhire@gmail.com" style="color:#f9a825;font-weight:600;">
+              growwithuseasyhire@gmail.com
+            </a>
+          </p>
+
+          <!-- BUTTON -->
+          <button type="button" class="btn btn-yellow mt-4 px-4" data-dismiss="modal">
+            Done
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- FOOTER -->
   <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -746,7 +847,7 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
 
-  <script>
+  <!-- <script>
     document.getElementById('applyForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -769,7 +870,35 @@
         alert('❌ ' + result.message);
       }
     });
+  </script> -->
+
+  <script>
+    document.getElementById('applyForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      const res = await fetch('apply.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        // set job title dynamically
+        document.getElementById('successJobTitle').textContent =
+          document.getElementById('job-title').textContent;
+
+        $('#successModal').modal('show');
+
+        this.reset();
+      } else {
+        alert('❌ ' + result.message);
+      }
+    });
   </script>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -834,6 +963,51 @@
 
     showStep(currentStep);
   </script>
+  <script>
+    function handleFilePreview(input, type) {
+      if (!input.files || !input.files[0]) return;
+
+      const file = input.files[0];
+
+      const info = document.getElementById(type + 'Info');
+      const nameEl = document.getElementById(type + 'Name');
+      const previewEl = document.getElementById(type + 'Preview');
+
+      // Show file name
+      nameEl.textContent = `(${file.name})`;
+
+      // Create preview URL
+      const fileURL = URL.createObjectURL(file);
+      previewEl.href = fileURL;
+
+      // Show info section
+      info.classList.remove('d-none');
+
+      // Optional: highlight box
+      document.getElementById(type + 'Box').style.borderColor = '#f9a825';
+      document.getElementById(type + 'Box').style.background = '#fff8c4';
+    }
+  </script>
+
+  <script>
+    document.addEventListener('change', function (e) {
+
+      if (e.target.name === 'experience_level') {
+
+        const experienceFields = document.getElementById('experienceFields');
+
+        if (e.target.value === 'Fresher') {
+          experienceFields.style.display = 'none';
+        } else {
+          experienceFields.style.display = 'block';
+        }
+
+      }
+
+    });
+  </script>
+
+
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>

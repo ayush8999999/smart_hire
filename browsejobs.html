@@ -27,6 +27,49 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<style>
+		.job-post-item {
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* Common badge */
+		.job-label {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			padding: 6px 14px;
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.4px;
+			border-radius: 30px;
+			text-transform: uppercase;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+			backdrop-filter: blur(6px);
+			transition: all 0.3s ease;
+			z-index: 2;
+		}
+
+		/* Premium badge */
+		.job-label.premium {
+			background: linear-gradient(135deg, #6a11cb, #2575fc);
+			color: #fff;
+		}
+
+		/* Free badge */
+		.job-label.free {
+			background: linear-gradient(135deg, #00c853, #64dd17);
+			color: #fff;
+		}
+
+		/* Hover effect */
+		.job-post-item:hover .job-label {
+			transform: translateY(-2px) scale(1.05);
+			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+		}
+
 		.footer-contact li {
 			display: flex;
 			align-items: flex-start;
@@ -91,6 +134,10 @@
 						<!-- Job 1 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label premium">
+									<span class="icon-star"></span> Premium
+								</span>
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-time</span>
@@ -124,6 +171,10 @@
 						<!-- Job 2 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label premium">
+									<span class="icon-star"></span> Premium
+								</span>
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-time</span>
@@ -157,6 +208,10 @@
 						<!-- Job 3 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label premium">
+									<span class="icon-star"></span> Premium
+								</span>
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
@@ -191,6 +246,10 @@
 						<!-- Job 4 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label premium">
+									<span class="icon-star"></span> Premium
+								</span>
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
@@ -225,6 +284,10 @@
 						<!-- Job 5 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label premium">
+									<span class="icon-star"></span> Premium
+								</span>
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
@@ -258,6 +321,11 @@
 						<!-- Job 6 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label free">
+									<span class="icon-check"></span> Zero-Cost
+								</span>
+
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
@@ -292,6 +360,11 @@
 						<!-- Job 7 -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label free">
+									<span class="icon-check"></span> Zero-Cost
+								</span>
+
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
@@ -326,6 +399,11 @@
 						<!-- Job 8 - New Job -->
 						<div class="col-md-12 ftco-animate">
 							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+								<span class="job-label free">
+									<span class="icon-check"></span> Zero-Cost
+								</span>
+
+
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>

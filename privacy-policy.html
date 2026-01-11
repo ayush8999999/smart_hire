@@ -6,12 +6,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- SAME CSS FILES -->
+    <!-- CSS FILES -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/ionicons.min.css">
     <link rel="stylesheet" href="css/style.css">
+
     <style>
+        /* Policy accordion styling */
+        .policy-item {
+            border: 2.5px solid #fdd835;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            cursor: pointer;
+        }
+
+        .policy-item a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .policy-item a:hover {
+            color: #f57f17;
+        }
+
+        .policy-item .icon {
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .policy-item a[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+
+        .policy-item p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-top: 10px;
+            color: #000;
+        }
+
+        /* Footer fixes */
         .footer-contact li {
             display: flex;
             align-items: flex-start;
@@ -24,10 +66,6 @@
         .footer-contact li .text {
             margin-left: 12px;
         }
-
-        p {
-            color: black;
-        }
     </style>
 </head>
 
@@ -35,23 +73,18 @@
 
     <!-- HEADER -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container-fluid px-md-4	">
+        <div class="container-fluid px-md-4">
             <a class="navbar-brand" href="index.html">EasyHire</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-                    <!-- <li class="nav-item"><a href="candidates.html" class="nav-link">Canditates</a></li> -->
+                    <li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">About us</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    <!-- <li class="nav-item cta mr-md-1"><a href="new-post.html" class="nav-link">Post a Job</a></li> -->
-                    <!-- <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Apply job</a></li> -->
-
                 </ul>
             </div>
         </div>
@@ -63,59 +96,170 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end justify-content-center">
                 <div class="col-md-12 text-center mb-5">
-                    <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i
-                                    class="ion-ios-arrow-forward"></i></a></span> <span>Privacy Policy</span></p>
+                    <p class="breadcrumbs mb-0">
+                        <span class="mr-3">
+                            <a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a>
+                        </span>
+                        <span>Privacy Policy</span>
+                    </p>
                     <h1 class="mb-3 bread">Privacy Policy</h1>
                 </div>
             </div>
         </div>
     </div>
 
-
     <!-- CONTENT -->
     <section class="ftco-section contact-section bg-overlay">
         <div class="container">
             <div class="col-md-12">
-                <h3>1. Information We Collect</h3>
-                <p>
-                    We collect information directly from users including name, contact details, resume, work experience,
-                    and documents required for recruitment and placement.
-                </p>
 
-                <h3>2. How We Use Your Information</h3>
-                <p>
-                    Your data is used strictly for recruitment purposes such as job matching, communication,
-                    verification, and coordination with employers.
-                </p>
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy1" aria-expanded="false">
+                        1. Information We Collect
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy1">
+                        <p>
+                            We collect personal and professional information from candidates when they voluntarily
+                            submit their details through our website, WhatsApp, email, application forms, or any other
+                            recruitment channel. This information may include, but is not limited to, full name, phone
+                            number, email address, residential location, date of birth, educational qualifications,
+                            professional certifications, employment history, salary expectations, skills, and
+                            references. We also collect resumes, CVs, identity documents (where legally required), work
+                            permits, and any additional documents necessary for recruitment or compliance with employer
+                            or legal requirements.
+                            In addition to information you provide directly, we may collect technical data such as IP
+                            address, device type, communication logs, and message history when you interact with us
+                            through digital platforms. This helps us improve our recruitment services, track application
+                            progress, and maintain proper records.
+                            All information collected is relevant and necessary for recruitment, placement, and career
+                            assistance. We do not collect unnecessary or unrelated personal data. Candidates are always
+                            free to decline providing optional information, but some details may be required to proceed
+                            with job applications or employer verification.
+                        </p>
+                    </div>
+                </div>
 
-                <h3>3. Sharing of Information</h3>
-                <p>
-                    Information may be shared only with verified employers or HR teams involved in the hiring process.
-                </p>
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy2" aria-expanded="false">
+                        2. How We Use Your Information
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy2">
+                        <p>
+                            Your personal information is used strictly for recruitment, employment, and
+                            placement-related activities. This includes evaluating your profile, matching your skills
+                            with suitable job opportunities, contacting you regarding interviews, job updates, employer
+                            requirements, documentation, and onboarding processes. We also use your data to verify your
+                            professional background, confirm eligibility for specific job roles, and coordinate directly
+                            with employers or hiring managers.
+                            Your information may be used to improve our recruitment services, track application
+                            progress, resolve disputes, and ensure compliance with legal and contractual obligations.
+                            Communication may take place via phone calls, WhatsApp, email, SMS, or other approved
+                            communication channels.
+                            We do not sell, rent, or use your data for marketing unrelated products or services. Your
+                            information is never used for spam, promotions, or third-party advertising. Our goal is to
+                            ensure your data is used solely to help you secure legitimate job opportunities and support
+                            your career growth.
+                        </p>
+                    </div>
+                </div>
 
-                <h3>4. Data Security</h3>
-                <p>
-                    We follow reasonable security practices to protect personal information from unauthorized access.
-                </p>
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy3" aria-expanded="false">
+                        3. Sharing of Information
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy3">
+                        <p>
+                            Your personal and professional information is shared only with verified employers, clients,
+                            HR departments, or authorized hiring partners who are directly involved in the recruitment
+                            and selection process. We share only the necessary information required for your job
+                            application, interview, background verification, and hiring process.
+                            We ensure that all employers and hiring partners comply with reasonable data protection and
+                            confidentiality standards. Your data is not shared with unknown, unverified, or unauthorized
+                            third parties. We do not sell or trade candidate data under any circumstances.
+                            In some cases, we may be required to share information with legal or regulatory authorities
+                            if required by law, government regulations, or court orders. We may also share data with
+                            background verification agencies if an employer requires such checks as part of their hiring
+                            process.
+                            All data sharing is done strictly to support your employment opportunity and never for
+                            commercial exploitation of your personal information.
+                        </p>
+                    </div>
+                </div>
 
-                <h3>5. User Consent</h3>
-                <p>
-                    By submitting your information, you consent to its use as outlined in this policy.
-                </p>
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy4" aria-expanded="false">
+                        4. Data Security
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy4">
+                        <p>
+                            We take data security seriously and implement appropriate technical and organizational
+                            measures to protect your personal information from unauthorized access, misuse, alteration,
+                            or loss. This includes secure storage systems, restricted access to authorized staff,
+                            encrypted communication where applicable, and internal confidentiality policies.
+                            Only trained and authorized personnel are allowed to handle candidate information. We
+                            regularly review our security procedures to ensure that your data remains protected against
+                            cyber threats, data breaches, and unauthorized disclosures.
+                            While no digital system can guarantee 100% security, we make every reasonable effort to
+                            safeguard your data and immediately take action in case of any suspected or actual breach.
+                            We also encourage candidates to keep their login details, communication channels, and
+                            documents secure when interacting with us online.
+                        </p>
+                    </div>
+                </div>
 
-                <h3>6. Policy Updates</h3>
-                <p>
-                    This Privacy Policy may be updated periodically. Continued use of our services implies acceptance.
-                </p>
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy5" aria-expanded="false">
+                        5. User Consent
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy5">
+                        <p>
+                            By submitting your personal information to us through any platform, you explicitly give your
+                            consent for us to collect, store, process, and share your data for recruitment and placement
+                            purposes. This consent includes communication with you regarding job opportunities,
+                            interviews, document verification, and employment offers.
+                            You acknowledge that providing false or misleading information may affect your job
+                            application and may result in disqualification. You also agree that we are not responsible
+                            for employment decisions made by employers based on the information provided.
+                            You have the right to request access, correction, or deletion of your personal data at any
+                            time by contacting us. However, deletion of your data may limit our ability to provide
+                            recruitment services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="policy-item">
+                    <a data-toggle="collapse" href="#privacy6" aria-expanded="false">
+                        6. Policy Updates
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </a>
+                    <div class="collapse" id="privacy6">
+                        <p>
+                            We reserve the right to update, modify, or revise this Privacy Policy at any time to reflect
+                            changes in legal requirements, business practices, or service improvements. Any updates will
+                            be communicated through our website, application forms, or official communication channels.
+                            Continued use of our recruitment services after any changes means you accept the revised
+                            Privacy Policy. We recommend reviewing this policy periodically to stay informed about how
+                            your data is handled.
+                            Our commitment is to remain transparent, responsible, and respectful of your privacy while
+                            delivering genuine and professional recruitment services.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
             <div class="row mb-5">
 
-                <!-- EasyHire Jobboard -->
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">EasyHire Jobboard</h2>
@@ -126,7 +270,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div class="col-md-4 mb-4 mb-md-0 text-md-center text-left">
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">Quick Links</h2>
@@ -139,7 +282,6 @@
                     </div>
                 </div>
 
-                <!-- Have a Questions -->
                 <div class="col-md-4">
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">Have a Questions?</h2>
@@ -178,6 +320,7 @@
         </div>
     </footer>
 
+    <!-- JS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
