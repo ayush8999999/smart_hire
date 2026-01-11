@@ -41,13 +41,335 @@
       margin-left: 12px;
     }
   </style>
+  <style type="text/css">
+    /* body{
+      overflow-x:hidden !important;
+    } */
+    
+    .firsttext{
+      font-size: 63px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .firsttext1{
+      font-size: 63px;
+      text-align: center;
+      font-weight: 300;
+      line-height: 78px;
+    }
+    .firsttext > span, .firsttext1 > span{
+      color: #FFA500;
+    }
+
+    .input_search{
+      border: 1px solid #878787;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      padding: 15px 10px;
+      width: 40%;
+    }
+    .input_search:focus{
+    }
+
+    .get_ready_button{
+      border: none;
+      background: #1D6362;
+      color: #FFFFFF;
+      outline: none;
+      border-radius: 0px 5px 5px 0px;
+      padding: 15px 10px;
+    }
+
+    .ai_power_div{
+      width: 100%;
+      border: 1px solid #C0DDDD;
+      border-radius: 5px;
+      padding: 30px;
+    }
+
+    .green_border{
+      border: 1px solid #C0DDDD;
+      border-radius: 5px;
+    }
+
+    .gray_border{
+      border: 1px solid #D8D8D8;
+      border-radius: 5px;
+      padding: 0px;
+    }
+
+    .text_our_ai{
+      font-size: 20px;
+      color: #878787;
+    }
+
+    /* .second_section{
+      background-color: #ffd54f33;
+      background-image: url('images/logo-bg.png');
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size: contain;
+    } */
+    .second_section{
+      position: relative;
+      background-color: #ffd54f33;
+      overflow: hidden;
+    }
+
+    /* background image layer */
+    .second_section::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("images/logo-bg.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right center;   /* desktop position */
+        opacity: 0.3;                       /* 30% opacity */
+        z-index: 0;
+    }
+
+    /* keep content above bg */
+    .second_section > *{
+        position: relative;
+        z-index: 1;
+    }
+    @media (max-width: 768px){
+        .second_section::before{
+            background-position: center center;
+        }
+    }
+
+    .gray_back{
+      background-image: url('image/gray_background.svg');
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size: cover;
+    }
+
+    .longtext{
+      font-size: 18px;
+      color: #343636;
+    }
+
+    .request_demo{
+      padding: 15px 30px;
+      border-radius: 5px;
+      background-color: #ED6F2D;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+    }
+
+    .start_hiring{
+      padding: 13px 25px;
+      border-radius: 5px;
+      background-color: #ED6F2D;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+    }
+
+    .start_hiring_g{
+      padding: 13px 25px;
+      border-radius: 5px;
+      background-color: #FFA500;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+    }
+
+    .start_hiring1{
+      padding: 13px 25px;
+      border-radius: 5px;
+      background-color: #1D6362;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+    }
+
+    .rec_text{
+      font-size: 52px;
+    }
+
+
+    .multisection > span {
+      font-size: 18px;
+      color: #878787;
+      cursor: pointer;
+    }
+
+    .multisection > span.active {
+      font-weight: 500;
+      padding-bottom: 10px;
+      color: #f9a825;
+      position: relative;
+    }
+
+    .multisection > span.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background-color: #ED6F2D;
+      width: 100%;	
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: borderLoading 7s ease-in-out forwards;
+    }
+
+    @keyframes borderLoading {
+      0% {
+        transform: scaleX(0);
+      }
+      100% {
+        transform: scaleX(1);
+      }
+    }
+    .header_row1{
+      width: 90%;
+    }
+
+    .multiTitle{
+      font-size: 26px;
+
+    }
+    .marqueenew {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+    }
+
+    .imagesnew {
+        display: inline-flex;
+        white-space: nowrap;
+        animation: marquee 200s linear infinite;
+    }
+
+    .imagenew {
+        margin-left: 25px;
+        display: inline-flex;
+        align-items: center;
+        margin-right: 15px;
+        object-fit: contain;
+        width: 160px;
+    }
+
+    .marqueeslidenew{
+        width: 60%;
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-100%, 0);
+        }
+    }
+
+    .sixth_text{
+      font-size: 32px;
+      line-height:35px;
+      color: #1D6362;
+    }
+
+    .seventh_section{
+      padding-top:80px;
+    }
+
+    .special-char {
+        color: black;
+    }
+    .width50{
+      width: 50%;
+    }
+    #typingText{
+      font-size: 38px; transition: opacity 0.5s;height: 57px;
+    }
+
+    .bggreen {
+        background-image: url(images/greenstrips.svg);
+        /* background-color: #FFA500; */
+        background-color: #ffba3d;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    @media (max-width: 1200px){
+      #typingText{
+        font-size: 30px; transition: opacity 0.5s;height: 57px;
+      }
+    }
+
+    @media (max-width: 992px){
+      .rotate{
+        transform: rotate(90deg);
+      }
+    }
+    @media (max-width: 768px){
+      .width50{
+        width: 100%;
+      }
+      #typingText{
+        font-size: 25px; transition: opacity 0.5s;height: 57px;
+      }
+      .rotate{
+        transform: rotate(90deg);
+      }
+
+      .longtext{
+        font-size: 15px;
+        color: #343636;
+      }
+    }
+    @media (max-width: 568px){
+      .rotate{
+        transform: rotate(90deg);
+      }
+
+      .firsttext1{
+        font-size: 38px;
+        text-align: center;
+        font-weight: 300;
+        line-height: 40px;
+      }
+
+      .green_border{
+        gap: 20px;
+      }
+
+      .width50{
+        width: 100%;
+      }
+
+      #typingText{
+        font-size: 25px; transition: opacity 0.5s;height: 57px;
+      }
+    }
+
+    .second_section p {
+      color: black;
+    }
+    
+    .third_section span,
+    .third_section p {
+        color: black;
+    }
+  </style>
 </head>
 
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid px-md-4	">
-      <a class="navbar-brand" href="index.html">EasyHire</a>
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="images/logo-bg.png" alt="EasyHire" class="navbar-logo mr-2">
+          <span>EasyHire</span>
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -83,7 +405,189 @@
     </div>
   </div>
 
-  	<section class="ftco-section p-0">
+  <section class="second_section">
+    <div class="header_row1 py-5 diff_font mx-auto">
+      <p data-aos="fade-right" data-aos-delay="200" class="firsttext1 diff_font mb-0 text-left" style="font-weight: 700">
+        Finding the right job <br class="d-lg-flex d-none">
+        <span class="diff_font weight_500">shouldn’t be complicated</span> <br class="d-lg-flex d-none">
+        <span class="diff_font weight_500">or stressful.</span>  
+        Start your career <br class="d-lg-flex d-none">journey with us.
+      </p>	
+
+      <p data-aos="fade-right" data-aos-delay="300" class="longtext weight_400 diff_font my-5">
+        Discover jobs that match your skills, experience, and interests.  
+        Apply easily with your resume and connect  <br class="d-lg-flex d-none">directly with employers.
+        <span class="weight_600" style="border-bottom: 1px solid;">No lengthy forms or complicated steps</span> — just simple, fast, and reliable job applications.  <br class="d-lg-flex d-none">
+        Find opportunities that help you grow and build a better future.
+      </p>
+    </div>
+  </section>
+  
+  <section class="my-5 third_section">
+    <div class="header_row1 mx-auto">
+      <p class="diff_font text-center rec_text weight_300" style="font-weight: 700">
+      Why Recruiters Post Jobs On <span class="weight_400 diff_font text_g" style="font-weight: 700">EasyHire?</span>
+      </p>
+
+      <p class="font_16 diff_font text-center mb-4 weight_400">
+      Reach the right candidates faster, manage applications easily, and hire with confidence using
+      <span class="weight_500" style="border-bottom: 1px solid;">a simple and reliable hiring platform.</span>
+      </p>
+
+      <div class="d-flex justify-content-between align-items-start flex-lg-row flex-column multisection mb-3">
+        <span class="diff_font">Create Job Posts</span>
+        <span class="diff_font">Review Applications</span>
+        <span class="diff_font">Receive Resumes</span>
+        <span class="diff_font">Schedule Interviews</span>
+        <span class="diff_font">Hire Candidates</span>
+      </div>
+
+      <div class="multisectionAns">
+        <div class="row green_border py-lg-5 py-3 px-lg-5 px-1" style="display: none;">
+          <div class="col-lg-5 col-12">
+            <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Create Job Posts</span>
+            <div><img src="images/orange_vertical.svg"></div>
+          <p class="longtext diff_font weight_400">
+          Post job openings quickly by adding role details, experience, and location to attract the right candidates.
+          </p>
+            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div><img src="images/multi_1.svg" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="row green_border py-lg-5 py-3 px-lg-5 px-1" style="display: none;">
+          <div class="col-lg-5 col-12">
+            <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Review Applications</span>
+            <div><img src="images/orange_vertical.svg"></div>
+            <p class="longtext diff_font weight_400">
+            View and manage all candidate applications in one place with easy resume access.
+            </p>
+            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div><img src="images/multi_2.svg" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="row green_border py-lg-5 py-3 px-lg-5 px-1" style="display: none;">
+          <div class="col-lg-5 col-12">
+            <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Receive Resumes</span>
+            <div><img src="images/orange_vertical.svg"></div>
+            <p class="longtext diff_font weight_400">
+            Candidates apply directly and their resumes are delivered straight to your dashboard.
+            </p>
+            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div><img src="images/multi_3.svg" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="row green_border py-lg-5 py-3 px-lg-5 px-1" style="display: none;">
+          <div class="col-lg-5 col-12">
+            <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Schedule Interviews</span>>
+            <div><img src="images/orange_vertical.svg"></div>
+            <p class="longtext diff_font weight_400">
+            Connect with candidates and schedule interviews easily via email or phone.
+            </p>
+            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div><img src="images/multi_4.svg" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="row green_border py-lg-5 py-3 px-lg-5 px-1" style="display: none;">
+          <div class="col-lg-5 col-12">
+            <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Hire Candidates</span>
+            <div><img src="images/orange_vertical.svg"></div>
+            <p class="longtext diff_font weight_400">
+            Choose the best applicant and complete your hiring process smoothly and quickly.
+            </p>
+            <a href="browsejobs.html"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div><img src="images/multi_5.svg" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-5 fifth_section">
+    <div class="row mx-0 justify-content-between gray_border bggreen" style="position: sticky;top: 90px;">
+      <div class="col-lg-1 col-12 text-lg-right text-left px-lg-0 px-2"><img src="images/icon-job.svg" style="width: 60px;" class="ml-lg-3 ml-1 mt-lg-5 mt-3"></div>
+      <div class="col-lg-5 col-12 d-lg-flex d-block">
+        <div class="mx-lg-5 mx-0 my-lg-5 my-2">
+          <span class="multiTitle text-white weight_600 diff_font" style="font-weight: 700">Post and find jobs easily on EasyHire</span>
+          <div><img src="images/orange_vertical.svg"></div>
+          <p class="longtext diff_font weight_400 text-white">
+          Find job openings that match your skills, experience, and career goals.
+          </p>
+
+          <p class="longtext diff_font weight_400 text-white">
+          Apply with your resume in just a few clicks and get connected directly with employers.
+          </p>
+          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
+        <div style="width: 100%;"><img src="images/overflow_div1p.png" style="width: 100%;"></div>
+      </div>
+    </div>
+    <div class="row mx-0 justify-content-between gray_border" style="position: sticky;top: 90px;background: white;">
+      <div class="col-lg-1 col-12 text-lg-right text-left px-lg-0 px-2"><img src="images/icon-link.svg" style="width: 60px;" class="ml-lg-3 ml-1 mt-lg-5 mt-3"></div>
+      <div class="col-lg-5 col-12 d-lg-flex d-block">
+        <div class="mx-lg-5 mx-0 my-lg-5 my-2">
+          <span class="multiTitle text_g weight_600 diff_font" style="font-weight: 700">Get job applications and interview calls faster</span>
+          <div><img src="images/orange_vertical.svg"></div>
+          <p class="longtext diff_font weight_400">
+          EasyHire helps employers receive applications from interested and suitable candidates so that hiring happens faster and smoother.
+          </p>
+          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
+        <div style="width: 100%;"><img src="images/overflow_div2p.png" style="width: 100%;"></div>
+      </div>
+    </div>
+    <div class="row mx-0 justify-content-between gray_border bggreen" style="position: sticky;top: 90px;">
+      <div class="col-lg-1 col-12 text-lg-right text-left px-lg-0 px-2"><img src="images/icon-apply.svg" style="width: 60px;" class="ml-lg-3 ml-1 mt-lg-5 mt-3"></div>
+      <div class="col-lg-5 col-12 d-lg-flex d-block">
+        <div class="mx-lg-5 mx-0 my-lg-5 my-2">
+          <span class="multiTitle text-white weight_600 diff_font" style="font-weight: 700">Attend interviews and secure your next job</span>
+          <div><img src="images/orange_vertical.svg"></div>
+          <p class="longtext diff_font text-white weight_400">
+          Once you apply, recruiters can contact you directly to schedule interviews and move forward in the hiring process.
+          </p>
+          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
+        <div style="width: 100%;"><img src="images/overflow_div3p.png" style="width: 100%;"></div>
+      </div>
+    </div>
+    <div class="row mx-0 justify-content-between gray_border" style="position: sticky;top: 90px;background: white;display: none;">
+      <div class="col-lg-1 col-12 text-lg-right text-left px-lg-0 px-2"><img src="images/icon-date.svg" style="width: 60px;" class="ml-lg-3 ml-1 mt-lg-5 mt-3"></div>
+      <div class="col-lg-5 col-12 d-lg-flex d-block">
+        <div class="mx-lg-5 mx-0 my-lg-5 my-2">
+          <span class="multiTitle text_g weight_600 diff_font">Get started with EasyHire today</span>
+          <div><img src="images/orange_vertical.svg"></div>
+          <p class="longtext diff_font weight_400">
+          EasyHire makes job searching and hiring simple. Post jobs, apply for roles, and connect with employers — all in one place.
+          </p>
+          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
+        <div style="width: 100%;"><img src="images/overflow_div4p.png" style="width: 100%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="ftco-section p-0">
 		<div class="apply-process-area apply-bg bg-overlay about-us-section pt-150 pb-150">
 			<div class="container-fluid px-5">
 				<div class="row">
@@ -98,7 +602,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-search"></span> -->
 								<i class="bi bi-search"></i>
 							</div>
 							<div class="process-cap">
@@ -112,7 +615,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-curriculum-vitae"></span> -->
 								<i class="bi bi-kanban"></i>
 							</div>
 							<div class="process-cap">
@@ -126,7 +628,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-tour"></span> -->
 								<i class="bi bi-briefcase"></i>
 							</div>
 							<div class="process-cap">
@@ -140,7 +641,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-tour"></span> -->
 								<i class="bi bi-people"></i>
 							</div>
 							<div class="process-cap">
@@ -156,7 +656,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-search"></span> -->
 								<i class="bi bi-patch-check"></i>
 							</div>
 							<div class="process-cap">
@@ -170,7 +669,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-curriculum-vitae"></span> -->
 								<i class="bi bi-lightning-charge"></i>
 							</div>
 							<div class="process-cap">
@@ -184,7 +682,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-tour"></span> -->
 								<i class="bi bi-mortarboard"></i>
 							</div>
 							<div class="process-cap">
@@ -198,7 +695,6 @@
 					<div class="col-lg-3 col-md-6 col-12 mt-3 card-col">
 						<div class="single-process text-center mb-30">
 							<div class="process-ion">
-								<!-- <span class="flaticon-tour"></span> -->
 								<i class="bi bi-globe"></i>
 							</div>
 							<div class="process-cap">
@@ -212,9 +708,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
-  	<section class="ftco-section testimony-section">
+  <!-- <section class="ftco-section testimony-section">
 		<div class="container">
 			<div class="row justify-content-center mb-4">
 				<div class="col-md-7 text-center heading-section ftco-animate">
@@ -304,7 +800,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
   <!-- <section class="ftco-section">
     <div class="container">
@@ -561,11 +1057,114 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    AOS.init({
+      once:true,
+      duration: 1000
+    });
 
+    $(document).ready(function() {
+        var spans = $(".multisection > span");
+        var divs = $(".multisectionAns > div");
+        var currentIndex = 0;
+        var timeout;
+
+        function activateNextSpan() {
+            spans.removeClass('active');
+            divs.hide();
+            if (currentIndex >= spans.length) {
+                currentIndex = 0;
+            }
+            spans.eq(currentIndex).addClass('active');
+            divs.eq(currentIndex).fadeIn(1500);
+            currentIndex++;
+            timeout = setTimeout(activateNextSpan, 7000);
+        }
+
+        spans.click(function() {
+            clearTimeout(timeout); // Stop the automatic cycling
+            currentIndex = $(this).index(); // Get the index of the clicked span
+            activateNextSpan(); // Show the corresponding div
+        });
+
+        activateNextSpan(); // Start the automatic cycling initially
+    });
+
+    $(document).ready(function() {
+        var text = "10X Faster, Smarter & Reliable";
+        var words = text.split(" ");
+        var i = 0;
+
+        // Function to wrap the special characters with a span that has a specific class
+        function styleSpecialChars(word) {
+            word = word.replace(",", '<span class="special-char">,</span>');
+            word = word.replace("&", '<span class="special-char">&</span>');
+            return word;
+        }
+
+        function typeWriter() {
+            if (i < words.length) {
+                // Apply the special character styling to each word
+                var styledWord = styleSpecialChars(words[i]);
+
+                $('<span>' + styledWord + ' </span>')
+                    .hide()
+                    .appendTo('#typingText')
+                    .fadeIn(500); // Smoothly fade in each word over 0.5 seconds
+                i++;
+                setTimeout(typeWriter, 500); // Adjust the speed here (in milliseconds)
+            } else {
+                setTimeout(function() {
+                    $('#typingText').css('opacity', '0'); // Fade out
+                    setTimeout(function() {
+                        $('#typingText').empty(); // Clear the text
+                        i = 0; // Reset the word counter
+                        $('#typingText').css('opacity', '1'); // Fade in
+                        setTimeout(typeWriter, 1000); // Start typing again after 1 second
+                    }, 1000); // 1-second delay before clearing and restarting
+                }, 1000); // 1-second delay after fully typing
+            }
+        }
+
+        typeWriter();
+    });
+
+    const percentageElement = document.getElementById('percentage');
+      $(document).ready(function() {
+          let hasScrolledToPercentage = false;
+          let currentPercentage = 0;
+
+          function incrementPercentage() {
+              if (currentPercentage <= 70) {
+                  $('#percentage').text(`${currentPercentage}%`);
+                  currentPercentage += 10;
+                  setTimeout(incrementPercentage, 500);
+              }
+          }
+
+          $(window).scroll(function() {
+              const percentageTop = $('#percentage').offset().top;
+              const scrollTop = $(window).scrollTop();
+              const windowHeight = $(window).height();
+
+              if (!hasScrolledToPercentage && scrollTop + windowHeight >= percentageTop) {
+                  hasScrolledToPercentage = true;
+                  incrementPercentage();
+              }
+          });
+      });
+
+      $('.get_ready_button').on('click', function(){
+        var started_email = $('#get_started').val();
+        var url = 'employers-register';
+        if(started_email){
+          url += '&started_email='+started_email;
+        }
+        location = url;
+      })
+
+  </script>
 </body>
 
 </html>

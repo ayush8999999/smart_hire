@@ -2722,6 +2722,19 @@ input[type="button"].btn-block {
   padding: 0.25rem 1.5rem;
   color: #212529; }
 
+  .navbar-logo {
+      height: 55px;
+      width: auto;
+      object-fit: contain;
+  }
+
+  /* smaller logo on mobile */
+  @media (max-width: 768px) {
+      .navbar-logo {
+          height: 45px;
+      }
+  }
+
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -8528,6 +8541,33 @@ h1, h2, h3, h4, h5,
     width: 60px;
     text-align: center;
     display: inline-block; }
+/* Make each carousel item same height */
+.carousel-testimony .owl-stage {
+    display: flex;
+}
+
+.carousel-testimony .owl-item {
+    display: flex;
+}
+
+.carousel-testimony .item {
+    display: flex;
+    height: 100%;
+}
+
+.testimony-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Make text stretch evenly */
+.testimony-wrap .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
 .bg-light {
   background: #f8f9fa !important; }
