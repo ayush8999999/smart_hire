@@ -9,7 +9,13 @@
     <!-- CSS FILES -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -21,6 +27,16 @@
             margin-bottom: 18px;
             cursor: pointer;
         }
+
+        .policy-item a {
+            display: block;
+            width: 100%;
+        }
+
+        .policy-item {
+            cursor: pointer;
+        }
+
 
         .policy-item a {
             text-decoration: none;
@@ -327,6 +343,18 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+        $('.policy-item').on('click', function (e) {
+            // if user already clicked the link or inside open content, do nothing
+            if ($(e.target).closest('a').length || $(e.target).closest('.collapse').length) {
+                return;
+            }
+            // otherwise trigger the collapse link
+            $(this).find('a[data-toggle="collapse"]').trigger('click');
+        });
+    </script>
+
 
 </body>
 
