@@ -8150,8 +8150,7 @@ body {
   background: #fff;
   font-size: 16px;
   line-height: 1.8;
-  font-weight: 400;
-  color: #999999; }
+  font-weight: 400; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
@@ -8399,7 +8398,7 @@ h1, h2, h3, h4, h5,
     .hero-wrap .slider-text .subheading {
       color: #000000;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
       letter-spacing: 4px;
       text-transform: uppercase;
       display: inline-block;
@@ -8411,7 +8410,7 @@ h1, h2, h3, h4, h5,
       font-size: 54px;
       color: #fff;
       line-height: 1.2;
-      font-weight: 400; }
+      font-weight: bolder; }
       .hero-wrap .slider-text h1 span {
         font-weight: 700; }
       @media (max-width: 991.98px) {
@@ -8745,8 +8744,8 @@ h1, h2, h3, h4, h5,
  .pt-150{padding-top:150px}
  .pb-150{padding-bottom:150px}
 .section-tittle h2{color:#28395a;font-size:50px;font-weight:700;line-height:1.2;margin-bottom:95px}
-@media (max-width: 767px){.section-tittle h2{font-size:30px;line-height:1.4;margin-bottom:50px}}
-.section-tittle span{color:#fff;text-transform:uppercase;margin-bottom:28px;display:block}
+@media (max-width: 767px){.section-tittle h2{font-size:35px;line-height:1.4;margin-bottom:50px}}
+.section-tittle span{font-size:20px;color:#fff;text-transform:uppercase;margin-bottom:28px;display:block}
 .section-tittle.white-text h2{color:#fff}
 .small-section-tittle h4{color:#28395a;font-size:18px;font-weight:600;line-height:1.2;margin-bottom:20px}
 .apply-process-area .card-col {
@@ -9453,7 +9452,7 @@ textarea.form-control {
     box-shadow: 0 0 0 0 rgba(32, 109, 251, 0); } }
 
 .heading-section .subheading {
-  font-size: 12px;
+  font-size: 18px;
   display: block;
   margin-bottom: 0px;
   color: #fdab44;
