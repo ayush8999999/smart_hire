@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'Exception.php';
-require 'PHPMailer.php';
-require 'SMTP.php';
+require 'email/Exception.php';
+require 'email/PHPMailer.php';
+require 'email/SMTP.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -78,32 +78,81 @@ try {
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>Application Confirmation</title>
+        <title>Application Received</title>
     </head>
-    <body style="font-family: Arial, Helvetica, sans-serif; line-height:1.6; color:#333; max-width:600px; margin:0 auto; padding:20px;">
-        <h2 style="color:#f57f17;">Thank You for Applying!</h2>
-        
-        <p>Dear <strong>' . htmlspecialchars($applicant_name) . '</strong>,</p>
-        
-        <p>We have successfully received your application for the position of  
-        <strong>' . htmlspecialchars($job_title) . '</strong>.</p>
-        
-        <p>Our recruitment team will review your profile and get back to you as soon as possible.</p>
-        
-        <p style="margin-top:30px;">
-            Any questions? Feel free to reply to this email or contact us at:<br>
-            <a href="mailto:growwithuseasyhire@gmail.com" style="color:#f9a825; font-weight:bold;">
-                growwithuseasyhire@gmail.com
-            </a>
-        </p>
-        
-        <p>Best regards,<br>
-        <strong>EasyHire Team</strong></p>
+    <body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, Helvetica, sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8; padding:20px 0;">
+            <tr>
+                <td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+                        
+                        <!-- Header -->
+                        <tr>
+                            <td style="background:#f57f17; padding:20px; text-align:center;">
+                                <h1 style="margin:0; color:#ffffff; font-size:24px;">
+                                    EasyHire
+                                </h1>
+                                <p style="margin:5px 0 0; color:#ffe0b2; font-size:14px;">
+                                    Application Confirmation
+                                </p>
+                            </td>
+                        </tr>
 
-        <hr style="border:0; border-top:1px solid #eee; margin:30px 0;">
-        <p style="font-size:12px; color:#777;">
-            This is an automated confirmation email. Please do not reply directly unless you have questions.
-        </p>
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding:30px;">
+                                <h2 style="color:#333333; margin-top:0;">
+                                    Thank You for Applying! 🎉
+                                </h2>
+
+                                <p style="font-size:15px; color:#555555;">
+                                    Dear <strong>' . htmlspecialchars($applicant_name) . '</strong>,
+                                </p>
+
+                                <p style="font-size:15px; color:#555555;">
+                                    We are pleased to inform you that we have successfully received your application for the position of:
+                                </p>
+
+                                <div style="background:#fff8e1; border-left:4px solid #f57f17; padding:15px; margin:20px 0;">
+                                    <strong style="color:#f57f17; font-size:16px;">
+                                        ' . htmlspecialchars($job_title) . '
+                                    </strong>
+                                </div>
+
+                                <p style="font-size:15px; color:#555555;">
+                                    Our recruitment team is currently reviewing your profile. If your qualifications match our requirements, we will get in touch with you shortly.
+                                </p>
+
+                                <p style="font-size:15px; color:#555555; margin-top:25px;">
+                                    If you have any questions, feel free to reach out to us at:
+                                </p>
+
+                                <p>
+                                    <a href="mailto:growwithuseasyhire@gmail.com" 
+                                    style="color:#f57f17; font-weight:bold; text-decoration:none;">
+                                        growwithuseasyhire@gmail.com
+                                    </a>
+                                </p>
+
+                                <p style="font-size:15px; color:#555555; margin-top:30px;">
+                                    Best regards,<br>
+                                    <strong>EasyHire Team</strong>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Footer -->
+                        <tr>
+                            <td style="background:#f9fafb; padding:15px; text-align:center; font-size:12px; color:#777777;">
+                                This is an automated email. Please do not reply unless you have a query.<br>
+                                © ' . date("Y") . ' EasyHire. All rights reserved.
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
     </body>
     </html>';
 
