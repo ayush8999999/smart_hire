@@ -899,7 +899,9 @@
     });
   </script> -->
 
-  <script>
+
+  <!-- only db save -->
+  <!-- <script>
     document.getElementById('applyForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -924,6 +926,66 @@
         alert('❌ ' + result.message);
       }
     });
+  </script> -->
+
+  <!-- db save + email -->
+  <script>
+  document.getElementById('applyForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const submitBtn = this.querySelector('button[type="submit"]');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting... Please wait';
+
+      try {
+          const dbResponse = await fetch('apply.php', {
+              method: 'POST',
+              body: formData
+          });
+
+          if (!dbResponse.ok) {
+              throw new Error('Server error: ' + dbResponse.status);
+          }
+
+          const dbResult = await dbResponse.json();
+
+          if (!dbResult.success) {
+              throw new Error(dbResult.message || 'Failed to save your application');
+          }
+
+          const emailResponse = await fetch('send_email.php', {
+              method: 'POST',
+              body: formData  // reuse same data
+          });
+
+          const emailResult = await emailResponse.json();
+
+          document.getElementById('successJobTitle').textContent = 
+              document.getElementById('job-title').textContent;
+
+          $('#successModal').modal('show');
+
+          this.reset();
+          document.querySelectorAll('.upload-box .mt-2').forEach(el => el.classList.add('d-none'));
+
+          if (!emailResult.success) {
+              setTimeout(() => {
+                  alert('Application saved successfully!\n\n' +
+                        'But we couldn\'t send confirmation email right now.\n' +
+                        'Please check your spam folder or contact us at growwithuseasyhire@gmail.com');
+              }, 1500);
+          }
+
+      } catch (error) {
+          console.error('Submission error:', error);
+          alert('❌ ' + (error.message || 'Something went wrong. Please try again later.'));
+      } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Application';
+      }
+  });
   </script>
 
 
@@ -1032,6 +1094,37 @@
       }
 
     });
+  </script>
+  <script>
+  // This function sends the confirmation email in the background
+  // It uses the same formData so all fields are available if you want to customize later
+  async function sendConfirmationEmail(formData) {
+      try {
+          // Optional: You can create a new FormData with only needed fields
+          const emailData = new FormData();
+          emailData.append('full_name', formData.get('full_name'));
+          emailData.append('email', formData.get('email'));
+          emailData.append('job_title', formData.get('job_title') || document.getElementById('job-title').textContent);
+
+          const response = await fetch('send_email.php', {
+              method: 'POST',
+              body: emailData
+          });
+
+          const result = await response.json();
+
+          if (!result.success) {
+              console.warn('Confirmation email failed to send:', result.message);
+              // Optional: you could show a small toast/notification here
+              // alert('Application saved, but confirmation email failed to send.');
+          } else {
+              console.log('Confirmation email sent successfully');
+          }
+      } catch (error) {
+          console.error('Email sending error:', error);
+          // Silent fail - user already sees success from DB
+      }
+  }
   </script>
 
 <script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
