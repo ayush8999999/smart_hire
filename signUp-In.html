@@ -386,7 +386,7 @@
 
             /* RESPONSIVE */
 
-            @media only screen and (max-width: 425px) {
+            @media only screen and (max-width: 768px) {
             .container::before,
             .container.sign-in::before,
             .container.sign-up::before {
@@ -615,10 +615,10 @@
 					<form class="form sign-up" method="POST" action="signup.php">
 						<div class="input-group">
 							<i class='bx bxs-user icon-left'></i>
-							<input type="text" name="full_name" placeholder="Full Name" required>
+							<input aria-label="FullName" type="text" name="full_name" placeholder="Full Name" required>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <i class='bx bx-user icon-left'></i>
 
                             <div class="gender-wrapper">
@@ -638,29 +638,29 @@
                         </div>
                         <div class="input-group">
                             <i class='bx bx-calendar icon-left'></i>
-                            <input type="date" name="date_of_birth" required>
+                            <input aria-label="DateOfBirth" type="date" name="date_of_birth" required>
                             <i class="bx bx-x icon-right clear-input"></i>
-                        </div>
+                        </div> -->
                         <div class="input-group phone-group">
                             <i class='bx bx-phone icon-left'></i>
                             <!-- <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]*" placeholder="Mobile Number" style="padding-right: 35px;"> -->
-                             <input type="tel" name="mobile_number" id="mobile" placeholder="Mobile Number" required>
+                            <input aria-label="MobileNumber" type="tel" name="mobile_number" id="mobile" placeholder="Mobile Number" required>
                             <i class="bx bx-x icon-right clear-input"></i>
                         </div>
 						<div class="input-group">
 							<i class='bx bx-mail-send icon-left'></i>
-							<input type="email" name="email" placeholder="Email" required>
+							<input aria-label="Email" type="email" name="email" placeholder="Email" required>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-lock-alt icon-left'></i>
-							<input type="password" name="password" placeholder="Password" required>
+							<input aria-label="Password" type="password" name="password" placeholder="Password" required>
                             <i class="bx bx-show icon-right toggle-password"></i>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-lock-alt icon-left'></i>
-							<input type="password" name="confirm_password" placeholder="Confirm Password" required>
+							<input aria-label="ConfirmPassword" type="password" name="confirm_password" placeholder="Confirm Password" required>
                             <i class="bx bx-show icon-right toggle-password"></i>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
@@ -699,12 +699,12 @@
 						</div> -->
                         <div class="input-group">
 							<i class='bx bx-mail-send icon-left'></i>
-                            <input type="email" name="email" placeholder="Email" required>
+                            <input aria-label="Email" type="email" name="email" placeholder="Email" required>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-lock-alt icon-left'></i>
-							<input type="password" name="password" placeholder="Password" required>
+							<input aria-label="Password" type="password" name="password" placeholder="Password" required>
                             <i class="bx bx-show icon-right toggle-password"></i>
                             <i class="bx bx-x icon-right clear-input"></i>
 						</div>
@@ -795,10 +795,12 @@
         });
 
         // Clear phone
-        document.querySelector(".phone-group .clear-input")
-            .addEventListener("click", () => {
+        document.querySelector(".phone-group .clear-input").addEventListener("click", () => {
                 phoneInput.value = "";
-                phoneInput.closest(".input-group").classList.remove("has-value", "phone-valid", "phone-invalid");
+                iti.setNumber("");
+                const group = phoneInput.closest(".input-group");
+                group.classList.remove("has-value", "phone-valid", "phone-invalid");
+
                 phoneInput.focus();
             });
 
@@ -930,7 +932,7 @@
                 if($('#ftco-loader').length > 0) {
                     $('#ftco-loader').removeClass('show');
                 }
-            }, 200);
+            }, 1);
         };
         loader();
         const signupForm = document.querySelector(".form.sign-up");
@@ -980,40 +982,40 @@
         }
     </script>
     <script>
-const loginForm = document.querySelector(".form.sign-in");
+        const loginForm = document.querySelector(".form.sign-in");
 
-loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-    const formData = new FormData(loginForm);
+            const formData = new FormData(loginForm);
 
-    try {
-        const res = await fetch("login.php", {
-            method: "POST",
-            body: formData
+            try {
+                const res = await fetch("login.php", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (!data.success) {
+                    document.getElementById("errorTitle").innerText = "Login Failed";
+                    showErrorModal(data.message);
+                    return;
+                }
+
+                // ✅ SUCCESS
+                document.getElementById("errorTitle").innerText = "Success";
+                showErrorModal("Login successful! Redirecting...");
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1200);
+
+            } catch (err) {
+                document.getElementById("errorTitle").innerText = "Error";
+                showErrorModal("Something went wrong. Please try again.");
+            }
         });
-
-        const data = await res.json();
-
-        if (!data.success) {
-            document.getElementById("errorTitle").innerText = "Login Failed";
-            showErrorModal(data.message);
-            return;
-        }
-
-        // ✅ SUCCESS
-        document.getElementById("errorTitle").innerText = "Success";
-        showErrorModal("Login successful! Redirecting...");
-
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 1200);
-
-    } catch (err) {
-        document.getElementById("errorTitle").innerText = "Error";
-        showErrorModal("Something went wrong. Please try again.");
-    }
-});
-</script>
+    </script>
 </body>
 </html>
