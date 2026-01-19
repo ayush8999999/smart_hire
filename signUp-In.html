@@ -570,6 +570,40 @@
         cursor: pointer;
         margin-top: 10px;
         }
+        /* validation borders */
+        .input-group.error input {
+        border: 2px solid #dc3545 !important;
+        }
+        .input-group.success input {
+        border: 2px solid #28a745 !important;
+        }
+
+        /* error message text */
+        .input-error {
+        font-size: 12px;
+        color: #dc3545;
+        text-align: left;
+        /* margin-top: 2px; */
+        margin-left: 5px;
+        display: none;
+        }
+        .input-group.error .input-error {
+        display: block;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper .icon-left,
+        .input-wrapper .icon-right {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .input-error {
+            position: absolute;
+            bottom: -16px;
+        }
         @-webkit-keyframes loader-rotate {
             100% {
                 -webkit-transform: rotate(360deg);
@@ -614,9 +648,12 @@
 				<div class="form-wrapper align-items-center">
 					<form class="form sign-up" method="POST" action="signup.php">
 						<div class="input-group">
-							<i class='bx bxs-user icon-left'></i>
-							<input aria-label="FullName" type="text" name="full_name" placeholder="Full Name" required>
-                            <i class="bx bx-x icon-right clear-input"></i>
+                            <div class="input-wrapper">
+                                <i class='bx bxs-user icon-left'></i>
+                                <input aria-label="FullName" type="text" name="full_name" placeholder="Full Name" required>
+                                <i class="bx bx-x icon-right clear-input"></i>
+                            </div>
+                            <div class="input-error">Please input a valid full name</div>
 						</div>
                         <!-- <div class="input-group">
                             <i class='bx bx-user icon-left'></i>
@@ -642,27 +679,39 @@
                             <i class="bx bx-x icon-right clear-input"></i>
                         </div> -->
                         <div class="input-group phone-group">
-                            <i class='bx bx-phone icon-left'></i>
-                            <!-- <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]*" placeholder="Mobile Number" style="padding-right: 35px;"> -->
-                            <input aria-label="MobileNumber" type="tel" name="mobile_number" id="mobile" placeholder="Mobile Number" required>
-                            <i class="bx bx-x icon-right clear-input"></i>
+                            <div class="input-wrapper">
+                                <i class='bx bx-phone icon-left'></i>
+                                <!-- <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]*" placeholder="Mobile Number" style="padding-right: 35px;"> -->
+                                <input aria-label="MobileNumber" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="tel" name="mobile_number" id="mobile" placeholder="Mobile Number" required>
+                                <i class="bx bx-x icon-right clear-input"></i>
+                            </div>
+                            <div class="input-error">Please input a valid mobile number</div>
                         </div>
 						<div class="input-group">
-							<i class='bx bx-mail-send icon-left'></i>
-							<input aria-label="Email" type="email" name="email" placeholder="Email" required>
-                            <i class="bx bx-x icon-right clear-input"></i>
+                            <div class="input-wrapper">
+                                <i class='bx bx-mail-send icon-left'></i>
+                                <input aria-label="Email" type="email" name="email" placeholder="Email" required>
+                                <i class="bx bx-x icon-right clear-input"></i>
+                            </div>
+                            <div class="input-error">Please input a valid email address</div>
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt icon-left'></i>
-							<input aria-label="Password" type="password" name="password" placeholder="Password" required>
-                            <i class="bx bx-show icon-right toggle-password"></i>
-                            <i class="bx bx-x icon-right clear-input"></i>
+                            <div class="input-wrapper">
+                                <i class='bx bxs-lock-alt icon-left'></i>
+                                <input aria-label="Password" type="password" name="password" placeholder="Password" required>
+                                <i class="bx bx-show icon-right toggle-password"></i>
+                                <i class="bx bx-x icon-right clear-input"></i>
+                            </div>
+                            <div class="input-error">Password should be 8 or more characters</div>
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt icon-left'></i>
-							<input aria-label="ConfirmPassword" type="password" name="confirm_password" placeholder="Confirm Password" required>
-                            <i class="bx bx-show icon-right toggle-password"></i>
-                            <i class="bx bx-x icon-right clear-input"></i>
+                            <div class="input-wrapper">
+                                <i class='bx bxs-lock-alt icon-left'></i>
+                                <input aria-label="ConfirmPassword" type="password" name="confirm_password" placeholder="Confirm Password" required>
+                                <i class="bx bx-show icon-right toggle-password"></i>
+                                <i class="bx bx-x icon-right clear-input"></i>
+                            </div>
+                            <div class="input-error">Confirm password does not match the password</div>
 						</div>
 						<button type="submit">
 							Sign Up
@@ -774,6 +823,69 @@
     <script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script>
+        document.addEventListener("keydown", (e) => {
+            if (
+                (e.target.name === "email" || e.target.name === "password" || e.target.name === "confirm_password") &&
+                e.key === " "
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        function setError(group, msg) {
+            group.classList.remove("success");
+            group.classList.add("error");
+            group.querySelector(".input-error").innerText = msg;
+        }
+
+        function setSuccess(group) {
+            group.classList.remove("error");
+            group.classList.add("success");
+        }
+
+        function validateFullName(input) {
+            const group = input.closest(".input-group");
+            input.value.trim().length >= 2
+                ? setSuccess(group)
+                : setError(group, "Please input a valid full name");
+        }
+
+        function validateEmail(input) {
+            const group = input.closest(".input-group");
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)
+                ? setSuccess(group)
+                : setError(group, "Please input a valid email address");
+        }
+
+        function validatePassword(input) {
+            const group = input.closest(".input-group");
+            input.value.length >= 8
+                ? setSuccess(group)
+                : setError(group, "Password should be 8 or more characters");
+        }
+
+        function validateConfirmPassword(confirm, password) {
+            const group = confirm.closest(".input-group");
+            confirm.value === password.value && confirm.value !== ""
+                ? setSuccess(group)
+                : setError(group, "Confirm password does not match the password");
+        }
+
+        function resetFieldState(input) {
+            const group = input.closest(".input-group");
+
+            group.classList.remove("error", "success", "has-value", "phone-valid", "phone-invalid");
+        }
+
+        const signup = document.querySelector(".form.sign-up");
+
+        signup.full_name.addEventListener("input", e => validateFullName(e.target));
+        signup.email.addEventListener("input", e => validateEmail(e.target));
+        signup.password.addEventListener("input", e => validatePassword(e.target));
+        signup.confirm_password.addEventListener("input", e =>
+            validateConfirmPassword(e.target, signup.password)
+        );
+
         const phoneInput = document.querySelector("#mobile");
 
         const iti = window.intlTelInput(phoneInput, {
@@ -781,28 +893,29 @@
             nationalMode: false,
             autoHideDialCode: false,
             separateDialCode: true,
-            formatOnDisplay: false
+            formatOnDisplay: true
         });
 
-        // Show / hide clear icon
-        phoneInput.addEventListener("input", () => {
-            const group = phoneInput.closest(".input-group");
-            phoneInput.value.trim()
-                ? group.classList.add("has-value")
-                : group.classList.remove("has-value");
+        phoneInput.addEventListener("blur", () => {
+            if (!phoneInput.value.trim()) return;
 
-            validatePhone();
+            const number = iti.getNumber();
+            if (number) {
+                phoneInput.value = iti.getNumber(
+                    intlTelInputUtils.numberFormat.NATIONAL
+                );
+            }
         });
 
         // Clear phone
         document.querySelector(".phone-group .clear-input").addEventListener("click", () => {
-                phoneInput.value = "";
-                iti.setNumber("");
-                const group = phoneInput.closest(".input-group");
-                group.classList.remove("has-value", "phone-valid", "phone-invalid");
-
-                phoneInput.focus();
-            });
+            phoneInput.value = "";
+            iti.setNumber("");
+            // const group = phoneInput.closest(".input-group");
+            // group.classList.remove("has-value", "phone-valid", "phone-invalid");
+            resetFieldState(phoneInput);
+            phoneInput.focus();
+        });
 
         function validatePhone() {
             const group = phoneInput.closest(".input-group");
@@ -814,7 +927,9 @@
             const nationalNumber = phoneInput.value.replace(/\D/g, '');
 
             if (!nationalNumber) {
-                group.classList.remove("phone-valid", "phone-invalid");
+                // group.classList.remove("phone-valid", "phone-invalid");
+                // group.classList.remove("error", "success");
+                resetFieldState(phoneInput);
                 return;
             }
 
@@ -837,8 +952,10 @@
                 }
             }
 
-            group.classList.remove("phone-valid", "phone-invalid");
-            group.classList.add(isValid ? "phone-valid" : "phone-invalid");
+            // group.classList.remove("phone-valid", "phone-invalid");
+            // group.classList.add(isValid ? "phone-valid" : "phone-invalid");
+            group.classList.remove("error", "success");
+            group.classList.add(isValid ? "success" : "error");
 
             // Matches your React output EXACTLY
             console.log({
@@ -848,53 +965,51 @@
                 isValid,
                 countryIso2
             });
+            return isValid;
         }
 
-        phoneInput.addEventListener("keypress", (e) => {
-            if (!/[0-9]/.test(e.key)) {
+        phoneInput.addEventListener("beforeinput", (e) => {
+            if (e.data && /\D/.test(e.data)) {
                 e.preventDefault();
             }
         });
 
-        phoneInput.addEventListener("paste", (e) => {
-            e.preventDefault();
-            const pasted = (e.clipboardData || window.clipboardData)
-                .getData("text")
-                .replace(/\D/g, '');
+        document.addEventListener("input", (e) => {
+            if (!e.target.matches(".input-group input")) return;
 
-            phoneInput.value = pasted;
-            phoneInput.dispatchEvent(new Event("input"));
+            const input = e.target;
+            const group = input.closest(".input-group");
+
+            if (!input.value.trim()) {
+                resetFieldState(input);
+                return;
+            }
+
+            group.classList.add("has-value");
+
+            // mobile validation
+            if (input.id === "mobile") {
+                validatePhone();
+            }
         });
 
-        phoneInput.addEventListener("input", () => {
-            phoneInput.value = phoneInput.value.replace(/\D/g, '');
-        });
-
-        // Handle input value change (show/hide clear icon)
-        document.querySelectorAll(".input-group input").forEach(input => {
-            input.addEventListener("input", () => {
-                const group = input.closest(".input-group");
-
-                if (input.value.trim() !== "") {
-                    group.classList.add("has-value");
-                } else {
-                    group.classList.remove("has-value");
-                }
-            });
-        });
 
         document.querySelectorAll(".clear-input").forEach(icon => {
-            icon.addEventListener("mousedown", e => {
-                e.preventDefault(); // 👈 prevents blur flicker
-            });
+            icon.addEventListener("mousedown", e => e.preventDefault());
 
             icon.addEventListener("click", () => {
                 const group = icon.closest(".input-group");
                 const input = group.querySelector("input");
 
                 input.value = "";
-                group.classList.remove("has-value");
-                input.focus(); // 👈 keeps cursor inside input
+
+                // intl-tel-input reset (only for mobile)
+                if (input.id === "mobile" && window.iti) {
+                    iti.setNumber("");
+                }
+
+                resetFieldState(input);
+                input.focus();
             });
         });
 
@@ -940,6 +1055,22 @@
         signupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
+            validateFullName(signup.full_name);
+            validateEmail(signup.email);
+            validatePassword(signup.password);
+            validateConfirmPassword(signup.confirm_password, signup.password);
+
+            if (!validatePhone()) {
+                const g = document.querySelector(".phone-group");
+                setError(g, "Please input a valid mobile number");
+            }
+
+            const firstError = signup.querySelector(".input-group.error input");
+            if (firstError) {
+                firstError.focus();
+                return;
+            }
+
             const formData = new FormData(signupForm);
 
             try {
@@ -967,6 +1098,10 @@
 
                 signupForm.reset();
 
+                signupForm.querySelectorAll("input").forEach(input => {
+                    resetFieldState(input);
+                });
+
             } catch (err) {
                 showErrorModal("Something went wrong. Please try again.");
             }
@@ -986,6 +1121,13 @@
 
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+
+            for (let input of loginForm.querySelectorAll("input")) {
+                if (!input.value.trim()) {
+                    input.focus();
+                    return;
+                }
+            }
 
             const formData = new FormData(loginForm);
 
