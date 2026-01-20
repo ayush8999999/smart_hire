@@ -9407,6 +9407,18 @@ textarea.form-control {
   overflow: hidden;
 }
 
+  .user-initials {
+      width: 36px;
+      height: 36px;
+      background: #ffc107;
+      color: #000;
+      border-radius: 50%;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
 .bg-overlay::before {
   content: "";
   position: absolute;

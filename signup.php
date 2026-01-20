@@ -39,8 +39,6 @@ $email      = trim($_POST['email'] ?? '');
 $password   = $_POST['password'] ?? '';
 $confirmPwd = $_POST['confirm_password'] ?? '';
 $mobile     = trim($_POST['mobile_number'] ?? '');
-$gender     = $_POST['gender'] ?? '';
-$dob        = $_POST['date_of_birth'] ?? null;
 
 // ================= VALIDATION =================
 if (!$full_name || !$email || !$password) {
@@ -77,17 +75,15 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $pdo->prepare("
     INSERT INTO easyhire_users
-    (full_name, email, password, mobile_number, gender, date_of_birth)
-    VALUES (?, ?, ?, ?, ?, ?)
+    (full_name, email, password, mobile_number)
+    VALUES (?, ?, ?, ?)
 ");
 
 $stmt->execute([
     $full_name,
     $email,
     $hashedPassword,
-    $mobile,
-    $gender,
-    $dob ?: null
+    $mobile
 ]);
 
 echo json_encode([

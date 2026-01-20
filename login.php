@@ -48,7 +48,7 @@ if (!$email || !$password) {
 
 // ================= CHECK USER =================
 $stmt = $pdo->prepare("
-    SELECT id, email, password 
+    SELECT id, full_name, email, password 
     FROM easyhire_users 
     WHERE email = ?
 ");
@@ -66,6 +66,7 @@ if (!$user || !password_verify($password, $user['password'])) {
 // ================= LOGIN SUCCESS =================
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_email'] = $user['email'];
+$_SESSION['user_name'] = $user['full_name'];
 
 echo json_encode([
     'success' => true,

@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,8 +95,34 @@
 					<li class="nav-item"><a href="blog.html" class="nav-link">About Us</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
 					<!-- <li class="nav-item cta mr-md-1"><a href="new-post.html" class="nav-link">Post a Job</a></li> -->
-					<!-- <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Apply job</a></li> -->
+					<?php if (isLoggedIn()): ?>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-flex align-items-center"
+							href="#"
+							id="userDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false">
 
+								<span class="user-initials">
+									<?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+								</span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right">
+								<span class="dropdown-item-text">
+									<?= htmlspecialchars($_SESSION['user_name']) ?>
+								</span>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item text-danger" href="logout.php">Logout</a>
+							</div>
+						</li>
+					<?php else: ?>
+						<li class="nav-item cta cta-colored">
+							<a href="signUp-In.html" class="nav-link">Sign In / Sign Up</a>
+						</li>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
