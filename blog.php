@@ -368,7 +368,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid px-md-4	">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
           <img src="images/logo-bg.png" alt="EasyHire" class="navbar-logo mr-2">
           <span>EasyHire</span>
       </a>
@@ -379,13 +379,13 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-          <!-- <li class="nav-item"><a href="candidates.html" class="nav-link">Canditates</a></li> -->
-          <li class="nav-item active"><a href="blog.html" class="nav-link">About Us</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-          <!-- <li class="nav-item cta mr-md-1"><a href="new-post.html" class="nav-link">Post a Job</a></li> -->
-          <li class="nav-item cta cta-colored"><a href="signUp-In.html" class="nav-link">Sign In/Up</a></li>
+          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+          <!-- <li class="nav-item"><a href="candidates.php" class="nav-link">Canditates</a></li> -->
+          <li class="nav-item active"><a href="blog.php" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+          <!-- <li class="nav-item cta mr-md-1"><a href="new-post.php" class="nav-link">Post a Job</a></li> -->
+          <li class="nav-item cta cta-colored"><a href="signUp-In.php" class="nav-link">Sign In/Up</a></li>
 
         </ul>
       </div>
@@ -399,7 +399,7 @@
     <div class="container">
       <div class="row no-gutters slider-text align-items-end justify-content-start">
         <div class="col-md-12 ftco-animate text-center mb-5">
-          <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i
+          <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.php">Home <i
                   class="ion-ios-arrow-forward"></i></a></span> <span>About Us</span></p>
           <h1 class="mb-3 bread">About Us </h1>
         </div>
@@ -452,7 +452,7 @@
           <p class="longtext diff_font weight_400">
           Post job openings quickly by adding role details, experience, and location to attract the right candidates.
           </p>
-            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/multi_1.svg" style="width: 100%;"></div>
@@ -466,7 +466,7 @@
             <p class="longtext diff_font weight_400">
             View and manage all candidate applications in one place with easy resume access.
             </p>
-            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/multi_2.svg" style="width: 100%;"></div>
@@ -480,7 +480,7 @@
             <p class="longtext diff_font weight_400">
             Candidates apply directly and their resumes are delivered straight to your dashboard.
             </p>
-            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/multi_3.svg" style="width: 100%;"></div>
@@ -494,7 +494,7 @@
             <p class="longtext diff_font weight_400">
             Connect with candidates and schedule interviews easily via email or phone.
             </p>
-            <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/multi_4.svg" style="width: 100%;"></div>
@@ -508,7 +508,7 @@
             <p class="longtext diff_font weight_400">
             Choose the best applicant and complete your hiring process smoothly and quickly.
             </p>
-            <a href="browsejobs.html"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browsejobs.php"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/multi_5.svg" style="width: 100%;"></div>
@@ -532,7 +532,7 @@
           <p class="longtext diff_font weight_400 text-white">
           Apply with your resume in just a few clicks and get connected directly with employers.
           </p>
-          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -548,7 +548,7 @@
           <p class="longtext diff_font weight_400">
           EasyHire helps employers receive applications from interested and suitable candidates so that hiring happens faster and smoother.
           </p>
-          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -564,7 +564,7 @@
           <p class="longtext diff_font text-white weight_400">
           Once you apply, recruiters can contact you directly to schedule interviews and move forward in the hiring process.
           </p>
-          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -580,7 +580,7 @@
           <p class="longtext diff_font weight_400">
           EasyHire makes job searching and hiring simple. Post jobs, apply for roles, and connect with employers — all in one place.
           </p>
-          <a href="browsejobs.html"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -809,7 +809,7 @@
       <div class="row d-flex">
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_1.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -824,7 +824,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_2.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -839,7 +839,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_3.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -854,7 +854,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_4.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -869,7 +869,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_5.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -884,7 +884,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_6.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -899,7 +899,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_7.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_7.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -914,7 +914,7 @@
         </div>
         <div class="col-md-3 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_8.jpg');">
+            <a href="blog-single.php" class="block-20" style="background-image: url('images/image_8.jpg');">
             </a>
             <div class="text mt-3">
               <div class="meta mb-2">
@@ -990,11 +990,11 @@
           <div class="ftco-footer-widget">
             <h2 class="ftco-heading-2">Quick Links</h2>
             <ul class="list-unstyled">
-              <li><a href="browsejobs.html">Browse Jobs</a></li>
-              <li><a href="blog.html">About Us</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="privacy-policy.html">Privacy Policy</a></li>
-              <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+              <li><a href="browsejobs.php">Browse Jobs</a></li>
+              <li><a href="blog.php">About Us</a></li>
+              <li><a href="contact.php">Contact Us</a></li>
+              <li><a href="privacy-policy.php">Privacy Policy</a></li>
+              <li><a href="terms-conditions.php">Terms & Conditions</a></li>
             </ul>
           </div>
         </div>

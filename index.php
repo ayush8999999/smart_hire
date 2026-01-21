@@ -78,7 +78,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container-fluid px-md-4	">
-			<a class="navbar-brand d-flex align-items-center" href="index.html">
+			<a class="navbar-brand d-flex align-items-center" href="index.php">
 				<img src="images/logo-bg.png" alt="EasyHire" class="navbar-logo mr-2">
 				<span>EasyHire</span>
 			</a>
@@ -89,12 +89,12 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-					<!-- <li class="nav-item"><a href="candidates.html" class="nav-link">Canditates</a></li> -->
-					<li class="nav-item"><a href="blog.html" class="nav-link">About Us</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-					<!-- <li class="nav-item cta mr-md-1"><a href="new-post.html" class="nav-link">Post a Job</a></li> -->
+					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+					<!-- <li class="nav-item"><a href="candidates.php" class="nav-link">Canditates</a></li> -->
+					<li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<!-- <li class="nav-item cta mr-md-1"><a href="new-post.php" class="nav-link">Post a Job</a></li> -->
 					<?php if (isLoggedIn()): ?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-flex align-items-center"
@@ -120,7 +120,7 @@
 						</li>
 					<?php else: ?>
 						<li class="nav-item cta cta-colored">
-							<a href="signUp-In.html" class="nav-link">Sign In / Sign Up</a>
+							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
 						</li>
 					<?php endif; ?>
 				</ul>
@@ -762,7 +762,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -788,7 +788,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -815,7 +815,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -841,7 +841,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -868,7 +868,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -894,7 +894,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -921,7 +921,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -947,7 +947,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -974,7 +974,7 @@
 											<span class="icon-heart"></span>
 										</a>
 									</div>
-									<a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+									<a href="job-single.php" class="btn btn-primary py-2">Apply Job</a>
 								</div>
 							</div>
 						</div>
@@ -1197,7 +1197,7 @@
 			<div class="row d-flex">
 				<div class="col-md-3 d-flex ftco-animate">
 					<div class="blog-entry align-self-stretch">
-						<a href="blog-single.html" class="block-20"
+						<a href="blog-single.php" class="block-20"
 							style="background-image: url('images/image_1.jpg');">
 						</a>
 						<div class="text mt-3">
@@ -1213,7 +1213,7 @@
 				</div>
 				<div class="col-md-3 d-flex ftco-animate">
 					<div class="blog-entry align-self-stretch">
-						<a href="blog-single.html" class="block-20"
+						<a href="blog-single.php" class="block-20"
 							style="background-image: url('images/image_2.jpg');">
 						</a>
 						<div class="text mt-3">
@@ -1229,7 +1229,7 @@
 				</div>
 				<div class="col-md-3 d-flex ftco-animate">
 					<div class="blog-entry align-self-stretch">
-						<a href="blog-single.html" class="block-20"
+						<a href="blog-single.php" class="block-20"
 							style="background-image: url('images/image_3.jpg');">
 						</a>
 						<div class="text mt-3">
@@ -1245,7 +1245,7 @@
 				</div>
 				<div class="col-md-3 d-flex ftco-animate">
 					<div class="blog-entry align-self-stretch">
-						<a href="blog-single.html" class="block-20"
+						<a href="blog-single.php" class="block-20"
 							style="background-image: url('images/image_4.jpg');">
 						</a>
 						<div class="text mt-3">
@@ -1307,11 +1307,11 @@
 					<div class="ftco-footer-widget">
 						<h2 class="ftco-heading-2">Quick Links</h2>
 						<ul class="list-unstyled">
-							<li><a href="browsejobs.html">Browse Jobs</a></li>
-							<li><a href="blog.html">About Us</a></li>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="privacy-policy.html">Privacy Policy</a></li>
-							<li><a href="terms-conditions.html">Terms & Conditions</a></li>
+							<li><a href="browsejobs.php">Browse Jobs</a></li>
+							<li><a href="blog.php">About Us</a></li>
+							<li><a href="contact.php">Contact Us</a></li>
+							<li><a href="privacy-policy.php">Privacy Policy</a></li>
+							<li><a href="terms-conditions.php">Terms & Conditions</a></li>
 						</ul>
 					</div>
 				</div>

@@ -93,7 +93,7 @@
     <!-- HEADER -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container-fluid px-md-4">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="images/logo-bg.png" alt="EasyHire" class="navbar-logo mr-2">
                 <span>EasyHire</span>
             </a>
@@ -103,11 +103,11 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">About Us</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item cta cta-colored"><a href="signUp-In.html" class="nav-link">Sign In/Up</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+                    <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item cta cta-colored"><a href="signUp-In.php" class="nav-link">Sign In/Up</a></li>
                 </ul>
             </div>
         </div>
@@ -121,7 +121,7 @@
                 <div class="col-md-12 text-center mb-5">
                     <p class="breadcrumbs mb-0">
                         <span class="mr-3">
-                            <a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a>
+                            <a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a>
                         </span>
                         <span>Privacy Policy</span>
                     </p>
@@ -297,11 +297,11 @@
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">Quick Links</h2>
                         <ul class="list-unstyled">
-                            <li><a href="browsejobs.html">Browse Jobs</a></li>
-                            <li><a href="blog.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                            <li><a href="browsejobs.php">Browse Jobs</a></li>
+                            <li><a href="blog.php">About Us</a></li>
+                            <li><a href="contact.php">Contact Us</a></li>
+                            <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                            <li><a href="terms-conditions.php">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>

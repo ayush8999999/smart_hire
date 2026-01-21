@@ -161,10 +161,10 @@
 
 <body>
 
-    <!-- Navbar - same as browsejobs.html -->
+    <!-- Navbar - same as browsejobs.php -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container-fluid px-md-4">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="images/logo-bg.png" alt="EasyHire" class="navbar-logo mr-2">
                 <span>EasyHire</span>
             </a>
@@ -175,11 +175,11 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">About Us</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item cta cta-colored"><a href="signUp-In.html" class="nav-link">Sign In/Up</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+                    <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item cta cta-colored"><a href="signUp-In.php" class="nav-link">Sign In/Up</a></li>
                 </ul>
             </div>
         </div>
@@ -194,8 +194,8 @@
             <div class="row no-gutters slider-text align-items-end justify-content-start">
                 <div class="col-md-12 ftco-animate text-center mb-5">
                     <p class="breadcrumbs mb-0">
-                        <span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span>
-                        <span><a href="browsejobs.html">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span class="mr-3"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span><a href="browsejobs.php">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
                         <span>Job Details</span>
                     </p>
                     <h1 class="mb-3 bread" id="hero-job-title">Loading...</h1>
@@ -292,7 +292,7 @@
                             <div class="col-12 d-flex justify-content-center">
                                 <div class="d-flex flex-column flex-sm-row align-items-center">
 
-                                    <a href="browsejobs.html"
+                                    <a href="browsejobs.php"
                                         class="btn py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center border text-nowrap"
                                         style="min-width:220px; background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
                                         Back to Jobs
@@ -361,11 +361,11 @@
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">Quick Links</h2>
                         <ul class="list-unstyled">
-                            <li><a href="browsejobs.html">Browse Jobs</a></li>
-                            <li><a href="blog.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                            <li><a href="browsejobs.php">Browse Jobs</a></li>
+                            <li><a href="blog.php">About Us</a></li>
+                            <li><a href="contact.php">Contact Us</a></li>
+                            <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                            <li><a href="terms-conditions.php">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -718,7 +718,7 @@
             <div class="text-center py-5">
                 <h2>Job not found</h2>
                 <p>Sorry, the requested job could not be found.</p>
-                <a href="browsejobs.html" class="btn btn-primary mt-3">Back to Jobs</a>
+                <a href="browsejobs.php" class="btn btn-primary mt-3">Back to Jobs</a>
             </div>
         `;
                 return;
@@ -837,8 +837,8 @@
         const jobId = params.get('id');
 
         if (jobId) {
-            document.getElementById('applyNowBtn').href = `apply-job.html?id=${jobId}`;
-            document.getElementById('applyBottomBtn').href = `apply-job.html?id=${jobId}`;
+            document.getElementById('applyNowBtn').href = `apply-job.php?id=${jobId}`;
+            document.getElementById('applyBottomBtn').href = `apply-job.php?id=${jobId}`;
         }
     </script>
 
