@@ -461,7 +461,8 @@
             -webkit-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
             -webkit-box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
             box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
             border-radius: 16px;
@@ -482,7 +483,7 @@
             -webkit-transform: none;
             -ms-transform: none;
             transform: none;
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.4);
             border-radius: 0;
             -webkit-box-shadow: none;
             box-shadow: none;
@@ -1054,6 +1055,7 @@
 
         signupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+            document.getElementById("ftco-loader").classList.add("show");
 
             validateFullName(signup.full_name);
             validateEmail(signup.email);
@@ -1080,6 +1082,7 @@
                 });
 
                 const data = await res.json();
+                document.getElementById("ftco-loader").classList.remove("show");
 
                 if (!data.success) {
                     showErrorModal(data.message);
@@ -1103,6 +1106,7 @@
                 });
 
             } catch (err) {
+                document.getElementById("ftco-loader").classList.remove("show");
                 showErrorModal("Something went wrong. Please try again.");
             }
         });
@@ -1138,6 +1142,7 @@
                 });
 
                 const data = await res.json();
+                document.getElementById("ftco-loader").classList.remove("show");
 
                 if (!data.success) {
                     document.getElementById("errorTitle").innerText = "Login Failed";

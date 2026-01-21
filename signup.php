@@ -1,4 +1,5 @@
 <?php
+require 'register_success_email.php';
 header('Content-Type: application/json');
 
 // ================= DATABASE CONFIG =================
@@ -85,9 +86,10 @@ $stmt->execute([
     $hashedPassword,
     $mobile
 ]);
+sendWelcomeMail($full_name, $email);
 
 echo json_encode([
     'success' => true,
-    'message' => 'Signup successful'
+    'message' => 'Signup successful! Please check your email.'
 ]);
 exit;
