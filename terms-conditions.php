@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,12 +63,40 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+                    <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
                     <!-- <li class="nav-item"><a href="candidates.php" class="nav-link">Canditates</a></li> -->
                     <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
                     <!-- <li class="nav-item cta mr-md-1"><a href="new-post.php" class="nav-link">Post a Job</a></li> -->
-                    <li class="nav-item cta cta-colored"><a href="signUp-In.php" class="nav-link">Sign In/Up</a></li>
+                    <?php if (isLoggedIn()): ?>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-flex align-items-center"
+							href="javascript:void(0)"
+							id="userDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+							onclick="event.stopPropagation();">
+
+								<span class="user-initials">
+									<?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+								</span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right">
+								<span class="dropdown-item-text">
+									<?= htmlspecialchars($_SESSION['user_name']) ?>
+								</span>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item text-danger" href="logout.php">Logout</a>
+							</div>
+						</li>
+					<?php else: ?>
+						<li class="nav-item cta cta-colored">
+							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+						</li>
+					<?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -264,6 +293,18 @@
         </svg>
     </div>
 
+    <script>
+        // Prevent navbar collapse when dropdown is clicked on mobile
+        $('.navbar .dropdown-toggle').on('click', function (e) {
+            e.stopPropagation();
+            $(this).next('.dropdown-menu').toggle();
+        });
+
+        // Close dropdown when clicking outside
+        $(document).on('click', function () {
+            $('.dropdown-menu').hide();
+        });
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>

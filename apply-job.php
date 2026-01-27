@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -235,7 +236,35 @@
           <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
           <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
-          <li class="nav-item cta cta-colored"><a href="signUp-In.php" class="nav-link">Sign In/Up</a></li>
+          <?php if (isLoggedIn()): ?>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-flex align-items-center"
+							href="javascript:void(0)"
+							id="userDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+							onclick="event.stopPropagation();">
+
+								<span class="user-initials">
+									<?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+								</span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right">
+								<span class="dropdown-item-text">
+									<?= htmlspecialchars($_SESSION['user_name']) ?>
+								</span>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item text-danger" href="logout.php">Logout</a>
+							</div>
+						</li>
+					<?php else: ?>
+						<li class="nav-item cta cta-colored">
+							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+						</li>
+					<?php endif; ?>
         </ul>
       </div>
     </div>
@@ -1125,6 +1154,19 @@
           // Silent fail - user already sees success from DB
       }
   }
+  </script>
+
+  <script>
+    // Prevent navbar collapse when dropdown is clicked on mobile
+    $('.navbar .dropdown-toggle').on('click', function (e) {
+      e.stopPropagation();
+      $(this).next('.dropdown-menu').toggle();
+    });
+
+    // Close dropdown when clicking outside
+    $(document).on('click', function () {
+      $('.dropdown-menu').hide();
+    });
   </script>
 
 <script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
