@@ -387,19 +387,6 @@
         </svg>
     </div>
 
-    <script>
-        // Prevent navbar collapse when dropdown is clicked on mobile
-        $('.navbar .dropdown-toggle').on('click', function (e) {
-            e.stopPropagation();
-            $(this).next('.dropdown-menu').toggle();
-        });
-
-        // Close dropdown when clicking outside
-        $(document).on('click', function () {
-            $('.dropdown-menu').hide();
-        });
-    </script>
-
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -413,7 +400,6 @@
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
-
     <script>
         $('.policy-item').on('click', function (e) {
             // if user already clicked the link or inside open content, do nothing
@@ -422,6 +408,18 @@
             }
             // otherwise trigger the collapse link
             $(this).find('a[data-toggle="collapse"]').trigger('click');
+        });
+    </script>
+    <script>
+        // Prevent navbar collapse when dropdown is clicked on mobile
+        $('.navbar .dropdown-toggle').on('click', function (e) {
+            e.stopPropagation();
+            $(this).next('.dropdown-menu').toggle();
+        });
+
+        // Close dropdown when clicking outside
+        $(document).on('click', function () {
+            $('.dropdown-menu').hide();
         });
     </script>
 

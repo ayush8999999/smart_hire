@@ -294,18 +294,6 @@
         </svg>
     </div>
 
-    <script>
-        // Prevent navbar collapse when dropdown is clicked on mobile
-        $('.navbar .dropdown-toggle').on('click', function (e) {
-            e.stopPropagation();
-            $(this).next('.dropdown-menu').toggle();
-        });
-
-        // Close dropdown when clicking outside
-        $(document).on('click', function () {
-            $('.dropdown-menu').hide();
-        });
-    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -319,6 +307,18 @@
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
+        <script>
+        // Prevent navbar collapse when dropdown is clicked on mobile
+        $('.navbar .dropdown-toggle').on('click', function (e) {
+            e.stopPropagation();
+            $(this).next('.dropdown-menu').toggle();
+        });
+
+        // Close dropdown when clicking outside
+        $(document).on('click', function () {
+            $('.dropdown-menu').hide();
+        });
+    </script>
 
 <script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
 
