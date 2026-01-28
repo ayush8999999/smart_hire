@@ -324,44 +324,44 @@
 						<div class="row no-gutters">
 							<div class="col-md-2">
 								<div class="top-category text-center no-border-left">
-									<h3><a href="#">Customer Success Support</a></h3>
+									<h3><a href="browsejobs.php">Customer Success Support</a></h3>
 									<span class="icon flaticon-contact"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</a></p>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="top-category text-center">
-									<h3><a href="#">Helpdesk & Ticketing Chat</a></h3>
+									<h3><a href="browsejobs.php">Helpdesk & Ticketing Chat</a></h3>
 									<span class="icon flaticon-mortarboard"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</a></p>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="top-category text-center">
-									<h3><a href="#">Trading Operations Chat</a></h3>
+									<h3><a href="browsejobs.php">Trading Operations Chat</a></h3>
 									<span class="icon flaticon-idea"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</span></p>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="top-category text-center">
-									<h3><a href="#">VIP Trader Support</a></h3>
+									<h3><a href="browsejobs.php">VIP Trader Support</a></h3>
 									<span class="icon flaticon-accounting"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</a></p>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="top-category text-center">
-									<h3><a href="#">Technical Product Support</a></h3>
+									<h3><a href="browsejobs.php">Technical Product Support</a></h3>
 									<span class="icon flaticon-dish"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</a></p>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="top-category text-center">
-									<h3><a href="#">Onboarding & Implementation</a></h3>
+									<h3><a href="browsejobs.php">Onboarding & Implementation</a></h3>
 									<span class="icon flaticon-stethoscope"></span>
-									<p><span>Open position</span></p>
+									<p><a href="browsejobs.php">Open position</a></p>
 								</div>
 							</div>
 						</div>
@@ -404,7 +404,7 @@
 				<div class="col-md-3 ftco-animate">
 					<ul class="category text-center improved-category">
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Customer Success Support
 								<span class="desc">Chat-based assistance for smooth onboarding and platform
 									usage.</span>
@@ -413,7 +413,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Technical Product Support
 								<span class="desc">Professional chat support for software and system issues.</span>
 								<span class="open">Open position</span>
@@ -421,7 +421,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Onboarding & Implementation
 								<span class="desc">Guided chat support for setup, configuration, and deployment.</span>
 								<span class="open">Open position</span>
@@ -429,7 +429,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Enterprise Client Support
 								<span class="desc">SLA-based priority support for enterprise clients.</span>
 								<span class="open">Open position</span>
@@ -443,7 +443,7 @@
 				<div class="col-md-3 ftco-animate">
 					<ul class="category text-center improved-category">
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Helpdesk & Ticketing Chat
 								<span class="desc">Structured chat integrated with ticketing and escalation.</span>
 								<span class="open">Open position</span>
@@ -451,7 +451,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Community & Moderation Support
 								<span class="desc">Professional moderation for reports and community guidelines.</span>
 								<span class="open">Open position</span>
@@ -459,7 +459,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								VIP Player Assistance
 								<span class="desc">Premium chat support for high-value players.</span>
 								<span class="open">Open position</span>
@@ -467,7 +467,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Forex Client Support
 								<span class="desc">Chat assistance for trading platforms and client inquiries.</span>
 								<span class="open">Open position</span>
@@ -481,7 +481,7 @@
 				<div class="col-md-3 ftco-animate">
 					<ul class="category text-center improved-category">
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Trading Operations Chat
 								<span class="desc">Real-time support for trade execution and order issues.</span>
 								<span class="open">Open position</span>
@@ -489,7 +489,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								KYC & Verification Support
 								<span class="desc">Guidance for account verification and compliance checks.</span>
 								<span class="open">Open position</span>
@@ -497,7 +497,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Deposits & Withdrawals Support
 								<span class="desc">Secure handling of payments and transaction tracking.</span>
 								<span class="open">Open position</span>
@@ -505,7 +505,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Risk & Compliance Assistance
 								<span class="desc">Support for trading rules and regulatory requirements.</span>
 								<span class="open">Open position</span>
@@ -519,7 +519,7 @@
 				<div class="col-md-3 ftco-animate">
 					<ul class="category text-center improved-category">
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								VIP Trader Support
 								<span class="desc">Dedicated chat assistance for premium traders.</span>
 								<span class="open">Open position</span>
@@ -527,7 +527,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Client Onboarding Support
 								<span class="desc">Guidance through registration and initial setup.</span>
 								<span class="open">Open position</span>
@@ -535,7 +535,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Retention & Loyalty Support
 								<span class="desc">Customer engagement and long-term retention chat.</span>
 								<span class="open">Open position</span>
@@ -543,7 +543,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="browsejobs.php">
 								Complaint Resolution Team
 								<span class="desc">Handling escalations, disputes, and sensitive concerns.</span>
 								<span class="open">Open position</span>
@@ -1308,6 +1308,7 @@
 					<div class="ftco-footer-widget">
 						<h2 class="ftco-heading-2">Quick Links</h2>
 						<ul class="list-unstyled">
+							<li><a class="footer-active" href="index.php">Home</a></li>
 							<li><a href="browsejobs.php">Browse Jobs</a></li>
 							<li><a href="blog.php">About Us</a></li>
 							<li><a href="contact.php">Contact Us</a></li>

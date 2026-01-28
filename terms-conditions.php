@@ -231,11 +231,12 @@
                     <div class="ftco-footer-widget">
                         <h2 class="ftco-heading-2">Quick Links</h2>
                         <ul class="list-unstyled">
+                            <li><a href="index.php">Home</a></li>
                             <li><a href="browsejobs.php">Browse Jobs</a></li>
                             <li><a href="blog.php">About Us</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
                             <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                            <li><a href="terms-conditions.php">Terms & Conditions</a></li>
+                            <li><a class="footer-active" href="terms-conditions.php">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>

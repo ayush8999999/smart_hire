@@ -233,7 +233,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+          <li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
           <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
           <?php if (isLoggedIn()): ?>
@@ -761,7 +761,8 @@
           <div class="ftco-footer-widget">
             <h2 class="ftco-heading-2">Quick Links</h2>
             <ul class="list-unstyled">
-              <li><a href="browsejobs.php">Browse Jobs</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a class="footer-active" href="browsejobs.php">Browse Jobs</a></li>
               <li><a href="blog.php">About Us</a></li>
               <li><a href="contact.php">Contact Us</a></li>
               <li><a href="privacy-policy.php">Privacy Policy</a></li>

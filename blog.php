@@ -483,7 +483,7 @@
             <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
-            <div><img src="images/multi_1.svg" style="width: 100%;"></div>
+            <div><img src="images/Create_Jobs_noBg_Resized.png" style="width: 100%;"></div>
           </div>
         </div>
 
@@ -497,7 +497,7 @@
             <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
-            <div><img src="images/multi_2.svg" style="width: 100%;"></div>
+            <div><img src="images/Review_Application_noBg_Resized.png" style="width: 100%;"></div>
           </div>
         </div>
 
@@ -511,7 +511,7 @@
             <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
-            <div><img src="images/multi_3.svg" style="width: 100%;"></div>
+            <div><img src="images/Resume_Review_noBg_Resized.png" style="width: 100%;"></div>
           </div>
         </div>
 
@@ -525,7 +525,7 @@
             <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
-            <div><img src="images/multi_4.svg" style="width: 100%;"></div>
+            <div><img src="images/Schedule_Interview_noBg_Resized.png" style="width: 100%;"></div>
           </div>
         </div>
 
@@ -539,7 +539,7 @@
             <a href="browsejobs.php"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
-            <div><img src="images/multi_5.svg" style="width: 100%;"></div>
+            <div><img src="images/Hire_Candidate_noBg_Resized.png" style="width: 100%;"></div>
           </div>
         </div>
       </div>
@@ -564,7 +564,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
-        <div style="width: 100%;"><img src="images/overflow_div1p.png" style="width: 100%;"></div>
+        <div style="width: 100%;"><img src="images/Post_Jobs_noBg_Resized.png" style="width: 100%;"></div>
       </div>
     </div>
     <div class="row mx-0 justify-content-between gray_border" style="position: sticky;top: 90px;background: white;">
@@ -580,7 +580,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
-        <div style="width: 100%;"><img src="images/overflow_div2p.png" style="width: 100%;"></div>
+        <div style="width: 100%;"><img src="images/Job_Applications_noBg_Resized.png" style="width: 100%;"></div>
       </div>
     </div>
     <div class="row mx-0 justify-content-between gray_border bggreen" style="position: sticky;top: 90px;">
@@ -596,7 +596,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
-        <div style="width: 100%;"><img src="images/overflow_div3p.png" style="width: 100%;"></div>
+        <div style="width: 100%;"><img src="images/Attend_Interview_noBg_Resized.png" style="width: 100%;"></div>
       </div>
     </div>
     <div class="row mx-0 justify-content-between gray_border" style="position: sticky;top: 90px;background: white;display: none;">
@@ -1018,8 +1018,9 @@
           <div class="ftco-footer-widget">
             <h2 class="ftco-heading-2">Quick Links</h2>
             <ul class="list-unstyled">
+              <li><a href="index.php">Home</a></li>
               <li><a href="browsejobs.php">Browse Jobs</a></li>
-              <li><a href="blog.php">About Us</a></li>
+              <li><a class="footer-active" href="blog.php">About Us</a></li>
               <li><a href="contact.php">Contact Us</a></li>
               <li><a href="privacy-policy.php">Privacy Policy</a></li>
               <li><a href="terms-conditions.php">Terms & Conditions</a></li>

@@ -594,7 +594,7 @@ h1, h2, h3, h4, h5,
 		font-size: 40px;
 		color: $primary;
 	}
-	p{
+	a{
 		color: rgba(0,0,0,.7);
 	}
 	&.active,&:hover{
@@ -608,7 +608,7 @@ h1, h2, h3, h4, h5,
 		.icon{
 			color: $white;
 		}
-		p{
+		a{
 			color: rgba(255,255,255,.9);
 		}
 	}

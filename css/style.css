@@ -8649,13 +8649,13 @@ h1, h2, h3, h4, h5,
   .top-category .icon {
     font-size: 40px;
     color: #fdab44; }
-  .top-category p {
+  .top-category a {
     color: rgba(0, 0, 0, 0.7); }
     .top-category.active h3 a, .top-category:hover h3 a {
       color: #fff; }
     .top-category.active .icon, .top-category:hover .icon {
       color: #fff; }
-    .top-category.active p, .top-category:hover p {
+    .top-category.active p, .top-category:hover a {
       color: rgba(255, 255, 255, 0.9); }
     .top-category.active,
     .top-category:hover {
@@ -9261,6 +9261,8 @@ textarea.form-control {
     color: rgba(0, 0, 0, 0.4); }
     .ftco-footer .ftco-footer-widget ul li a span {
       color: rgba(0, 0, 0, 0.5); }
+    .footer-active {
+      color: #fdab44 !important; }
   .ftco-footer .ftco-footer-widget .btn-primary {
     background: #fff !important;
     border: 2px solid #fff !important; }
