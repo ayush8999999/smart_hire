@@ -126,9 +126,9 @@
       font-weight: 700;
     }
 
-    .nav-link {
+    /* .nav-link {
       color: #fff !important;
-    }
+    } */
 
     footer {
       background: #5d4037;
