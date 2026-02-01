@@ -3,5 +3,5 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: signUp-In.php");
+header("Location: sign-in.php");
 exit;

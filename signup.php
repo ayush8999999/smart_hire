@@ -1,30 +1,8 @@
 <?php
-require 'register_success_email.php';
 header('Content-Type: application/json');
 
-// ================= DATABASE CONFIG =================
-$host     = 'localhost';
-$dbname   = 'intucate_orchid_db';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
-        $username,
-        $password,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]
-    );
-} catch (PDOException $e) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Database connection failed'
-    ]);
-    exit;
-}
+require_once __DIR__ . 'db.php';
+require 'register_success_email.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([

@@ -5,6 +5,7 @@
     <title>EasyHire - Sign Up & Sign In</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="robots" content="noindex, follow">
     <link rel="icon" href="images/logo-bg.png" type="image/png">
     <link rel="apple-touch-icon" href="images/logo-bg.png">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">

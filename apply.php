@@ -6,6 +6,8 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
+require_once __DIR__ . 'db.php';
+
 // Handle OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -15,36 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 /* ================= BASE UPLOAD PATH ================= */
 $BASE_UPLOAD_PATH = $_SERVER['DOCUMENT_ROOT'] . '/intucate_orchid/public/uploads';
 
-/* ================= DATABASE ================= */
-$host     = 'localhost';
-$dbname   = 'intucate_orchid_db';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
-        $username,
-        $password,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]
-    );
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Cannot connect to database.'
-    ]);
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Only POST allowed']);
     exit;
 }
+
 
 /* ================= FILE UPLOAD HELPER ================= */
 function uploadFile($file, $allowedExt, $maxSize, $absoluteFolder, $relativeFolder)
