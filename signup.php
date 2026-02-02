@@ -17,7 +17,9 @@ $full_name  = trim($_POST['full_name'] ?? '');
 $email      = trim($_POST['email'] ?? '');
 $password   = $_POST['password'] ?? '';
 $confirmPwd = $_POST['confirm_password'] ?? '';
-$mobile     = trim($_POST['mobile_number'] ?? '');
+$mobile_code    = trim($_POST['mobile_code'] ?? '');
+$country_iso2   = strtoupper(trim($_POST['country_iso2'] ?? ''));
+$mobile_number  = trim($_POST['mobile_national'] ?? '');
 
 // ================= VALIDATION =================
 if (!$full_name || !$email || !$password) {
@@ -40,6 +42,21 @@ if (strlen($password) < 6) {
     exit;
 }
 
+if (!preg_match('/^\+\d{1,4}$/', $mobile_code)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid country code']);
+    exit;
+}
+
+if (!preg_match('/^\d{6,15}$/', $mobile_number)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid mobile number']);
+    exit;
+}
+
+if (!preg_match('/^[A-Z]{2}$/', $country_iso2)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid country']);
+    exit;
+}
+
 // ================= DUPLICATE EMAIL =================
 $check = $pdo->prepare("SELECT id FROM easyhire_users WHERE email = ?");
 $check->execute([$email]);
@@ -54,15 +71,18 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $pdo->prepare("
     INSERT INTO easyhire_users
-    (full_name, email, password, mobile_number)
-    VALUES (?, ?, ?, ?)
+    (full_name, email, password, mobile_code, mobile_number, country_iso2, user_role)
+    VALUES (?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->execute([
     $full_name,
     $email,
     $hashedPassword,
-    $mobile
+    $mobile_code,
+    $mobile_number,
+    $country_iso2,
+    "candidate"
 ]);
 sendWelcomeMail($full_name, $email);
 

@@ -686,6 +686,10 @@
                                 <i class='bx bx-phone icon-left'></i>
                                 <!-- <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]*" placeholder="Mobile Number" style="padding-right: 35px;"> -->
                                 <input aria-label="MobileNumber" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="tel" name="mobile_number" id="mobile" placeholder="Mobile Number" required>
+                                <!-- Hidden fields for phone meta -->
+                                <input type="hidden" name="mobile_code" id="mobile_code">
+                                <input type="hidden" name="country_iso2" id="country_iso2">
+                                <input type="hidden" name="mobile_national" id="mobile_national">
                                 <i class="bx bx-x icon-right clear-input"></i>
                             </div>
                             <div class="input-error">Please input a valid mobile number</div>
@@ -961,13 +965,20 @@
             group.classList.add(isValid ? "success" : "error");
 
             // Matches your React output EXACTLY
-            console.log({
-                dialCode,
-                number: nationalNumber,
-                full: parsed ? parsed.format("E.164") : `+${dialCode}${nationalNumber}`,
-                isValid,
-                countryIso2
-            });
+            // console.log({
+            //     dialCode,
+            //     number: nationalNumber,
+            //     full: parsed ? parsed.format("E.164") : `+${dialCode}${nationalNumber}`,
+            //     isValid,
+            //     countryIso2
+            // });
+
+            if (isValid) {
+                document.getElementById("mobile_code").value = "+" + dialCode;
+                document.getElementById("country_iso2").value = countryIso2;
+                document.getElementById("mobile_national").value = nationalNumber;
+            }
+
             return isValid;
         }
 
@@ -1067,6 +1078,7 @@
             if (!validatePhone()) {
                 const g = document.querySelector(".phone-group");
                 setError(g, "Please input a valid mobile number");
+                return;
             }
 
             const firstError = signup.querySelector(".input-group.error input");

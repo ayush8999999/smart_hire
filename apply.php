@@ -17,6 +17,17 @@ if (!isLoggedIn()) {
     exit;
 }
 
+$userId = $_SESSION['user_id'] ?? null;
+
+if (!$userId) {
+    http_response_code(401);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Session expired. Please login again.'
+    ]);
+    exit;
+}
+
 // Handle OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -93,7 +104,9 @@ try {
 /* ================= REQUIRED FIELDS ================= */
 $required = [
     'full_name',
-    'mobile_number',
+    'mobile_code',
+    'mobile_national',
+    'country_iso2',
     'email',
     'current_address',
     'city_state'
@@ -123,13 +136,16 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 try {
     $stmt = $pdo->prepare("
         INSERT INTO candidate_applied (
+            user_id,
             job_id,
             job_title,
             company_name,
             full_name,
             gender,
             date_of_birth,
+            mobile_code,
             mobile_number,
+            country_iso2,
             email,
             current_address,
             city_state,
@@ -163,11 +179,12 @@ try {
             ?,?,?,?,?,?,?,?,?,?,
             ?,?,?,?,?,?,?,?,?,?,
             ?,?,?,?,?,?,?,?,?,?,
-            ?,?,?,?,?,?
+            ?,?,?,?,?,?,?,?,?
         )
     ");
 
     $stmt->execute([
+        $userId,
         $_POST['job_id'] ?? null,
         $_POST['job_title'] ?? null,
         $_POST['company_name'] ?? null,
@@ -175,7 +192,10 @@ try {
         trim($_POST['full_name']),
         $_POST['gender'] ?? '',
         $_POST['date_of_birth'] ?: null,
-        trim($_POST['mobile_number']),
+
+        trim($_POST['mobile_code'] ?? ''),
+        trim($_POST['mobile_national']),
+        strtoupper(trim($_POST['country_iso2'] ?? '')),
         trim($_POST['email']),
 
         trim($_POST['current_address']),

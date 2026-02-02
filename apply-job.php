@@ -20,6 +20,9 @@ if (!isLoggedIn()) {
     <link rel="apple-touch-icon" href="images/logo-bg.png">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.css">
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.10.51/bundle/libphonenumber-max.js"></script>
 
   <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="css/animate.css">
@@ -224,6 +227,10 @@ if (!isLoggedIn()) {
       margin-right: 6px;
       margin-left: 2px;
     }
+
+    .iti {
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -335,6 +342,8 @@ if (!isLoggedIn()) {
               All information will be verified during the selection process.
             </div>
 
+            <input type="hidden" name="user_id" value="<?= (int)$_SESSION['user_id'] ?>">
+
             <div class="form-group">
               <label>Full Name</label>
               <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your full name"
@@ -353,10 +362,15 @@ if (!isLoggedIn()) {
               <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
             </div>
 
-            <div class="form-group">
+            <div class="form-group phone-group">
               <label>Mobile Number</label>
-              <input type="text" class="form-control" id="mobile_number" name="mobile_number" pattern="[0-9]{1,15}"
-                placeholder="Enter your 10-digit mobile number" required>
+
+              <input type="tel" class="form-control" inputmode="numeric" id="mobile" placeholder="Mobile Number" autocomplete="tel" required>
+
+              <!-- Hidden fields -->
+              <input type="hidden" name="mobile_code" id="mobile_code">
+              <input type="hidden" name="mobile_national" id="mobile_national">
+              <input type="hidden" name="country_iso2" id="country_iso2">
             </div>
 
             <div class="form-group">
@@ -967,11 +981,69 @@ if (!isLoggedIn()) {
       }
     });
   </script> -->
+  <script>
+    const phoneInput = document.getElementById("mobile");
 
+    const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        nationalMode: false,
+        autoHideDialCode: false,
+        separateDialCode: true,
+        formatOnDisplay: true
+    });
+
+    function validatePhone() {
+      const countryData = iti.getSelectedCountryData();
+
+      const countryIso2 = countryData.iso2.toUpperCase();
+      const dialCode = countryData.dialCode;
+      const nationalNumber = phoneInput.value.replace(/\D/g, '');
+
+      if (!nationalNumber) return false;
+
+      const parsed = libphonenumber.parsePhoneNumberFromString(
+          nationalNumber,
+          countryIso2
+      );
+
+      let isValid = false;
+
+      if (parsed && parsed.isValid()) {
+          const type = parsed.getType();
+          isValid =
+              type === undefined ||
+              type === "MOBILE" ||
+              type === "FIXED_LINE_OR_MOBILE";
+      }
+
+      if (!isValid) return false;
+
+      // ✅ populate hidden fields
+      document.getElementById("mobile_code").value = "+" + dialCode;
+      document.getElementById("country_iso2").value = countryIso2;
+      document.getElementById("mobile_national").value = nationalNumber;
+
+      return true;
+    }
+
+    phoneInput.addEventListener("beforeinput", (e) => {
+        if (e.data && /\D/.test(e.data)) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+  </script>
   <!-- db save + email -->
   <script>
   document.getElementById('applyForm').addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      if (!validatePhone()) {
+          alert("Please enter a valid mobile number");
+          phoneInput.focus();
+          return;
+      }
 
       const formData = new FormData(this);
       const submitBtn = this.querySelector('button[type="submit"]');
@@ -1071,6 +1143,14 @@ if (!isLoggedIn()) {
           return;
         }
 
+        if (currentStep === 0) {
+          if (!validatePhone()) {
+              alert("Please enter a valid mobile number");
+              phoneInput.focus();
+              return; // ❌ BLOCK NEXT
+          }
+        }
+
         if (currentStep < steps.length - 1) {
           currentStep++;
           showStep(currentStep);
@@ -1091,6 +1171,87 @@ if (!isLoggedIn()) {
     });
 
     showStep(currentStep);
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+      try {
+          const res = await fetch('get_prefill_data.php');
+          const result = await res.json();
+
+          if (!result.success || !result.data) return;
+
+          const d = result.data;
+
+          /* ===== BASIC FIELDS ===== */
+          if (d.full_name) document.getElementById('full_name').value = d.full_name;
+          if (d.email) document.getElementById('email').value = d.email;
+          if (d.date_of_birth) document.getElementById('date_of_birth').value = d.date_of_birth;
+          if (d.current_address) document.getElementById('current_address').value = d.current_address;
+          if (d.city_state) document.getElementById('city_state').value = d.city_state;
+
+          /* ===== RADIO BUTTONS ===== */
+          if (d.gender) {
+              const g = document.querySelector(`input[name="gender"][value="${d.gender}"]`);
+              if (g) g.checked = true;
+          }
+
+          if (d.willing_to_relocate) {
+              const r = document.querySelector(`input[name="willing_to_relocate"][value="${d.willing_to_relocate}"]`);
+              if (r) r.checked = true;
+          }
+
+          if (d.has_job_offer) {
+              const o = document.querySelector(`input[name="has_job_offer"][value="${d.has_job_offer}"]`);
+              if (o) o.checked = true;
+          }
+
+          /* ===== MOBILE (intl-tel-input compatible) ===== */
+          if (d.mobile_number && d.country_iso2) {
+              iti.setCountry(d.country_iso2.toLowerCase());
+              phoneInput.value = d.mobile_number;
+
+              // Populate hidden fields immediately
+              document.getElementById("mobile_code").value = d.mobile_code || '';
+              document.getElementById("country_iso2").value = d.country_iso2;
+              document.getElementById("mobile_national").value = d.mobile_number;
+          }
+
+          /* ===== OPTIONAL FIELDS ===== */
+          const map = {
+              highest_qualification: 'highest_qualification',
+              specialization: 'specialization',
+              college_university: 'college_university',
+              year_of_passing: 'year_of_passing',
+              experience_level: 'experience_level',
+              current_job_title: 'current_job_title',
+              previous_company: 'previous_company',
+              experience_duration: 'experience_duration',
+              key_skills_responsibilities: 'key_skills_responsibilities',
+              preferred_job_roles: 'preferred_job_roles',
+              preferred_industry: 'preferred_industry',
+              preferred_job_locations: 'preferred_job_locations',
+              work_mode_preference: 'work_mode_preference',
+              shift_preference: 'shift_preference',
+              current_salary: 'current_salary',
+              expected_salary: 'expected_salary',
+              notice_period: 'notice_period',
+              job_offer_details: 'job_offer_details',
+              additional_information: 'additional_information'
+          };
+
+          for (const key in map) {
+              if (d[key]) {
+                  const el = document.querySelector(`[name="${map[key]}"]`);
+                  if (el) el.value = d[key];
+              }
+          }
+
+          console.log('Form auto-filled from:', result.source);
+
+      } catch (err) {
+          console.warn('Prefill failed:', err);
+      }
+  });
   </script>
   <script>
     function handleFilePreview(input, type) {
