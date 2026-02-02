@@ -44,7 +44,7 @@ function sendWelcomeMail($name, $email) {
                                 <p>You can now log in and start applying for jobs.</p>
 
                                 <p style='margin-top:25px'>
-                                    <a href='https://yourdomain.com/signUp-In.php'
+                                    <a href='https://easyhireconsultancy.com/sign-in.php'
                                        style='background:#f57f17;color:#fff;
                                        padding:10px 18px;border-radius:6px;
                                        text-decoration:none;'>

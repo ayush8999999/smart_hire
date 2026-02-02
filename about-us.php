@@ -381,10 +381,10 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+          <li class="nav-item"><a href="browse-jobs.php" class="nav-link">Browse Jobs</a></li>
           <!-- <li class="nav-item"><a href="candidates.php" class="nav-link">Canditates</a></li> -->
-          <li class="nav-item active"><a href="blog.php" class="nav-link">About Us</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+          <li class="nav-item active"><a href="about-us.php" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact-us.php" class="nav-link">Contact Us</a></li>
           <!-- <li class="nav-item cta mr-md-1"><a href="new-post.php" class="nav-link">Post a Job</a></li> -->
           <?php if (isLoggedIn()): ?>
 						<li class="nav-item dropdown">
@@ -412,7 +412,7 @@
 						</li>
 					<?php else: ?>
 						<li class="nav-item cta cta-colored">
-							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+							<a href="sign-in.php" class="nav-link">Sign In / Sign Up</a>
 						</li>
 					<?php endif; ?>
         </ul>
@@ -480,7 +480,7 @@
           <p class="longtext diff_font weight_400">
           Post job openings quickly by adding role details, experience, and location to attract the right candidates.
           </p>
-            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/Create_Jobs_noBg_Resized.png" style="width: 100%;"></div>
@@ -494,7 +494,7 @@
             <p class="longtext diff_font weight_400">
             View and manage all candidate applications in one place with easy resume access.
             </p>
-            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/Review_Application_noBg_Resized.png" style="width: 100%;"></div>
@@ -508,7 +508,7 @@
             <p class="longtext diff_font weight_400">
             Candidates apply directly and their resumes are delivered straight to your dashboard.
             </p>
-            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/Resume_Review_noBg_Resized.png" style="width: 100%;"></div>
@@ -522,7 +522,7 @@
             <p class="longtext diff_font weight_400">
             Connect with candidates and schedule interviews easily via email or phone.
             </p>
-            <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/Schedule_Interview_noBg_Resized.png" style="width: 100%;"></div>
@@ -536,7 +536,7 @@
             <p class="longtext diff_font weight_400">
             Choose the best applicant and complete your hiring process smoothly and quickly.
             </p>
-            <a href="browsejobs.php"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
+            <a href="browse-jobs.php"><div class="text-lg-left text-center mt-2"><button class="start_hiring_g">Apply</button></div></a>
           </div>
           <div class="col-lg-7 col-12">
             <div><img src="images/Hire_Candidate_noBg_Resized.png" style="width: 100%;"></div>
@@ -560,7 +560,7 @@
           <p class="longtext diff_font weight_400 text-white">
           Apply with your resume in just a few clicks and get connected directly with employers.
           </p>
-          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -576,7 +576,7 @@
           <p class="longtext diff_font weight_400">
           EasyHire helps employers receive applications from interested and suitable candidates so that hiring happens faster and smoother.
           </p>
-          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -592,7 +592,7 @@
           <p class="longtext diff_font text-white weight_400">
           Once you apply, recruiters can contact you directly to schedule interviews and move forward in the hiring process.
           </p>
-          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -608,7 +608,7 @@
           <p class="longtext diff_font weight_400">
           EasyHire makes job searching and hiring simple. Post jobs, apply for roles, and connect with employers — all in one place.
           </p>
-          <a href="browsejobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
+          <a href="browse-jobs.php"><div class="text-lg-left text-center"><button class="request_demo">Apply</button></div></a>
         </div>
       </div>
       <div class="col-lg-6 col-12 d-flex justify-content-end align-items-center">
@@ -1019,11 +1019,11 @@
             <h2 class="ftco-heading-2">Quick Links</h2>
             <ul class="list-unstyled">
               <li><a href="index.php">Home</a></li>
-              <li><a href="browsejobs.php">Browse Jobs</a></li>
-              <li><a class="footer-active" href="blog.php">About Us</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
+              <li><a href="browse-jobs.php">Browse Jobs</a></li>
+              <li><a class="footer-active" href="about-us.php">About Us</a></li>
+              <li><a href="contact-us.php">Contact Us</a></li>
               <li><a href="privacy-policy.php">Privacy Policy</a></li>
-              <li><a href="terms-conditions.php">Terms & Conditions</a></li>
+              <li><a href="terms-and-conditions.php">Terms & Conditions</a></li>
             </ul>
           </div>
         </div>

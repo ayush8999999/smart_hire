@@ -162,7 +162,7 @@
 
 <body>
 
-    <!-- Navbar - same as browsejobs.php -->
+    <!-- Navbar - same as browse-jobs.php -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container-fluid px-md-4">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
@@ -177,9 +177,9 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
-                    <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
-                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item active"><a href="browse-jobs.php" class="nav-link">Browse Jobs</a></li>
+                    <li class="nav-item"><a href="about-us.php" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="contact-us.php" class="nav-link">Contact Us</a></li>
                     <?php if (isLoggedIn()): ?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-flex align-items-center"
@@ -206,7 +206,7 @@
 						</li>
 					<?php else: ?>
 						<li class="nav-item cta cta-colored">
-							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+							<a href="sign-in.php" class="nav-link">Sign In / Sign Up</a>
 						</li>
 					<?php endif; ?>
                 </ul>
@@ -224,7 +224,7 @@
                 <div class="col-md-12 ftco-animate text-center mb-5">
                     <p class="breadcrumbs mb-0">
                         <span class="mr-3"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span>
-                        <span><a href="browsejobs.php">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span><a href="browse-jobs.php">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
                         <span>Job Details</span>
                     </p>
                     <h1 class="mb-3 bread" id="hero-job-title">Loading...</h1>
@@ -321,7 +321,7 @@
                             <div class="col-12 d-flex justify-content-center">
                                 <div class="d-flex flex-column flex-sm-row align-items-center">
 
-                                    <a href="browsejobs.php"
+                                    <a href="browse-jobs.php"
                                         class="btn py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center border text-nowrap"
                                         style="min-width:220px; background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
                                         Back to Jobs
@@ -391,11 +391,11 @@
                         <h2 class="ftco-heading-2">Quick Links</h2>
                         <ul class="list-unstyled">
                             <li><a href="index.php">Home</a></li>
-                            <li><a class="footer-active" href="browsejobs.php">Browse Jobs</a></li>
-                            <li><a href="blog.php">About Us</a></li>
-                            <li><a href="contact.php">Contact Us</a></li>
+                            <li><a class="footer-active" href="browse-jobs.php">Browse Jobs</a></li>
+                            <li><a href="about-us.php">About Us</a></li>
+                            <li><a href="contact-us.php">Contact Us</a></li>
                             <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                            <li><a href="terms-conditions.php">Terms & Conditions</a></li>
+                            <li><a href="terms-and-conditions.php">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -748,7 +748,7 @@
             <div class="text-center py-5">
                 <h2>Job not found</h2>
                 <p>Sorry, the requested job could not be found.</p>
-                <a href="browsejobs.php" class="btn btn-primary mt-3">Back to Jobs</a>
+                <a href="browse-jobs.php" class="btn btn-primary mt-3">Back to Jobs</a>
             </div>
         `;
                 return;

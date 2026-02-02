@@ -104,10 +104,10 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-					<li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
+					<li class="nav-item active"><a href="browse-jobs.php" class="nav-link">Browse Jobs</a></li>
 					<!-- <li class="nav-item"><a href="candidates.php" class="nav-link">Canditates</a></li> -->
-					<li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="about-us.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="contact-us.php" class="nav-link">Contact Us</a></li>
 					<!-- <li class="nav-item cta mr-md-1"><a href="new-post.php" class="nav-link">Post a Job</a></li> -->
 					<?php if (isLoggedIn()): ?>
 						<li class="nav-item dropdown">
@@ -135,7 +135,7 @@
 						</li>
 					<?php else: ?>
 						<li class="nav-item cta cta-colored">
-							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+							<a href="sign-in.php" class="nav-link">Sign In / Sign Up</a>
 						</li>
 					<?php endif; ?>
 				</ul>
@@ -174,7 +174,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=1">Sales Executive -
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=1">Sales Executive -
 												Payments</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -185,7 +185,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=1" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=1" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -212,7 +212,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=6">Customer Support
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=6">Customer Support
 												Agent</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -223,7 +223,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=6" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=6" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -250,7 +250,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=2">Customer Service
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=2">Customer Service
 												Agent</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -260,7 +260,7 @@
 												Portugal</span></div>
 									</div>
 								</div>
-								<a href="job-single.php?id=2" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=2" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -288,7 +288,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=7">Customer Engagement
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=7">Customer Engagement
 												Executive</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -299,7 +299,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=7" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=7" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -326,7 +326,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=3">Customer Support
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=3">Customer Support
 												Specialist</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -336,7 +336,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=3" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=3" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -366,7 +366,7 @@
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
 										<h2 class="mr-3 text-black">
-											<a href="job-single.php?id=8">Customer Support / Operations Role</a>
+											<a href="view-job.php?id=8">Customer Support / Operations Role</a>
 										</h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -377,7 +377,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=8" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=8" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -404,7 +404,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=4">Customer Support
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=4">Customer Support
 												Lead</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -414,7 +414,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=4" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=4" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -442,7 +442,7 @@
 								<div class="one-third mb-4 mb-md-0">
 									<div class="job-post-item-header align-items-center">
 										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="job-single.php?id=5">Customer Experience
+										<h2 class="mr-3 text-black"><a href="view-job.php?id=5">Customer Experience
 												Agent</a></h2>
 									</div>
 									<div class="job-post-item-body d-block d-md-flex">
@@ -452,7 +452,7 @@
 									</div>
 								</div>
 
-								<a href="job-single.php?id=5" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+								<a href="view-job.php?id=5" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
 									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
 									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
@@ -539,11 +539,11 @@
 						<h2 class="ftco-heading-2">Quick Links</h2>
 						<ul class="list-unstyled">
 							<li><a href="index.php">Home</a></li>
-							<li><a class="footer-active" href="browsejobs.php">Browse Jobs</a></li>
-							<li><a href="blog.php">About Us</a></li>
-							<li><a href="contact.php">Contact Us</a></li>
+							<li><a class="footer-active" href="browse-jobs.php">Browse Jobs</a></li>
+							<li><a href="about-us.php">About Us</a></li>
+							<li><a href="contact-us.php">Contact Us</a></li>
 							<li><a href="privacy-policy.php">Privacy Policy</a></li>
-							<li><a href="terms-conditions.php">Terms & Conditions</a></li>
+							<li><a href="terms-and-conditions.php">Terms & Conditions</a></li>
 						</ul>
 					</div>
 				</div>

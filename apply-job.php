@@ -233,9 +233,9 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="browsejobs.php" class="nav-link">Browse Jobs</a></li>
-          <li class="nav-item"><a href="blog.php" class="nav-link">About Us</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+          <li class="nav-item active"><a href="browse-jobs.php" class="nav-link">Browse Jobs</a></li>
+          <li class="nav-item"><a href="about-us.php" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact-us.php" class="nav-link">Contact Us</a></li>
           <?php if (isLoggedIn()): ?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle d-flex align-items-center"
@@ -262,7 +262,7 @@
 						</li>
 					<?php else: ?>
 						<li class="nav-item cta cta-colored">
-							<a href="signUp-In.php" class="nav-link">Sign In / Sign Up</a>
+							<a href="sign-in.php" class="nav-link">Sign In / Sign Up</a>
 						</li>
 					<?php endif; ?>
         </ul>
@@ -762,11 +762,11 @@
             <h2 class="ftco-heading-2">Quick Links</h2>
             <ul class="list-unstyled">
               <li><a href="index.php">Home</a></li>
-              <li><a class="footer-active" href="browsejobs.php">Browse Jobs</a></li>
-              <li><a href="blog.php">About Us</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
+              <li><a class="footer-active" href="browse-jobs.php">Browse Jobs</a></li>
+              <li><a href="about-us.php">About Us</a></li>
+              <li><a href="contact-us.php">Contact Us</a></li>
               <li><a href="privacy-policy.php">Privacy Policy</a></li>
-              <li><a href="terms-conditions.php">Terms & Conditions</a></li>
+              <li><a href="terms-and-conditions.php">Terms & Conditions</a></li>
             </ul>
           </div>
         </div>
