@@ -1,4 +1,14 @@
-<?php require_once __DIR__ . '/session.php'; ?>
+<?php require_once __DIR__ . '/session.php';
+
+if (!isLoggedIn()) {
+    // Save intended URL (optional but recommended)
+    $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
+
+    header('Location: sign-in.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

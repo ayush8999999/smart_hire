@@ -192,12 +192,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=1" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=1" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -229,14 +238,22 @@
 									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
 									View Job
 								</a>
-
-								<a href="apply-job.php?id=6" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
+								
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=6" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -267,13 +284,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=2" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=2" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -306,13 +331,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=7" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=7" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -343,14 +376,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=3" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=3" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -384,13 +424,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=8" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=8" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -421,14 +469,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=4" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=4" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 
@@ -459,13 +514,21 @@
 									View Job
 								</a>
 
-								<a href="apply-job.php?id=5" class="btn py-2 px-3 px-lg-5 text-nowrap"
-									style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#f9a825';"
-									onmouseout="this.style.backgroundColor='#fbc02d';">
-									Apply Job
-								</a>
-
+								<?php if (isLoggedIn()): ?>
+									<a href="apply-job.php?id=5" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php else: ?>
+									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
+										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
+										onmouseover="this.style.backgroundColor='#f9a825';"
+										onmouseout="this.style.backgroundColor='#fbc02d';">
+										Apply Job
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 

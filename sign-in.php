@@ -1157,7 +1157,7 @@
                 showErrorModal("Login successful! Redirecting...");
 
                 setTimeout(() => {
-                    window.location.href = "index.php";
+                    window.location.href = data.redirect || "index.php";
                 }, 1000);
 
             } catch (err) {

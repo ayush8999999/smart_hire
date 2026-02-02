@@ -1,4 +1,8 @@
-<?php require_once __DIR__ . '/session.php'; ?>
+<?php require_once __DIR__ . '/session.php';
+$jobId = $_GET['id'] ?? '';
+$applyUrl = "apply-job.php?id=" . urlencode($jobId);
+$loginUrl = "sign-in.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -269,7 +273,7 @@
                             </div>
 
                             <div class="col-md-4 mt-4 mt-md-0 text-md-right">
-                                <a id="applyNowBtn" href="#" class="btn btn-yellow py-3 px-5 w-100 w-md-auto">
+                                <a id="applyNowBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>" class="btn btn-yellow py-3 px-5 w-100 w-md-auto">
                                     Apply Now
                                 </a>
 
@@ -327,7 +331,7 @@
                                         Back to Jobs
                                     </a>
 
-                                    <a id="applyBottomBtn" href="#"
+                                    <a id="applyBottomBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>"
                                         class="btn btn-yellow py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center text-nowrap"
                                         style="min-width:220px;">
                                         Apply for this Job
@@ -862,7 +866,7 @@
             document.getElementById('job-education').textContent = job.education || 'Not specified';
         });
     </script>
-    <script>
+    <!-- <script>
         const params = new URLSearchParams(window.location.search);
         const jobId = params.get('id');
 
@@ -870,7 +874,7 @@
             document.getElementById('applyNowBtn').href = `apply-job.php?id=${jobId}`;
             document.getElementById('applyBottomBtn').href = `apply-job.php?id=${jobId}`;
         }
-    </script>
+    </script> -->
     <script>
 		// Prevent navbar collapse when dropdown is clicked on mobile
 		$('.navbar .dropdown-toggle').on('click', function (e) {

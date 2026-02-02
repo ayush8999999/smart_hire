@@ -5,8 +5,17 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-
+require_once __DIR__ . '/session.php';
 require_once __DIR__ . '/db.php';
+
+if (!isLoggedIn()) {
+    http_response_code(401);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Please login to apply for this job.'
+    ]);
+    exit;
+}
 
 // Handle OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

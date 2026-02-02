@@ -46,8 +46,12 @@ $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_email'] = $user['email'];
 $_SESSION['user_name'] = $user['full_name'];
 
+$redirectTo = $_SESSION['redirect_after_login'] ?? 'index.php';
+unset($_SESSION['redirect_after_login']);
+
 echo json_encode([
     'success' => true,
-    'message' => 'Login successful'
+    'message' => 'Login successful',
+    'redirect' => $redirectTo
 ]);
 exit;
