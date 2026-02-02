@@ -1173,6 +1173,28 @@ if (!isLoggedIn()) {
     showStep(currentStep);
   </script>
   <script>
+    function selectRadioByValue(name, value) {
+        if (!value) return;
+
+        const normalize = v =>
+            v.toString()
+            .trim()
+            .replace(/–/g, '-')   // normalize dash
+            .replace(/\s+/g, ' ')
+            .toLowerCase();
+
+        const target = normalize(value);
+
+        document
+            .querySelectorAll(`input[name="${name}"]`)
+            .forEach(radio => {
+                if (normalize(radio.value) === target) {
+                    radio.checked = true;
+                }
+            });
+    }
+  </script>
+  <script>
   document.addEventListener('DOMContentLoaded', async () => {
       try {
           const res = await fetch('get_prefill_data.php');
@@ -1191,18 +1213,27 @@ if (!isLoggedIn()) {
 
           /* ===== RADIO BUTTONS ===== */
           if (d.gender) {
-              const g = document.querySelector(`input[name="gender"][value="${d.gender}"]`);
-              if (g) g.checked = true;
+              selectRadioByValue('gender', d.gender);
           }
 
           if (d.willing_to_relocate) {
-              const r = document.querySelector(`input[name="willing_to_relocate"][value="${d.willing_to_relocate}"]`);
-              if (r) r.checked = true;
+              selectRadioByValue('willing_to_relocate', d.willing_to_relocate);
           }
 
+          if (d.experience_level) {
+              selectRadioByValue('experience_level', d.experience_level);
+          }
+          if (d.work_mode_preference) {
+              selectRadioByValue('work_mode_preference', d.work_mode_preference);
+          }
+          if (d.shift_preference) {
+              selectRadioByValue('shift_preference', d.shift_preference);
+          }
+          if (d.notice_period) {
+              selectRadioByValue('notice_period', d.notice_period);
+          }
           if (d.has_job_offer) {
-              const o = document.querySelector(`input[name="has_job_offer"][value="${d.has_job_offer}"]`);
-              if (o) o.checked = true;
+              selectRadioByValue('has_job_offer', d.has_job_offer);
           }
 
           /* ===== MOBILE (intl-tel-input compatible) ===== */
