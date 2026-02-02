@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-require_once __DIR__ . 'db.php';
+require_once __DIR__ . '/db.php';
 require 'register_success_email.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
