@@ -72,7 +72,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $stmt = $pdo->prepare("
     INSERT INTO easyhire_users
     (full_name, email, password, mobile_code, mobile_number, country_iso2, user_role)
-    VALUES (?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->execute([
