@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 /* ================= BASE UPLOAD PATH ================= */
-$BASE_UPLOAD_PATH = $_SERVER['DOCUMENT_ROOT'] . '/intucate_orchid/public/uploads';
+$BASE_UPLOAD_PATH = '../easyhire_admin/storage/app/public/uploads';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -76,22 +76,38 @@ function uploadFile($file, $allowedExt, $maxSize, $absoluteFolder, $relativeFold
 }
 
 /* ================= FILE HANDLING ================= */
-try {
-    $passportPath = uploadFile(
-        $_FILES['passport_file'] ?? null,
-        ['pdf', 'jpg', 'jpeg', 'png'],
-        5 * 1024 * 1024,
-        $BASE_UPLOAD_PATH . '/passports',
-        'uploads/passports'
-    );
+$passportPath = null;
+$cvPath = null;
 
-    $cvPath = uploadFile(
-        $_FILES['cv_file'] ?? null,
-        ['pdf', 'doc', 'docx'],
-        2 * 1024 * 1024,
-        $BASE_UPLOAD_PATH . '/cvs',
-        'uploads/cvs'
-    );
+try {
+    // PASSPORT
+    if (!empty($_FILES['passport_file']['name'])) {
+        $passportPath = uploadFile(
+            $_FILES['passport_file'],
+            ['pdf', 'jpg', 'jpeg', 'png'],
+            5 * 1024 * 1024,
+            $BASE_UPLOAD_PATH . '/passports',
+            'uploads/passports'
+        );
+    } else {
+        // keep old
+        $passportPath = $_POST['existing_passport_file'] ?? null;
+    }
+
+    // CV
+    if (!empty($_FILES['cv_file']['name'])) {
+        $cvPath = uploadFile(
+            $_FILES['cv_file'],
+            ['pdf', 'doc', 'docx'],
+            2 * 1024 * 1024,
+            $BASE_UPLOAD_PATH . '/cvs',
+            'uploads/cvs'
+        );
+    } else {
+        // keep old
+        $cvPath = $_POST['existing_cv_file'] ?? null;
+    }
+
 } catch (Exception $e) {
     http_response_code(400);
     echo json_encode([
@@ -240,7 +256,8 @@ try {
     echo json_encode([
         'success' => true,
         'message' => 'Application submitted successfully!',
-        'application_id' => $pdo->lastInsertId()
+        'application_id' => $pdo->lastInsertId(),
+        'path' => $BASE_UPLOAD_PATH
     ]);
 
 } catch (PDOException $e) {

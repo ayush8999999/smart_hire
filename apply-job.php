@@ -673,7 +673,8 @@ if (!isLoggedIn()) {
                 <input type="file" name="cv_file" accept=".pdf,.doc,.docx" onchange="handleFilePreview(this, 'cv')">
               </div>
             </div>
-
+            <input type="hidden" name="existing_passport_file" id="existing_passport_file">
+            <input type="hidden" name="existing_cv_file" id="existing_cv_file">
 
             <!-- <h5>DECLARATION</h5>
             <p>
@@ -1204,6 +1205,37 @@ if (!isLoggedIn()) {
 
           const d = result.data;
 
+          // const LARAVEL_BASE_URL = "https://admin.easyhireconsultancy.com";
+            const LARAVEL_BASE_URL = "http://127.0.0.1:8000";
+
+            const passportPreview = document.getElementById('passportPreview');
+            const cvPreview = document.getElementById('cvPreview');
+
+            /* ===== FILE PREVIEW ===== */
+            if (d.passport_file) {
+              const url = `${LARAVEL_BASE_URL}/storage/${d.passport_file}`;
+
+              passportPreview.href = url;
+              passportPreview.target = '_blank';
+              document.getElementById('passportName').textContent =
+                `(${d.passport_file.split('/').pop()})`;
+              document.getElementById('passportInfo').classList.remove('d-none');
+
+              document.getElementById('existing_passport_file').value = d.passport_file;
+            }
+
+            if (d.cv_file) {
+              const url = `${LARAVEL_BASE_URL}/storage/${d.cv_file}`;
+
+              cvPreview.href = url;
+              cvPreview.target = '_blank';
+              document.getElementById('cvName').textContent =
+                `(${d.cv_file.split('/').pop()})`;
+              document.getElementById('cvInfo').classList.remove('d-none');
+
+              document.getElementById('existing_cv_file').value = d.cv_file;
+            }
+
           /* ===== BASIC FIELDS ===== */
           if (d.full_name) document.getElementById('full_name').value = d.full_name;
           if (d.email) document.getElementById('email').value = d.email;
@@ -1234,6 +1266,14 @@ if (!isLoggedIn()) {
           }
           if (d.has_job_offer) {
               selectRadioByValue('has_job_offer', d.has_job_offer);
+          }
+
+          if (d.passport_file) {
+              document.getElementById('existing_passport_file').value = d.passport_file;
+          }
+
+          if (d.cv_file) {
+              document.getElementById('existing_cv_file').value = d.cv_file;
           }
 
           /* ===== MOBILE (intl-tel-input compatible) ===== */
