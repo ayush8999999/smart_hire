@@ -148,6 +148,80 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+$userStmt = $pdo->prepare("
+    SELECT 
+        full_name,
+        email,
+        mobile_code,
+        mobile_number,
+        country_iso2,
+        gender,
+        date_of_birth
+    FROM easyhire_users
+    WHERE id = ?
+");
+$userStmt->execute([$userId]);
+$currentUser = $userStmt->fetch(PDO::FETCH_ASSOC);
+
+$updateFields = [];
+$updateValues = [];
+
+// helper function
+function shouldUpdate($current, $new) {
+    return (
+        (empty($current) && !empty($new)) ||
+        (!empty($new) && $current !== $new)
+    );
+}
+
+if (shouldUpdate($currentUser['full_name'], $_POST['full_name'])) {
+    $updateFields[] = 'full_name = ?';
+    $updateValues[] = trim($_POST['full_name']);
+}
+
+if (shouldUpdate($currentUser['email'], $_POST['email'])) {
+    $updateFields[] = 'email = ?';
+    $updateValues[] = trim($_POST['email']);
+}
+
+if (shouldUpdate($currentUser['mobile_code'], $_POST['mobile_code'])) {
+    $updateFields[] = 'mobile_code = ?';
+    $updateValues[] = trim($_POST['mobile_code']);
+}
+
+if (shouldUpdate($currentUser['mobile_number'], $_POST['mobile_national'])) {
+    $updateFields[] = 'mobile_number = ?';
+    $updateValues[] = trim($_POST['mobile_national']);
+}
+
+if (shouldUpdate($currentUser['country_iso2'], $_POST['country_iso2'])) {
+    $updateFields[] = 'country_iso2 = ?';
+    $updateValues[] = strtoupper(trim($_POST['country_iso2']));
+}
+
+if (shouldUpdate($currentUser['gender'], $_POST['gender'] ?? null)) {
+    $updateFields[] = 'gender = ?';
+    $updateValues[] = $_POST['gender'] ?? null;
+}
+
+if (shouldUpdate($currentUser['date_of_birth'], $_POST['date_of_birth'] ?? null)) {
+    $updateFields[] = 'date_of_birth = ?';
+    $updateValues[] = $_POST['date_of_birth'] ?: null;
+}
+
+if (!empty($updateFields)) {
+    $updateValues[] = $userId;
+
+    $updateSql = "
+        UPDATE easyhire_users
+        SET " . implode(', ', $updateFields) . "
+        WHERE id = ?
+    ";
+
+    $updateStmt = $pdo->prepare($updateSql);
+    $updateStmt->execute($updateValues);
+}
+
 /* ================= INSERT ================= */
 try {
     $stmt = $pdo->prepare("

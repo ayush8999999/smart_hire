@@ -1,5 +1,9 @@
 <?php require_once __DIR__ . '/session.php';
-$jobId = $_GET['id'] ?? '';
+$jobs = require __DIR__ . '/jobs.php';
+
+$jobId = $_GET['id'] ?? null;
+$job = ($jobId && isset($jobs[$jobId])) ? $jobs[$jobId] : null;
+
 $applyUrl = "apply-job.php?id=" . urlencode($jobId);
 $loginUrl = "sign-in.php";
 ?>
@@ -146,7 +150,7 @@ $loginUrl = "sign-in.php";
         .job-single-company div,
         .job-single-company strong {
             color: #000 !important;
-            font-weight: 700 !important;
+            font-weight: 500 !important;
         }
 
         .footer-contact li {
@@ -231,7 +235,7 @@ $loginUrl = "sign-in.php";
                         <span><a href="browse-jobs.php">Browse Jobs <i class="ion-ios-arrow-forward"></i></a></span>
                         <span>Job Details</span>
                     </p>
-                    <h1 class="mb-3 bread" id="hero-job-title">Loading...</h1>
+                    <h1 class="mb-3 bread"><?= $job ? htmlspecialchars($job['title']) : 'Job Details' ?></h1>
                 </div>
             </div>
         </div>
@@ -243,106 +247,192 @@ $loginUrl = "sign-in.php";
             <div class="row justify-content-center">
                 <div class="col-lg-10 ftco-animate">
 
-                    <div class="job-single-company yellow-card">
+                    <?php if (!$job): ?>
 
-                        <!-- Header -->
-                        <div class="row align-items-start mb-4">
-                            <div class="col-md-8">
-                                <h2 class="mb-2 yellow-title" id="job-title">Job Title</h2>
-
-                                <div class="d-flex flex-wrap align-items-center mb-3">
-                                    <span class="subadge mr-3 mb-2" id="job-type">Full Time</span>
-
-                                    <div class="mr-4 mb-2">
-                                        <span class="icon-layers"></span>
-                                        <span id="job-company">Company</span>
-                                    </div>
-
-                                    <div class="mb-2">
-                                        <span class="icon-my_location"></span>
-                                        <span id="job-location">Location</span>
-                                    </div>
-                                </div>
-
-                                <div class="salary-wrap mt-2">
-                                    <span class="salary">
-                                        <span class="icon-money mr-2"></span>
-                                        <span id="job-salary">Salary</span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 mt-4 mt-md-0 text-md-right">
-                                <a id="applyNowBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>" class="btn btn-yellow py-3 px-5 w-100 w-md-auto">
-                                    Apply Now
-                                </a>
-
-                            </div>
+                        <div class="job-single-company yellow-card text-center py-5">
+                            <h2>Job not found</h2>
+                            <p>Sorry, the requested job could not be found.</p>
+                            <a href="browse-jobs.php" class="btn btn-yellow mt-3">
+                            Back to Jobs
+                            </a>
                         </div>
 
-                        <hr class="yellow-divider">
+                    <?php else: ?>
+                        <div class="job-single-company yellow-card">
 
-                        <h4>Job Description</h4>
-                        <p id="job-description">Loading description...</p>
+                            <!-- Header -->
+                            <div class="row align-items-start mb-4">
+                                <div class="col-md-8">
+                                    <h2 class="mb-2 yellow-title mb-2"><?= htmlspecialchars($job['job_id']) . "." ?> <?= htmlspecialchars($job['title']) ?></h2>
 
-                        <h4>Responsibilities</h4>
-                        <ul class="list-unstyled job-list" id="job-responsibilities"></ul>
+                                    <?php if (!empty($job['category'])): ?>
+                                        <div class="mb-3">
+                                            <span class="icon-tags mr-1"></span>
+                                            <span><?= htmlspecialchars($job['category']) ?></span>
+                                        </div>
+                                    <?php endif; ?>
 
-                        <h4>Requirements</h4>
-                        <ul class="list-unstyled job-list" id="job-requirements"></ul>
+                                    <div class="d-flex flex-wrap align-items-center mb-3">
+                                        <span class="subadge mr-3 mb-2"><?= htmlspecialchars($job['job_type']) ?></span>
 
-                        <h4>Language Requirements</h4>
-                        <div class="info-box">
-                            <p><strong>Required:</strong> <span id="lang-required">Loading...</span></p>
-                            <p id="lang-preferred-wrapper">
-                                <strong>Preferred:</strong> <span id="lang-preferred">Loading...</span>
+                                        <div class="mr-4 mb-2">
+                                            <span class="icon-building"></span>
+                                            <span><?= htmlspecialchars($job['company']) ?></span>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <span class="icon-map-marker"></span>
+                                            <span><?= htmlspecialchars($job['location']) ?></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="salary-wrap mt-2">
+                                        <span class="salary">
+                                            <span class="icon-money mr-2"></span>
+                                            <span><?= htmlspecialchars($job['compensation']['basic_salary'] ?? 'Not specified') ?></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mt-4 mt-md-0 text-md-right">
+                                    <a id="applyNowBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>" class="btn btn-yellow py-3 px-5 w-100 w-md-auto">
+                                        Apply Now
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <hr class="yellow-divider">
+
+                            <h4>Job Description</h4>
+                            <p><?= nl2br(htmlspecialchars($job['description'])) ?></p>
+                            
+                            <hr class="yellow-divider">
+                            
+                            <h4>Responsibilities</h4>
+                            <ul class="list-unstyled job-list">
+                                <?php foreach ($job['responsibilities'] as $item): ?>
+                                    <li>
+                                    <span class="icon-check mr-2"></span>
+                                    <?= htmlspecialchars($item) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <hr class="yellow-divider">
+
+                            <h4>Who Should Apply</h4>
+                            <ul class="list-unstyled job-list">
+                                <?php foreach ($job['requirements'] as $item): ?>
+                                    <li><span class="icon-star mr-2"></span><?= htmlspecialchars($item) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <hr class="yellow-divider">
+
+                            <h4>Compensation</h4>
+                            <ul class="list-unstyled job-list">
+                                <li>
+                                    <span class="icon-money mr-2"></span>
+                                    <strong>Basic Salary:</strong>
+                                    <?= htmlspecialchars($job['compensation']['basic_salary']) ?>
+                                </li>
+                                <li>
+                                    <span class="icon-money mr-2"></span>
+                                    <strong>Commission & Incentives:</strong>
+                                    <?= htmlspecialchars($job['compensation']['commission_and_incentives']) ?>
+                                </li>
+                            </ul>
+
+                            <hr class="yellow-divider">
+                            
+                            <h4>Benefits</h4>
+                            <ul class="list-unstyled job-list">
+                                <?php foreach ($job['benefits'] as $benefit): ?>
+                                    <li><span class="icon-gift mr-2"></span><?= htmlspecialchars($benefit) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <hr class="yellow-divider">
+
+                            <h4>Working Schedule</h4>
+                            <ul class="list-unstyled job-list">
+                                <li>
+                                    <span class="icon-calendar mr-2"></span>
+                                    <strong>Duty Schedule:</strong>
+                                    <?= htmlspecialchars($job['schedule']['duty_schedule']) ?>
+                                </li>
+                                <li>
+                                    <span class="icon-calendar mr-2"></span>
+                                    <strong>Break Time:</strong>
+                                    <?= htmlspecialchars($job['schedule']['break_time']) ?>
+                                </li>
+
+                                <?php foreach ($job['schedule']['weekly_offs'] as $off): ?>
+                                    <li><span class="icon-calendar mr-2"></span><?= htmlspecialchars($off) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <hr class="yellow-divider">
+
+                            <h4>Career Growth</h4>
+                            <p>
+                                <span class="icon-line-chart mr-2"></span><?= htmlspecialchars($job['career_growth']) ?>
                             </p>
-                        </div>
 
-                        <h4 id="skills-heading">Required Skills</h4>
-                        <ul class="list-unstyled job-list" id="job-skills"></ul>
+                            <hr class="yellow-divider">
 
-                        <h4>Additional Information</h4>
-                        <ul class="list-unstyled job-list" id="additional-info-list"></ul>
+                            <!-- <h4>Language Requirements</h4>
+                            <div class="info-box">
+                                <p><strong>Required:</strong> <span id="lang-required">Loading...</span></p>
+                                <p id="lang-preferred-wrapper">
+                                    <strong>Preferred:</strong> <span id="lang-preferred">Loading...</span>
+                                </p>
+                            </div>
 
-                        <div class="row mt-5 pt-4 border-top">
-                            <div class="col-md-6 mb-4 mb-md-0">
-                                <div class="info-box">
-                                    <h5>Experience</h5>
-                                    <p id="job-experience">—</p>
+                            <h4 id="skills-heading">Required Skills</h4>
+                            <ul class="list-unstyled job-list" id="job-skills"></ul>
+
+                            <h4>Additional Information</h4>
+                            <ul class="list-unstyled job-list" id="additional-info-list"></ul>
+
+                            <div class="row mt-5 pt-4 border-top">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <div class="info-box">
+                                        <h5>Experience</h5>
+                                        <p id="job-experience">—</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <h5>Education</h5>
+                                        <p id="job-education">—</p>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row mt-4 pt-md-4">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <div class="d-flex flex-column flex-sm-row align-items-center">
+
+                                        <a href="browse-jobs.php"
+                                            class="btn py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center border text-nowrap"
+                                            style="min-width:220px; background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
+                                            Back to Jobs
+                                        </a>
+
+                                        <a id="applyBottomBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>"
+                                            class="btn btn-yellow py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center text-nowrap"
+                                            style="min-width:220px;">
+                                            Apply for this Job
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="info-box">
-                                    <h5>Education</h5>
-                                    <p id="job-education">—</p>
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="row mt-4 pt-md-4">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="d-flex flex-column flex-sm-row align-items-center">
-
-                                    <a href="browse-jobs.php"
-                                        class="btn py-2 px-4 mb-3 mb-sm-0 w-100 w-sm-auto text-center border text-nowrap"
-                                        style="min-width:220px; background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
-                                        Back to Jobs
-                                    </a>
-
-                                    <a id="applyBottomBtn" href="<?= isLoggedIn() ? $applyUrl : $loginUrl ?>"
-                                        class="btn btn-yellow py-2 px-4 ml-sm-3 w-100 w-sm-auto text-center text-nowrap"
-                                        style="min-width:220px;">
-                                        Apply for this Job
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -471,400 +561,400 @@ $loginUrl = "sign-in.php";
     <script src="js/main.js"></script>
     <script>
         // Full job data - every single detail preserved
-        const jobsData = {
-            1: {
-                title: "Sales Executive - Payments",
-                type: "Full-time",
-                company: "Revolut",
-                location: "Dublin (Ireland), London (UK), Madrid (Spain), or Krakow (Poland)",
-                countries: "India, Ireland, UK, Spain, Romania, or Poland",
-                experience: "5+ years of experience in the full sales cycle, specifically commercial experience in payment products or B2B SaaS sales",
-                education: "Not strictly specified (experience-focused role)",
-                applyUntil: "Not specified; job is currently open as of 2026",
-                salary: {
-                    note: "Varies by location and experience",
-                    ireland: "Average base salary around €44,639 annually, with OTE (On-Target Earnings) ranging from €53,901 to €129,663",
-                    uk: "Average salary around £42,216 annually (Account Executive role), with total pay potentially up to £88,212 for Enterprise roles",
-                    spain: "Average base salary around €38,142 annually, with OTE ranging from €68,547 to €97,924"
-                },
-                ctcPackage: "Varies. Includes base salary and a 55/45 base-to-variable compensation split (bonus/commission). Other benefits include flexible working, a free Revolut Metal subscription, and more.",
-                industry: "Financial Services/Fintech (Financial Technology)",
-                department: "Sales (part of the Revolut Business team)",
-                workMode: "Abroad, depending on local policies",
-                languages: {
-                    required: "Fluency in both English and Greek. Excellent communication skills are essential.",
-                    preferred: "Not specified as a separate category, but an understanding of other languages or specific market experience is always a plus."
-                },
-                description: "The role involves working within the Revolut Business Sales team to drive new customer acquisition and engagement. The executive will build and manage a sales pipeline for the company's e-commerce focused payment solutions. This includes:\n\n- Independently prospecting and reaching out to existing and new Revolut Business customers.\n- Communicating the value proposition of Revolut's payment solutions to potential clients to address their issues with current providers.\n- Meeting and exceeding sales targets and key performance indicators (KPIs).\n- Building product expertise in the payments industry.",
-                responsibilities: [
-                    "Independently prospecting and reaching out to existing and new Revolut Business customers",
-                    "Communicating the value proposition of Revolut's payment solutions to potential clients",
-                    "Meeting and exceeding sales targets and key performance indicators (KPIs)",
-                    "Building product expertise in the payments industry"
-                ],
-                requirements: [
-                    "Fluency in English and Greek",
-                    "5+ year of commercial experience in the full sales cycle",
-                    "Demonstrable experience, particularly with payment products or B2B SaaS",
-                    "Excellent articulation and communication skills, especially over the phone",
-                    "Strong interest in launching a career in a high-performing sales culture",
-                    "Proven determination and accountability to succeed in a fast-paced environment"
-                ],
-                skills: [
-                    "Sales and Business Development experience",
-                    "Negotiation and deal-closing skills",
-                    "CRM administration and effective time management",
-                    "Problem-solving and a solution-based approach to sales"
-                ]
-            },
+        // const jobsData = {
+        //     1: {
+        //         title: "Sales Executive - Payments",
+        //         type: "Full-time",
+        //         company: "Revolut",
+        //         location: "Dublin (Ireland), London (UK), Madrid (Spain), or Krakow (Poland)",
+        //         countries: "India, Ireland, UK, Spain, Romania, or Poland",
+        //         experience: "5+ years of experience in the full sales cycle, specifically commercial experience in payment products or B2B SaaS sales",
+        //         education: "Not strictly specified (experience-focused role)",
+        //         applyUntil: "Not specified; job is currently open as of 2026",
+        //         salary: {
+        //             note: "Varies by location and experience",
+        //             ireland: "Average base salary around €44,639 annually, with OTE (On-Target Earnings) ranging from €53,901 to €129,663",
+        //             uk: "Average salary around £42,216 annually (Account Executive role), with total pay potentially up to £88,212 for Enterprise roles",
+        //             spain: "Average base salary around €38,142 annually, with OTE ranging from €68,547 to €97,924"
+        //         },
+        //         ctcPackage: "Varies. Includes base salary and a 55/45 base-to-variable compensation split (bonus/commission). Other benefits include flexible working, a free Revolut Metal subscription, and more.",
+        //         industry: "Financial Services/Fintech (Financial Technology)",
+        //         department: "Sales (part of the Revolut Business team)",
+        //         workMode: "Abroad, depending on local policies",
+        //         languages: {
+        //             required: "Fluency in both English and Greek. Excellent communication skills are essential.",
+        //             preferred: "Not specified as a separate category, but an understanding of other languages or specific market experience is always a plus."
+        //         },
+        //         description: "The role involves working within the Revolut Business Sales team to drive new customer acquisition and engagement. The executive will build and manage a sales pipeline for the company's e-commerce focused payment solutions. This includes:\n\n- Independently prospecting and reaching out to existing and new Revolut Business customers.\n- Communicating the value proposition of Revolut's payment solutions to potential clients to address their issues with current providers.\n- Meeting and exceeding sales targets and key performance indicators (KPIs).\n- Building product expertise in the payments industry.",
+        //         responsibilities: [
+        //             "Independently prospecting and reaching out to existing and new Revolut Business customers",
+        //             "Communicating the value proposition of Revolut's payment solutions to potential clients",
+        //             "Meeting and exceeding sales targets and key performance indicators (KPIs)",
+        //             "Building product expertise in the payments industry"
+        //         ],
+        //         requirements: [
+        //             "Fluency in English and Greek",
+        //             "5+ year of commercial experience in the full sales cycle",
+        //             "Demonstrable experience, particularly with payment products or B2B SaaS",
+        //             "Excellent articulation and communication skills, especially over the phone",
+        //             "Strong interest in launching a career in a high-performing sales culture",
+        //             "Proven determination and accountability to succeed in a fast-paced environment"
+        //         ],
+        //         skills: [
+        //             "Sales and Business Development experience",
+        //             "Negotiation and deal-closing skills",
+        //             "CRM administration and effective time management",
+        //             "Problem-solving and a solution-based approach to sales"
+        //         ]
+        //     },
 
-            2: {
-                title: "Customer Service Agent",
-                type: "Full-time",
-                company: "Foundever",
-                location: "Lisbon and Porto",
-                country: "Portugal",
-                experience: "Previous customer support experience is often preferred but not always mandatory; full paid training is provided",
-                applyUntil: "positions are continuously open",
-                salary: "Varies by role. Customer Service Agent: Typically ranges from €9,000 to €15,000 annually (around €750-€1,250 per month)",
-                ctcPackage: "Includes base salary",
-                industry: "Business Process Outsourcing (BPO) / Telecommunications",
-                department: "Customer Service",
-                workMode: "On-site in Lisbon or Porto",
-                languages: {
-                    required: "Fluency in Portuguese. Fluency in another language (e.g., Spanish, German, French, English, Dutch) is required.",
-                    preferred: "A good to advanced command of English Language for internal communication and documentation."
-                },
-                description: "Customer Service Agent: Serve as the first point of contact for customers via phone, email, and chat. Responsibilities include providing information, resolving inquiries, troubleshooting issues, and ensuring a high level of customer satisfaction while meeting productivity and quality goals.",
-                responsibilities: [
-                    "Serve as the first point of contact for customers via phone, email, and chat",
-                    "Provide information and resolve inquiries",
-                    "Troubleshoot issues",
-                    "Ensure high level of customer satisfaction",
-                    "Meet productivity and quality goals"
-                ],
-                requirements: [
-                    "Native or proficient level in the required language(s)",
-                    "Strong communication (verbal and written) and active listening skills",
-                    "Analytical skills, problem-solving ability, and strong attention to detail",
-                    "Ability to work under pressure and adapt quickly in a fast-paced environment",
-                    "Proficiency in Microsoft applications (Word, Excel, PowerPoint)"
-                ],
-                skills: [
-                    "Customer service orientation and empathy",
-                    "Problem-solving and analytical abilities",
-                    "Communication skills and interpersonal skills",
-                    "Time management and organizational skills",
-                    "Attention to detail and a logical approach to assessment"
-                ]
-            },
+        //     2: {
+        //         title: "Customer Service Agent",
+        //         type: "Full-time",
+        //         company: "Foundever",
+        //         location: "Lisbon and Porto",
+        //         country: "Portugal",
+        //         experience: "Previous customer support experience is often preferred but not always mandatory; full paid training is provided",
+        //         applyUntil: "positions are continuously open",
+        //         salary: "Varies by role. Customer Service Agent: Typically ranges from €9,000 to €15,000 annually (around €750-€1,250 per month)",
+        //         ctcPackage: "Includes base salary",
+        //         industry: "Business Process Outsourcing (BPO) / Telecommunications",
+        //         department: "Customer Service",
+        //         workMode: "On-site in Lisbon or Porto",
+        //         languages: {
+        //             required: "Fluency in Portuguese. Fluency in another language (e.g., Spanish, German, French, English, Dutch) is required.",
+        //             preferred: "A good to advanced command of English Language for internal communication and documentation."
+        //         },
+        //         description: "Customer Service Agent: Serve as the first point of contact for customers via phone, email, and chat. Responsibilities include providing information, resolving inquiries, troubleshooting issues, and ensuring a high level of customer satisfaction while meeting productivity and quality goals.",
+        //         responsibilities: [
+        //             "Serve as the first point of contact for customers via phone, email, and chat",
+        //             "Provide information and resolve inquiries",
+        //             "Troubleshoot issues",
+        //             "Ensure high level of customer satisfaction",
+        //             "Meet productivity and quality goals"
+        //         ],
+        //         requirements: [
+        //             "Native or proficient level in the required language(s)",
+        //             "Strong communication (verbal and written) and active listening skills",
+        //             "Analytical skills, problem-solving ability, and strong attention to detail",
+        //             "Ability to work under pressure and adapt quickly in a fast-paced environment",
+        //             "Proficiency in Microsoft applications (Word, Excel, PowerPoint)"
+        //         ],
+        //         skills: [
+        //             "Customer service orientation and empathy",
+        //             "Problem-solving and analytical abilities",
+        //             "Communication skills and interpersonal skills",
+        //             "Time management and organizational skills",
+        //             "Attention to detail and a logical approach to assessment"
+        //         ]
+        //     },
 
-            3: {
-                title: "Customer Support Specialist",
-                type: "Full-Time",
-                company: "Gepard Media",
-                workMode: "Onsite",
-                shiftType: "Rotational Shifts (including night shifts)",
-                location: "Estonia",
-                industry: "iGaming & Crypto",
-                department: "Customer Support",
-                experience: "Open to entry-level candidates",
-                training: "4 weeks of comprehensive, paid training provided",
-                salary: "Up to €1,350 gross per month",
-                ctcPackage: "Base salary\nMonthly performance-based bonus\n28 days of annual paid leave\nCompany merchandise",
-                languages: {
-                    mandatory: "Greek & English",
-                    preferred: "Additional languages such as German or Russian are an advantage and may open opportunities in other internal projects"
-                },
-                description: "Handle customer inquiries via live chat and email only (no phone support).\nManage approximately 100 customer cases per shift across multiple brands and gaming verticals.\nProvide professional, friendly, and timely support while maintaining a high standard of customer satisfaction.\nCollaborate closely with internal teams to resolve complex customer issues and contribute to process improvements.\nSupport website content translation and proofreading tasks when required.",
-                responsibilities: [
-                    "Handle customer inquiries via live chat and email only (no phone support)",
-                    "Manage approximately 100 customer cases per shift",
-                    "Provide professional, friendly, and timely support",
-                    "Maintain high standard of customer satisfaction",
-                    "Collaborate with internal teams to resolve complex issues",
-                    "Contribute to process improvements",
-                    "Support website content translation and proofreading when required"
-                ],
-                requirements: [
-                    "Excellent written and verbal communication skills in Greek and English",
-                    "Willingness to work full-time rotational shifts, including night shifts and weekends",
-                    "College or university education is preferred",
-                    "Ability to work onsite from the company’s Estonia office"
-                ],
-                skills: [
-                    "Strong multitasking abilities with high attention to detail",
-                    "Customer-focused mindset with excellent problem-solving skills",
-                    "Effective conflict resolution and interpersonal communication skills",
-                    "Basic computer proficiency; experience with Zendesk, Freshdesk, or similar support tools is a plus"
-                ]
-            },
+        //     3: {
+        //         title: "Customer Support Specialist",
+        //         type: "Full-Time",
+        //         company: "Gepard Media",
+        //         workMode: "Onsite",
+        //         shiftType: "Rotational Shifts (including night shifts)",
+        //         location: "Estonia",
+        //         industry: "iGaming & Crypto",
+        //         department: "Customer Support",
+        //         experience: "Open to entry-level candidates",
+        //         training: "4 weeks of comprehensive, paid training provided",
+        //         salary: "Up to €1,350 gross per month",
+        //         ctcPackage: "Base salary\nMonthly performance-based bonus\n28 days of annual paid leave\nCompany merchandise",
+        //         languages: {
+        //             mandatory: "Greek & English",
+        //             preferred: "Additional languages such as German or Russian are an advantage and may open opportunities in other internal projects"
+        //         },
+        //         description: "Handle customer inquiries via live chat and email only (no phone support).\nManage approximately 100 customer cases per shift across multiple brands and gaming verticals.\nProvide professional, friendly, and timely support while maintaining a high standard of customer satisfaction.\nCollaborate closely with internal teams to resolve complex customer issues and contribute to process improvements.\nSupport website content translation and proofreading tasks when required.",
+        //         responsibilities: [
+        //             "Handle customer inquiries via live chat and email only (no phone support)",
+        //             "Manage approximately 100 customer cases per shift",
+        //             "Provide professional, friendly, and timely support",
+        //             "Maintain high standard of customer satisfaction",
+        //             "Collaborate with internal teams to resolve complex issues",
+        //             "Contribute to process improvements",
+        //             "Support website content translation and proofreading when required"
+        //         ],
+        //         requirements: [
+        //             "Excellent written and verbal communication skills in Greek and English",
+        //             "Willingness to work full-time rotational shifts, including night shifts and weekends",
+        //             "College or university education is preferred",
+        //             "Ability to work onsite from the company’s Estonia office"
+        //         ],
+        //         skills: [
+        //             "Strong multitasking abilities with high attention to detail",
+        //             "Customer-focused mindset with excellent problem-solving skills",
+        //             "Effective conflict resolution and interpersonal communication skills",
+        //             "Basic computer proficiency; experience with Zendesk, Freshdesk, or similar support tools is a plus"
+        //         ]
+        //     },
 
-            4: {
-                title: "Customer Support Lead",
-                type: "Full-Time, Onsite",
-                company: "Localcoin (Crypto Kiosk Network)",
-                location: "Toronto, Canada",
-                industry: "Cryptocurrency Retail & Support",
-                languages: {
-                    required: "English: Fluent / Professional\nFrench: Fluent (mandatory)"
-                },
-                description: "Lead and scale customer support operations across channels (chat, email, phone).\nOversee support team performance and ensure service quality.\nCoordinate improvements with marketing, engineering, and finance teams.\nContribute to strategic customer experience planning.",
-                responsibilities: [
-                    "Lead and scale customer support operations across chat, email, phone",
-                    "Oversee support team performance",
-                    "Ensure service quality",
-                    "Coordinate improvements with marketing, engineering, and finance teams",
-                    "Contribute to strategic customer experience planning"
-                ],
-                requirements: [
-                    "Bilingual in French and English",
-                    "Experience managing customer support teams in tech/crypto",
-                    "Strong operational and analytical capabilities",
-                    "Passion for digital currencies and customer happiness"
-                ]
-            },
+        //     4: {
+        //         title: "Customer Support Lead",
+        //         type: "Full-Time, Onsite",
+        //         company: "Localcoin (Crypto Kiosk Network)",
+        //         location: "Toronto, Canada",
+        //         industry: "Cryptocurrency Retail & Support",
+        //         languages: {
+        //             required: "English: Fluent / Professional\nFrench: Fluent (mandatory)"
+        //         },
+        //         description: "Lead and scale customer support operations across channels (chat, email, phone).\nOversee support team performance and ensure service quality.\nCoordinate improvements with marketing, engineering, and finance teams.\nContribute to strategic customer experience planning.",
+        //         responsibilities: [
+        //             "Lead and scale customer support operations across chat, email, phone",
+        //             "Oversee support team performance",
+        //             "Ensure service quality",
+        //             "Coordinate improvements with marketing, engineering, and finance teams",
+        //             "Contribute to strategic customer experience planning"
+        //         ],
+        //         requirements: [
+        //             "Bilingual in French and English",
+        //             "Experience managing customer support teams in tech/crypto",
+        //             "Strong operational and analytical capabilities",
+        //             "Passion for digital currencies and customer happiness"
+        //         ]
+        //     },
 
-            5: {
-                title: "Customer Experience Agent",
-                type: "Full-Time",
-                company: "PlayOrbit Ltd",
-                workMode: "Onsite",
-                shiftType: "Rotational Shifts",
-                location: "Milan, Italy",
-                industry: "Digital Entertainment & Gaming",
-                department: "Customer Experience",
-                salary: "€1,500 – €1,800 gross per month",
-                benefits: "Paid training\nCareer progression opportunities",
-                languages: "Italian & English",
-                description: "Provide support via live chat and email\nAssist customers with registrations, verifications, and payments\nFollow internal guidelines and service standards\nEscalate complex cases when required",
-                responsibilities: [
-                    "Provide support via live chat and email",
-                    "Assist customers with registrations, verifications, and payments",
-                    "Follow internal guidelines and service standards",
-                    "Escalate complex cases when required"
-                ],
-                requirementsAndSkills: [
-                    "Excellent interpersonal skills",
-                    "Attention to detail",
-                    "Familiarity with ticketing systems is a plus"
-                ]
-            },
+        //     5: {
+        //         title: "Customer Experience Agent",
+        //         type: "Full-Time",
+        //         company: "PlayOrbit Ltd",
+        //         workMode: "Onsite",
+        //         shiftType: "Rotational Shifts",
+        //         location: "Milan, Italy",
+        //         industry: "Digital Entertainment & Gaming",
+        //         department: "Customer Experience",
+        //         salary: "€1,500 – €1,800 gross per month",
+        //         benefits: "Paid training\nCareer progression opportunities",
+        //         languages: "Italian & English",
+        //         description: "Provide support via live chat and email\nAssist customers with registrations, verifications, and payments\nFollow internal guidelines and service standards\nEscalate complex cases when required",
+        //         responsibilities: [
+        //             "Provide support via live chat and email",
+        //             "Assist customers with registrations, verifications, and payments",
+        //             "Follow internal guidelines and service standards",
+        //             "Escalate complex cases when required"
+        //         ],
+        //         requirementsAndSkills: [
+        //             "Excellent interpersonal skills",
+        //             "Attention to detail",
+        //             "Familiarity with ticketing systems is a plus"
+        //         ]
+        //     },
 
-            6: {
-                title: "Customer Support Agent",
-                type: "Full-Time Rotational",
-                company: "Decentralized",
-                workMode: "Onsite",
-                shiftType: "Rotational Shifts",
-                location: "Phnom Penh, Cambodia",
-                industry: "Digital Entertainment & Forex Market",
-                department: "Customer Experience",
-                salary: "$800 – $1,000 gross per month",
-                benefits: "Paid training\nCareer progression opportunities",
-                languages: "English, Hindi and other Indian languages",
-                description: "Provide support via live chat and email\nAssist customers with registrations, verifications, and payments\nFollow internal guidelines and service standards\nEscalate complex cases when required",
-                responsibilities: [
-                    "Provide support via live chat and email",
-                    "Assist customers with registrations, verifications, and payments",
-                    "Follow internal guidelines and service standards",
-                    "Escalate complex cases when required"
-                ],
-                requirementsAndSkills: [
-                    "Excellent interpersonal skills",
-                    "Attention to detail",
-                    "Familiarity with ticketing systems is a plus"
-                ]
-            },
+        //     6: {
+        //         title: "Customer Support Agent",
+        //         type: "Full-Time Rotational",
+        //         company: "Decentralized",
+        //         workMode: "Onsite",
+        //         shiftType: "Rotational Shifts",
+        //         location: "Phnom Penh, Cambodia",
+        //         industry: "Digital Entertainment & Forex Market",
+        //         department: "Customer Experience",
+        //         salary: "$800 – $1,000 gross per month",
+        //         benefits: "Paid training\nCareer progression opportunities",
+        //         languages: "English, Hindi and other Indian languages",
+        //         description: "Provide support via live chat and email\nAssist customers with registrations, verifications, and payments\nFollow internal guidelines and service standards\nEscalate complex cases when required",
+        //         responsibilities: [
+        //             "Provide support via live chat and email",
+        //             "Assist customers with registrations, verifications, and payments",
+        //             "Follow internal guidelines and service standards",
+        //             "Escalate complex cases when required"
+        //         ],
+        //         requirementsAndSkills: [
+        //             "Excellent interpersonal skills",
+        //             "Attention to detail",
+        //             "Familiarity with ticketing systems is a plus"
+        //         ]
+        //     },
 
-            7: {
-                title: "Customer Engagement Executive",
-                type: "Full-Time Rotational",
-                company: "Decentralized",
-                location: "Phnom Penh, Cambodia",
-                experience: "Not specified",
-                education: "Not specified",
-                salary: "$800 – $1,000 gross per month",
+        //     7: {
+        //         title: "Customer Engagement Executive",
+        //         type: "Full-Time Rotational",
+        //         company: "Decentralized",
+        //         location: "Phnom Penh, Cambodia",
+        //         experience: "Not specified",
+        //         education: "Not specified",
+        //         salary: "$800 – $1,000 gross per month",
 
-                languages: {
-                    required: "English, Hindi and other Indian languages",
-                    preferred: ""
-                },
+        //         languages: {
+        //             required: "English, Hindi and other Indian languages",
+        //             preferred: ""
+        //         },
 
-                description: "Provide support via live chat and email...",
+        //         description: "Provide support via live chat and email...",
 
-                responsibilities: [
-                    "Provide support via live chat and email",
-                    "Assist customers with registrations and payments",
-                    "Escalate complex cases when required"
-                ],
+        //         responsibilities: [
+        //             "Provide support via live chat and email",
+        //             "Assist customers with registrations and payments",
+        //             "Escalate complex cases when required"
+        //         ],
 
-                requirements: [
-                    "Excellent interpersonal skills",
-                    "Attention to detail"
-                ]
-            },
-            8: {
-                title: "Customer Support / Operations Role",
-                type: "Full-Time",
-                company: "JioCoin Technology",
-                location: "Phnom Penh, Cambodia",
-                experience: "CRM or crypto knowledge preferred",
-                education: "Not specified",
+        //         requirements: [
+        //             "Excellent interpersonal skills",
+        //             "Attention to detail"
+        //         ]
+        //     },
+        //     8: {
+        //         title: "Customer Support / Operations Role",
+        //         type: "Full-Time",
+        //         company: "JioCoin Technology",
+        //         location: "Phnom Penh, Cambodia",
+        //         experience: "CRM or crypto knowledge preferred",
+        //         education: "Not specified",
 
-                languages: {
-                    required: "English",
-                    preferred: ""
-                },
+        //         languages: {
+        //             required: "English",
+        //             preferred: ""
+        //         },
 
-                description: "Full-time on-site role in Cambodia...",
+        //         description: "Full-time on-site role in Cambodia...",
 
-                responsibilities: [
-                    "Customer support and operations handling",
-                    "CRM interaction",
-                    "Basic crypto operations support"
-                ],
+        //         responsibilities: [
+        //             "Customer support and operations handling",
+        //             "CRM interaction",
+        //             "Basic crypto operations support"
+        //         ],
 
-                requirements: [
-                    "Willingness to work long hours",
-                    "Comfortable with shared accommodation",
-                    "Valid passport"
-                ],
+        //         requirements: [
+        //             "Willingness to work long hours",
+        //             "Comfortable with shared accommodation",
+        //             "Valid passport"
+        //         ],
 
-                applicationProcess: [
-                    "Updated CV",
-                    "1–2 min introduction video"
-                ]
-            }
+        //         applicationProcess: [
+        //             "Updated CV",
+        //             "1–2 min introduction video"
+        //         ]
+        //     }
 
-        };
+        // };
 
         // ================================================
         // DYNAMIC POPULATION LOGIC
         // ================================================
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const jobId = urlParams.get('id');
-            const job = jobsData[jobId];
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     const jobId = urlParams.get('id');
+        //     const job = job[jobId];
 
-            if (!job) {
-                document.querySelector('.job-single-company').innerHTML = `
-            <div class="text-center py-5">
-                <h2>Job not found</h2>
-                <p>Sorry, the requested job could not be found.</p>
-                <a href="browse-jobs.php" class="btn btn-primary mt-3">Back to Jobs</a>
-            </div>
-        `;
-                return;
-            }
+        //     if (!job) {
+        //         document.querySelector('.job-single-company').innerHTML = `
+        //         <div class="text-center py-5">
+        //             <h2>Job not found</h2>
+        //             <p>Sorry, the requested job could not be found.</p>
+        //             <a href="browse-jobs.php" class="btn btn-primary mt-3">Back to Jobs</a>
+        //         </div>
+        //     `;
+        //         return;
+        //     }
 
-            // Basic Information
-            document.getElementById('job-title').textContent = job.title;
-            document.getElementById('job-type').textContent = job.type;
-            document.getElementById('job-company').textContent = job.company;
-            document.getElementById('job-location').textContent = job.location;
-            document.getElementById('hero-job-title').textContent = job.title;
+        //     // Basic Information
+        //     document.getElementById('job-title').textContent = job.title;
+        //     document.getElementById('job-type').textContent = job.type;
+        //     document.getElementById('job-company').textContent = job.company;
+        //     document.getElementById('job-location').textContent = job.location;
+        //     document.getElementById('hero-job-title').textContent = job.title;
 
-            // Salary
-            let salaryDisplay = job.salary || 'Not specified';
-            if (typeof job.salary === 'object') {
-                salaryDisplay = job.salary.note + '<br>';
-                if (job.salary.ireland) salaryDisplay += 'Ireland: ' + job.salary.ireland + '<br>';
-                if (job.salary.uk) salaryDisplay += 'UK: ' + job.salary.uk + '<br>';
-                if (job.salary.spain) salaryDisplay += 'Spain: ' + job.salary.spain;
-            }
-            document.getElementById('job-salary').innerHTML = salaryDisplay;
+        //     // Salary
+        //     let salaryDisplay = job.salary || 'Not specified';
+        //     if (typeof job.salary === 'object') {
+        //         salaryDisplay = job.salary.note + '<br>';
+        //         if (job.salary.ireland) salaryDisplay += 'Ireland: ' + job.salary.ireland + '<br>';
+        //         if (job.salary.uk) salaryDisplay += 'UK: ' + job.salary.uk + '<br>';
+        //         if (job.salary.spain) salaryDisplay += 'Spain: ' + job.salary.spain;
+        //     }
+        //     document.getElementById('job-salary').innerHTML = salaryDisplay;
 
-            // Description
-            document.getElementById('job-description').textContent = job.description;
+        //     // Description
+        //     document.getElementById('job-description').textContent = job.description;
 
-            // Responsibilities
-            const respList = document.getElementById('job-responsibilities');
-            if (job.responsibilities?.length) {
-                respList.innerHTML = job.responsibilities.map(item =>
-                    `<li><span class="icon-check mr-2"></span>${item}</li>`
-                ).join('');
-            } else {
-                respList.parentElement.style.display = 'none';
-            }
+        //     // Responsibilities
+        //     const respList = document.getElementById('job-responsibilities');
+        //     if (job.responsibilities?.length) {
+        //         respList.innerHTML = job.responsibilities.map(item =>
+        //             `<li><span class="icon-check mr-2"></span>${item}</li>`
+        //         ).join('');
+        //     } else {
+        //         respList.parentElement.style.display = 'none';
+        //     }
 
-            // Requirements
-            const reqList = document.getElementById('job-requirements');
-            if (job.requirements?.length) {
-                reqList.innerHTML = job.requirements.map(item =>
-                    `<li><span class="icon-check mr-2"></span>${item}</li>`
-                ).join('');
-            } else if (job.requirementsAndSkills?.length) {
-                reqList.innerHTML = job.requirementsAndSkills.map(item =>
-                    `<li><span class="icon-check mr-2"></span>${item}</li>`
-                ).join('');
-            } else {
-                reqList.parentElement.style.display = 'none';
-            }
+        //     // Requirements
+        //     const reqList = document.getElementById('job-requirements');
+        //     if (job.requirements?.length) {
+        //         reqList.innerHTML = job.requirements.map(item =>
+        //             `<li><span class="icon-check mr-2"></span>${item}</li>`
+        //         ).join('');
+        //     } else if (job.requirementsAndSkills?.length) {
+        //         reqList.innerHTML = job.requirementsAndSkills.map(item =>
+        //             `<li><span class="icon-check mr-2"></span>${item}</li>`
+        //         ).join('');
+        //     } else {
+        //         reqList.parentElement.style.display = 'none';
+        //     }
 
-            // Languages
-            if (job.languages) {
-                if (typeof job.languages === 'object') {
-                    document.getElementById('lang-required').textContent = job.languages.required || 'Not specified';
-                    const prefWrapper = document.getElementById('lang-preferred-wrapper');
-                    if (job.languages.preferred) {
-                        document.getElementById('lang-preferred').textContent = job.languages.preferred;
-                    } else {
-                        prefWrapper.style.display = 'none';
-                    }
-                } else {
-                    document.getElementById('lang-required').textContent = job.languages;
-                    document.getElementById('lang-preferred-wrapper').style.display = 'none';
-                }
-            } else {
-                document.getElementById('job-languages').style.display = 'none';
-            }
+        //     // Languages
+        //     if (job.languages) {
+        //         if (typeof job.languages === 'object') {
+        //             document.getElementById('lang-required').textContent = job.languages.required || 'Not specified';
+        //             const prefWrapper = document.getElementById('lang-preferred-wrapper');
+        //             if (job.languages.preferred) {
+        //                 document.getElementById('lang-preferred').textContent = job.languages.preferred;
+        //             } else {
+        //                 prefWrapper.style.display = 'none';
+        //             }
+        //         } else {
+        //             document.getElementById('lang-required').textContent = job.languages;
+        //             document.getElementById('lang-preferred-wrapper').style.display = 'none';
+        //         }
+        //     } else {
+        //         document.getElementById('job-languages').style.display = 'none';
+        //     }
 
-            // Skills
-            const skillsList = document.getElementById('job-skills');
-            if (job.skills?.length) {
-                skillsList.innerHTML = job.skills.map(item =>
-                    `<li><span class="icon-check mr-2"></span>${item}</li>`
-                ).join('');
-            } else {
-                document.getElementById('skills-heading').style.display = 'none';
-                skillsList.style.display = 'none';
-            }
+        //     // Skills
+        //     const skillsList = document.getElementById('job-skills');
+        //     if (job.skills?.length) {
+        //         skillsList.innerHTML = job.skills.map(item =>
+        //             `<li><span class="icon-check mr-2"></span>${item}</li>`
+        //         ).join('');
+        //     } else {
+        //         document.getElementById('skills-heading').style.display = 'none';
+        //         skillsList.style.display = 'none';
+        //     }
 
-            // Additional Information (very important for Job 8)
-            const infoList = document.getElementById('additional-info-list');
-            let infoHTML = '';
+        //     // Additional Information (very important for Job 8)
+        //     const infoList = document.getElementById('additional-info-list');
+        //     let infoHTML = '';
 
-            if (job.applyUntil) infoHTML += `<li><strong>Apply Until:</strong> ${job.applyUntil}</li>`;
-            if (job.workMode) infoHTML += `<li><strong>Work Mode:</strong> ${job.workMode}</li>`;
-            if (job.shiftType) infoHTML += `<li><strong>Shift Type:</strong> ${job.shiftType}</li>`;
-            if (job.industry) infoHTML += `<li><strong>Industry:</strong> ${job.industry}</li>`;
-            if (job.department) infoHTML += `<li><strong>Department:</strong> ${job.department}</li>`;
-            if (job.countries) infoHTML += `<li><strong>Countries:</strong> ${job.countries}</li>`;
-            if (job.accommodation) infoHTML += `<li><strong>Accommodation:</strong> ${job.accommodation}</li>`;
-            if (job.food) infoHTML += `<li><strong>Food:</strong> ${job.food}</li>`;
-            if (job.workingHours) infoHTML += `<li><strong>Working Hours:</strong> ${job.workingHours}</li>`;
-            if (job.contract) infoHTML += `<li><strong>Contract:</strong> ${job.contract}</li>`;
-            if (job.travel) infoHTML += `<li><strong>Travel:</strong> ${job.travel}</li>`;
-            if (job.pickup) infoHTML += `<li><strong>Airport Pickup:</strong> ${job.pickup}</li>`;
-            if (job.customs) infoHTML += `<li><strong>Customs / Cash Requirement:</strong> ${job.customs}</li>`;
-            if (job.ctcPackage) infoHTML += `<li><strong>CTC Package:</strong><br>${job.ctcPackage.replace(/\n/g, '<br>')}</li>`;
-            if (job.benefits) infoHTML += `<li><strong>Benefits:</strong><br>${job.benefits.replace(/\n/g, '<br>')}</li>`;
-            if (job.training) infoHTML += `<li><strong>Training:</strong> ${job.training}</li>`;
+        //     if (job.applyUntil) infoHTML += `<li><strong>Apply Until:</strong> ${job.applyUntil}</li>`;
+        //     if (job.workMode) infoHTML += `<li><strong>Work Mode:</strong> ${job.workMode}</li>`;
+        //     if (job.shiftType) infoHTML += `<li><strong>Shift Type:</strong> ${job.shiftType}</li>`;
+        //     if (job.industry) infoHTML += `<li><strong>Industry:</strong> ${job.industry}</li>`;
+        //     if (job.department) infoHTML += `<li><strong>Department:</strong> ${job.department}</li>`;
+        //     if (job.countries) infoHTML += `<li><strong>Countries:</strong> ${job.countries}</li>`;
+        //     if (job.accommodation) infoHTML += `<li><strong>Accommodation:</strong> ${job.accommodation}</li>`;
+        //     if (job.food) infoHTML += `<li><strong>Food:</strong> ${job.food}</li>`;
+        //     if (job.workingHours) infoHTML += `<li><strong>Working Hours:</strong> ${job.workingHours}</li>`;
+        //     if (job.contract) infoHTML += `<li><strong>Contract:</strong> ${job.contract}</li>`;
+        //     if (job.travel) infoHTML += `<li><strong>Travel:</strong> ${job.travel}</li>`;
+        //     if (job.pickup) infoHTML += `<li><strong>Airport Pickup:</strong> ${job.pickup}</li>`;
+        //     if (job.customs) infoHTML += `<li><strong>Customs / Cash Requirement:</strong> ${job.customs}</li>`;
+        //     if (job.ctcPackage) infoHTML += `<li><strong>CTC Package:</strong><br>${job.ctcPackage.replace(/\n/g, '<br>')}</li>`;
+        //     if (job.benefits) infoHTML += `<li><strong>Benefits:</strong><br>${job.benefits.replace(/\n/g, '<br>')}</li>`;
+        //     if (job.training) infoHTML += `<li><strong>Training:</strong> ${job.training}</li>`;
 
-            if (job.applicationProcess?.length) {
-                infoHTML += `<li><strong>How to Apply:</strong><br>${job.applicationProcess.join('<br>')}</li>`;
-            }
-            if (job.additionalInfo?.length) {
-                infoHTML += `<li><strong>Important Notes:</strong><br>${job.additionalInfo.join('<br>')}</li>`;
-            }
+        //     if (job.applicationProcess?.length) {
+        //         infoHTML += `<li><strong>How to Apply:</strong><br>${job.applicationProcess.join('<br>')}</li>`;
+        //     }
+        //     if (job.additionalInfo?.length) {
+        //         infoHTML += `<li><strong>Important Notes:</strong><br>${job.additionalInfo.join('<br>')}</li>`;
+        //     }
 
-            infoList.innerHTML = infoHTML || '<li>No additional information available</li>';
+        //     infoList.innerHTML = infoHTML || '<li>No additional information available</li>';
 
-            // Experience & Education
-            document.getElementById('job-experience').textContent = job.experience || 'Not specified';
-            document.getElementById('job-education').textContent = job.education || 'Not specified';
-        });
+        //     // Experience & Education
+        //     document.getElementById('job-experience').textContent = job.experience || 'Not specified';
+        //     document.getElementById('job-education').textContent = job.education || 'Not specified';
+        // });
     </script>
     <!-- <script>
         const params = new URLSearchParams(window.location.search);

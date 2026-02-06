@@ -7,6 +7,15 @@ if (!isLoggedIn()) {
     header('Location: sign-in.php');
     exit;
 }
+$jobs = require __DIR__ . '/jobs.php';
+
+$jobId = $_GET['id'] ?? null;
+$job = ($jobId && isset($jobs[$jobId])) ? $jobs[$jobId] : null;
+
+if (!$job) {
+    header('Location: browse-jobs.php');
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -295,7 +304,7 @@ if (!isLoggedIn()) {
         <div class="col-md-12 text-center mb-5">
           <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.php">Home <i
                   class="ion-ios-arrow-forward"></i></a></span> <span>Apply for Job</span></p>
-          <h1 class="mb-3 bread" id="hero-job-title">Apply for Job</h1>
+          <h1 class="mb-3 bread" id="hero-job-title">Apply for <?= $job ? htmlspecialchars($job['title']) : 'job' ?></h1>
           <!-- <h1 class="mb-3 bread" id="hero-job-title">Apply for Job</h1> -->
         </div>
       </div>
@@ -308,18 +317,29 @@ if (!isLoggedIn()) {
 
       <!-- Job & Company Info Card -->
       <div class="yellow-card">
-        <h3 class="yellow-title" id="job-title">Customer Support / Operations Role</h3>
+        <h3 class="yellow-title">
+            <?= htmlspecialchars($job['job_id']) . "." ?> <?= htmlspecialchars($job['title']) ?>
+        </h3>
 
-        <!-- Company Info Box -->
         <div class="company-info">
-          <p><strong>Company:</strong> <span id="job-company">EasyHire Technologies</span></p>
-          <p><strong>Location:</strong> <span id="job-location">Mumbai, Maharashtra (Hybrid)</span></p>
-          <p><strong>Job Type:</strong> Full-Time</p>
+            <p>
+                <strong>Company:</strong>
+                <?= htmlspecialchars($job['company']) ?>
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                <?= htmlspecialchars($job['location']) ?>
+            </p>
+
+            <p>
+                <strong>Job Type:</strong>
+                <?= htmlspecialchars($job['job_type']) ?>
+            </p>
         </div>
 
-        <p id="job-description">
-          We are looking for a motivated and customer-focused professional. The ideal candidate should have strong
-          communication skills, problem-solving ability, and a passion for delivering exceptional customer experiences.
+        <p>
+            <?= nl2br(htmlspecialchars($job['description'])) ?>
         </p>
       </div>
 
@@ -328,9 +348,9 @@ if (!isLoggedIn()) {
         <h4 class="yellow-title mb-4">Candidate Job Application Form</h4>
 
         <form id="applyForm" enctype="multipart/form-data">
-          <input type="hidden" name="job_id" id="job_id">
-          <input type="hidden" name="job_title" id="job_title_field">
-          <input type="hidden" name="company_name" id="company_name_field">
+          <input type="hidden" name="job_id" value="<?= (int)$job['job_id'] ?>">
+          <input type="hidden" name="job_title" value="<?= htmlspecialchars($job['title']) ?>">
+          <input type="hidden" name="company_name" value="<?= htmlspecialchars($job['company']) ?>">
 
           <div class="form-step active">
             <h5>SECTION 1: PERSONAL DETAILS</h5>
@@ -632,49 +652,84 @@ if (!isLoggedIn()) {
             <div class="form-group">
               <label class="d-block mb-2">Upload Passport</label>
 
-              <div class="upload-box" id="passportBox">
+              <!-- VIEW MODE -->
+              <div id="passportView" class="upload-box d-none">
                 <span class="icon ion-ios-paper"></span>
                 <div>
                   <strong>Passport Document</strong>
-                  <small class="d-block text-muted">PDF / JPG / PNG (Max 5MB)</small>
-
-                  <!-- File info -->
-                  <div class="mt-2 d-none" id="passportInfo">
-                    <a href="#" target="_blank" class="text-warning font-weight-bold" id="passportPreview">
+                  <div class="mt-2">
+                    <a href="#" target="_blank" id="passportPreview" class="text-warning font-weight-bold">
                       View uploaded file
                     </a>
                     <span class="text-muted ml-2" id="passportName"></span>
                   </div>
-                </div>
 
-                <input type="file" name="passport_file" accept=".pdf,.jpg,.jpeg,.png"
+                  <button type="button"
+                    class="btn btn-sm btn-outline-danger mt-2"
+                    onclick="clearFile('passport')">
+                    Clear / Change
+                  </button>
+                </div>
+              </div>
+
+              <!-- UPLOAD MODE -->
+              <div class="upload-box" id="passportUpload">
+                <span class="icon ion-ios-paper"></span>
+                <div>
+                  <strong>Passport Document</strong>
+                  <small class="d-block text-muted">PDF / JPG / PNG (Max 5MB)</small>
+                </div>
+                <input type="file"
+                  name="passport_file"
+                  accept=".pdf,.jpg,.jpeg,.png"
                   onchange="handleFilePreview(this, 'passport')">
               </div>
+
+              <input type="hidden" name="existing_passport_file" id="existing_passport_file">
             </div>
 
+            <!-- CV / RESUME UPLOAD -->
             <div class="form-group">
               <label class="d-block mb-2">Upload CV / Resume</label>
 
-              <div class="upload-box" id="cvBox">
-                <span class="icon ion-ios-document"></span>
+              <!-- VIEW MODE -->
+              <div id="cvView" class="upload-box d-none">
+                <span class="icon ion-ios-paper"></span>
                 <div>
                   <strong>Resume / CV</strong>
-                  <small class="d-block text-muted">PDF / DOC / DOCX (Max 2MB)</small>
-
-                  <!-- File info -->
-                  <div class="mt-2 d-none" id="cvInfo">
-                    <a href="#" target="_blank" class="text-warning font-weight-bold" id="cvPreview">
+                  <div class="mt-2">
+                    <a href="#" target="_blank" id="cvPreview" class="text-warning font-weight-bold">
                       View uploaded file
                     </a>
                     <span class="text-muted ml-2" id="cvName"></span>
                   </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger mt-2"
+                    onclick="clearFile('cv')">
+                    Clear / Change
+                  </button>
+                </div>
+              </div>
+
+              <!-- UPLOAD MODE -->
+              <div class="upload-box" id="cvUpload">
+                <span class="icon ion-ios-document"></span>
+                <div>
+                  <strong>Resume / CV</strong>
+                  <small class="d-block text-muted">PDF / DOC / DOCX (Max 2MB)</small>
                 </div>
 
-                <input type="file" name="cv_file" accept=".pdf,.doc,.docx" onchange="handleFilePreview(this, 'cv')">
+                <input
+                  type="file"
+                  name="cv_file"
+                  accept=".pdf,.doc,.docx"
+                  onchange="handleFilePreview(this, 'cv')">
               </div>
+
+              <input type="hidden" name="existing_cv_file" id="existing_cv_file">
             </div>
-            <input type="hidden" name="existing_passport_file" id="existing_passport_file">
-            <input type="hidden" name="existing_cv_file" id="existing_cv_file">
 
             <!-- <h5>DECLARATION</h5>
             <p>
@@ -862,126 +917,73 @@ if (!isLoggedIn()) {
   <script src="js/scrollax.min.js"></script>
   <script src="js/main.js"></script>
 
-  <!-- Dynamic Job & Company Data Script -->
-  <script>
-    // Read job ID from URL parameter ?id=
-    const urlParams = new URLSearchParams(window.location.search);
-    const jobId = urlParams.get('id');
+   <script>
+    function showExistingFile(type, url, filename) {
+        // hide upload
+        document.getElementById(type + 'Upload').classList.add('d-none');
 
-    const jobs = {
-      '1': {
-        title: 'Sales Executive - Payments',
-        company: 'Revolut',
-        location: 'Dublin, London, Madrid, Krakow',
-        description: 'Join a leading fintech company as a Sales Executive specializing in payment solutions. Drive sales and build client relationships across international markets.'
-      },
-      '2': {
-        title: 'Customer Service Agent',
-        company: 'Foundever',
-        location: 'Lisbon & Porto, Portugal',
-        description: 'Provide exceptional customer support for global clients. Handle inquiries and ensure high customer satisfaction in a dynamic BPO environment.'
-      },
-      '3': {
-        title: 'Customer Support Specialist',
-        company: 'Gepard Media',
-        location: 'Estonia',
-        description: 'Deliver technical and non-technical support to customers. Ideal role for someone passionate about helping users and solving problems.'
-      },
-      '4': {
-        title: 'Customer Support Lead',
-        company: 'Localcoin',
-        location: 'Toronto, Canada',
-        description: 'Lead a customer support team, manage escalations, and improve service quality in the cryptocurrency space.'
-      },
-      '5': {
-        title: 'Customer Experience Agent',
-        company: 'PlayOrbit Ltd',
-        location: 'Milan, Italy',
-        description: 'Enhance customer journeys and provide top-tier support in the gaming and entertainment industry.'
-      },
-      '6': {
-        title: 'Customer Support Agent',
-        company: 'Decentralized',
-        location: 'Phnom Penh, Cambodia',
-        description: 'Support users in a blockchain/decentralized technology company with a focus on excellent communication.'
-      },
-      '7': {
-        title: 'Customer Engagement Executive',
-        company: 'Decentralized',
-        location: 'Phnom Penh, Cambodia',
-        description: 'Engage with customers, build relationships, and drive retention through proactive outreach.'
-      },
-      '8': {
-        title: 'Customer Support / Operations Role',
-        company: 'EasyHire Technologies',
-        location: 'Mumbai, Maharashtra (Hybrid)',
-        description: 'We are looking for a motivated and customer-focused professional. The ideal candidate should have strong communication skills, problem-solving ability, and a passion for delivering exceptional customer experiences.'
+        // show view
+        const viewBox = document.getElementById(type + 'View');
+        viewBox.classList.remove('d-none');
+
+        document.getElementById(type + 'Preview').href = url;
+        document.getElementById(type + 'Name').textContent = `(${filename})`;
+    }
+
+    function clearFile(type) {
+        // clear hidden value
+        document.getElementById('existing_' + type + '_file').value = '';
+
+        // hide view
+        document.getElementById(type + 'View').classList.add('d-none');
+
+        // show upload
+        document.getElementById(type + 'Upload').classList.remove('d-none');
+
+        // also clear file input if exists
+        const input = document.querySelector(`input[name="${type}_file"]`);
+        if (input) input.value = '';
+    }
+    function resetApplicationForm() {
+      // Reset form fields
+      document.getElementById('applyForm').reset();
+
+      // Reset step navigation
+      currentStep = 0;
+      showStep(currentStep);
+
+      // Reset upload UI
+      ['passport', 'cv'].forEach(type => {
+          const view = document.getElementById(type + 'View');
+          const upload = document.getElementById(type + 'Upload');
+
+          if (view) view.classList.add('d-none');
+          if (upload) upload.classList.remove('d-none');
+
+          const hidden = document.getElementById('existing_' + type + '_file');
+          if (hidden) hidden.value = '';
+      });
+
+      // Reset phone input (intl-tel-input)
+      phoneInput.value = '';
+      iti.setCountry('in');
+
+      // Scroll back to top of form
+      document
+          .getElementById('application-form')
+          .scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function toggleExperienceFields(value) {
+      const experienceFields = document.getElementById('experienceFields');
+      if (!experienceFields) return;
+
+      if (value === 'Fresher') {
+          experienceFields.style.display = 'none';
+      } else {
+          experienceFields.style.display = 'block';
       }
-    };
-
-    const job = jobs[jobId] || jobs['8']; // fallback to job 8
-
-    // Update page content
-    document.getElementById('job-title').textContent = job.title;
-    document.getElementById('job-company').textContent = job.company;
-    document.getElementById('job-location').textContent = job.location;
-    document.getElementById('job-description').textContent = job.description;
-    document.getElementById('hero-job-title').textContent = `Apply for ${job.title}`;
+  }
   </script>
-
-  <!-- <script>
-    document.getElementById('applyForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-      const data = {};
-      formData.forEach((v, k) => data[k] = v);
-
-      const res = await fetch('apply.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      const result = await res.json();
-
-      if (result.success) {
-        alert('✅ Job applied successfully!');
-        this.reset();
-      } else {
-        alert('❌ ' + result.message);
-      }
-    });
-  </script> -->
-
-
-  <!-- only db save -->
-  <!-- <script>
-    document.getElementById('applyForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-
-      const res = await fetch('apply.php', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await res.json();
-
-      if (result.success) {
-        // set job title dynamically
-        document.getElementById('successJobTitle').textContent =
-          document.getElementById('job-title').textContent;
-
-        $('#successModal').modal('show');
-
-        this.reset();
-      } else {
-        alert('❌ ' + result.message);
-      }
-    });
-  </script> -->
   <script>
     const phoneInput = document.getElementById("mobile");
 
@@ -1058,13 +1060,20 @@ if (!isLoggedIn()) {
               body: formData
           });
 
-          if (!dbResponse.ok) {
-              throw new Error('Server error: ' + dbResponse.status);
-          }
-
           const dbResult = await dbResponse.json();
 
           if (!dbResult.success) {
+              // ✅ Detect duplicate application error
+              if (
+                  dbResult.message &&
+                  dbResult.message.includes('Duplicate entry') &&
+                  dbResult.message.includes('unique_application')
+              ) {
+                  alert('⚠️ You have already applied for this job.');
+                  resetApplicationForm();
+                  return;
+              }
+
               throw new Error(dbResult.message || 'Failed to save your application');
           }
 
@@ -1076,12 +1085,11 @@ if (!isLoggedIn()) {
           const emailResult = await emailResponse.json();
 
           document.getElementById('successJobTitle').textContent = 
-              document.getElementById('job-title').textContent;
+              this.querySelector('input[name="job_title"]').value;
 
           $('#successModal').modal('show');
 
-          this.reset();
-          document.querySelectorAll('.upload-box .mt-2').forEach(el => el.classList.add('d-none'));
+          resetApplicationForm();
 
           if (!emailResult.success) {
               setTimeout(() => {
@@ -1101,14 +1109,6 @@ if (!isLoggedIn()) {
   });
   </script>
 
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('job_id').value = jobId || '8';
-      document.getElementById('job_title_field').value = job.title;
-      document.getElementById('company_name_field').value = job.company;
-    });
-  </script>
   <script>
     const steps = document.querySelectorAll('.form-step');
     let currentStep = 0;
@@ -1211,29 +1211,20 @@ if (!isLoggedIn()) {
             const passportPreview = document.getElementById('passportPreview');
             const cvPreview = document.getElementById('cvPreview');
 
-            /* ===== FILE PREVIEW ===== */
             if (d.passport_file) {
-              const url = `${LARAVEL_BASE_URL}/storage/${d.passport_file}`;
+                const url = `${LARAVEL_BASE_URL}/storage/${d.passport_file}`;
+                const filename = d.passport_file.split('/').pop();
 
-              passportPreview.href = url;
-              passportPreview.target = '_blank';
-              document.getElementById('passportName').textContent =
-                `(${d.passport_file.split('/').pop()})`;
-              document.getElementById('passportInfo').classList.remove('d-none');
-
-              document.getElementById('existing_passport_file').value = d.passport_file;
+                showExistingFile('passport', url, filename);
+                document.getElementById('existing_passport_file').value = d.passport_file;
             }
 
             if (d.cv_file) {
-              const url = `${LARAVEL_BASE_URL}/storage/${d.cv_file}`;
+                const url = `${LARAVEL_BASE_URL}/storage/${d.cv_file}`;
+                const filename = d.cv_file.split('/').pop();
 
-              cvPreview.href = url;
-              cvPreview.target = '_blank';
-              document.getElementById('cvName').textContent =
-                `(${d.cv_file.split('/').pop()})`;
-              document.getElementById('cvInfo').classList.remove('d-none');
-
-              document.getElementById('existing_cv_file').value = d.cv_file;
+                showExistingFile('cv', url, filename);
+                document.getElementById('existing_cv_file').value = d.cv_file;
             }
 
           /* ===== BASIC FIELDS ===== */
@@ -1255,6 +1246,7 @@ if (!isLoggedIn()) {
           if (d.experience_level) {
               selectRadioByValue('experience_level', d.experience_level);
           }
+          toggleExperienceFields(d.experience_level);
           if (d.work_mode_preference) {
               selectRadioByValue('work_mode_preference', d.work_mode_preference);
           }
@@ -1326,27 +1318,15 @@ if (!isLoggedIn()) {
   </script>
   <script>
     function handleFilePreview(input, type) {
-      if (!input.files || !input.files[0]) return;
+        if (!input.files || !input.files[0]) return;
 
-      const file = input.files[0];
+        const file = input.files[0];
+        const url = URL.createObjectURL(file);
 
-      const info = document.getElementById(type + 'Info');
-      const nameEl = document.getElementById(type + 'Name');
-      const previewEl = document.getElementById(type + 'Preview');
+        // clear existing hidden value
+        document.getElementById('existing_' + type + '_file').value = '';
 
-      // Show file name
-      nameEl.textContent = `(${file.name})`;
-
-      // Create preview URL
-      const fileURL = URL.createObjectURL(file);
-      previewEl.href = fileURL;
-
-      // Show info section
-      info.classList.remove('d-none');
-
-      // Optional: highlight box
-      document.getElementById(type + 'Box').style.borderColor = '#f9a825';
-      document.getElementById(type + 'Box').style.background = '#fff8c4';
+        showExistingFile(type, url, file.name);
     }
   </script>
 
@@ -1354,15 +1334,7 @@ if (!isLoggedIn()) {
     document.addEventListener('change', function (e) {
 
       if (e.target.name === 'experience_level') {
-
-        const experienceFields = document.getElementById('experienceFields');
-
-        if (e.target.value === 'Fresher') {
-          experienceFields.style.display = 'none';
-        } else {
-          experienceFields.style.display = 'block';
-        }
-
+          toggleExperienceFields(e.target.value);
       }
 
     });

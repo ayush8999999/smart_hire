@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/session.php'; ?>
+<?php require_once __DIR__ . '/session.php'; 
+$jobs = require __DIR__ . '/jobs.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +39,7 @@
 
 		/* Common badge */
 		.job-label {
-			position: absolute;
+			position: static;
 			top: 12px;
 			right: 12px;
 			padding: 6px 14px;
@@ -71,6 +73,18 @@
 		.job-post-item:hover .job-label {
 			transform: translateY(-2px) scale(1.05);
 			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+		}
+
+		.job-post-item h2 {
+			line-height: 1.1;
+			margin-bottom: 0px;
+		}
+
+		.job-type {
+			color: #206dfb;
+			text-transform: uppercase;
+			font-weight: 500;
+			font-size: 14px;
 		}
 
 		.footer-contact li {
@@ -163,423 +177,88 @@
 			<div class="row">
 				<div class="col-lg-12 pr-lg-4">
 					<div class="row">
-
-						<!-- Job 1 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label premium">
-									<span class="icon-star"></span> Premium
-								</span>
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=1">Sales Executive -
-												Payments</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">Revolut</a>
+						<?php foreach ($jobs as $job): ?>
+							<div class="col-md-12 ftco-animate">
+								<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+									<div class="w-100">
+										<!-- ================= SECTION 1 ================= flex-column flex-md-row -->
+										<div class="d-flex justify-content-between align-items-center">
+											<!-- Job Type -->
+											<span class="job-type">
+												<?= htmlspecialchars($job['job_type']) ?>
+											</span>
+											<!-- Badge -->
+											<?php if ($job['badge_type'] === 'premium'): ?>
+												<span class="job-label premium">
+												<span class="icon-star"></span> Premium
+												</span>
+											<?php else: ?>
+												<span class="job-label free">
+												<span class="icon-check"></span> Zero-Cost
+												</span>
+											<?php endif; ?>
 										</div>
-										<div><span class="icon-my_location"></span> <span>Dublin, London, Madrid,
-												Krakow</span></div>
-									</div>
-								</div>
 
-								<a href="view-job.php?id=1" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
+										<!-- Divider BELOW BOTH -->
+										<hr class="my-3">
 
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=1" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
+										<!-- ================= SECTION 2 ================= -->
+										<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+											<!-- LEFT: Job Info -->
+											<div class="one-third mb-3 mb-md-0">
+												<h2 class="text-black mb-1">
+													<a href="view-job.php?id=<?= $job['job_id'] ?>">
+														<?= htmlspecialchars($job['job_id']) . "." ?> <?= htmlspecialchars($job['title']) ?>
+													</a>
+												</h2>
+												<div class="mt-1 text-muted" style="font-size:14px; font-weight:600;">
+													<?= htmlspecialchars($job['category']) ?>
+												</div>
+												<div class="job-post-item-body d-block d-md-flex">
+													<div class="mr-3">
+														<span class="icon-building"></span>
+														<?= htmlspecialchars($job['company']) ?>
+													</div>
+													<div>
+														<span class="icon-map-marker"></span>
+														<?= htmlspecialchars($job['location']) ?>
+													</div>
+												</div>
+											</div>
 
-						<!-- Job 6 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label free">
-									<span class="icon-check"></span> Zero-Cost
-								</span>
+											<!-- RIGHT: Buttons (UNCHANGED) -->
+											<div class="d-flex align-items-center mt-3 mt-md-0">
 
+												<a href="view-job.php?id=<?= $job['job_id'] ?>"
+													class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
+													style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835;">
+													View Job
+												</a>
 
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=6">Customer Support
-												Agent</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a
-												href="#">Decentralized</a></div>
-										<div><span class="icon-my_location"></span> <span>Phnom Penh, Cambodia</span>
-										</div>
-									</div>
-								</div>
-
-								<a href="view-job.php?id=6" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-								
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=6" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<!-- Job 2 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label premium">
-									<span class="icon-star"></span> Premium
-								</span>
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=2">Customer Service
-												Agent</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">Foundever</a>
-										</div>
-										<div><span class="icon-my_location"></span> <span>Lisbon & Porto,
-												Portugal</span></div>
-									</div>
-								</div>
-								<a href="view-job.php?id=2" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=2" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<!-- Job 7 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label free">
-									<span class="icon-check"></span> Zero-Cost
-								</span>
-
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=7">Customer Engagement
-												Executive</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a
-												href="#">Decentralized</a></div>
-										<div><span class="icon-my_location"></span> <span>Phnom Penh, Cambodia</span>
+												<?php if (isLoggedIn()): ?>
+													<a href="apply-job.php?id=<?= $job['job_id'] ?>"
+														class="btn py-2 px-3 px-lg-5 text-nowrap"
+														style="background-color:#fbc02d; color:#000000;">
+														Apply Job
+													</a>
+												<?php else: ?>
+													<a href="sign-in.php"
+														class="btn py-2 px-3 px-lg-5 text-nowrap"
+														style="background-color:#fbc02d; color:#000000;">
+														Apply Job
+													</a>
+												<?php endif; ?>
+											</div>
 										</div>
 									</div>
 								</div>
-
-								<a href="view-job.php?id=7" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=7" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
 							</div>
-						</div>
-
-						<!-- Job 3 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label premium">
-									<span class="icon-star"></span> Premium
-								</span>
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=3">Customer Support
-												Specialist</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">Gepard Media</a>
-										</div>
-										<div><span class="icon-my_location"></span> <span>Estonia</span></div>
-									</div>
-								</div>
-
-								<a href="view-job.php?id=3" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=3" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<!-- Job 8 - New Job -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label free">
-									<span class="icon-check"></span> Zero-Cost
-								</span>
-
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black">
-											<a href="view-job.php?id=8">Customer Support / Operations Role</a>
-										</h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">JioCoin
-												Technology</a></div>
-										<div><span class="icon-my_location"></span> <span>Phnom Penh, Cambodia</span>
-										</div>
-									</div>
-								</div>
-
-								<a href="view-job.php?id=8" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=8" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<!-- Job 4 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label premium">
-									<span class="icon-star"></span> Premium
-								</span>
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=4">Customer Support
-												Lead</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">Localcoin</a>
-										</div>
-										<div><span class="icon-my_location"></span> <span>Toronto, Canada</span></div>
-									</div>
-								</div>
-
-								<a href="view-job.php?id=4" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=4" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<!-- Job 5 -->
-						<div class="col-md-12 ftco-animate">
-							<div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-								<span class="job-label premium">
-									<span class="icon-star"></span> Premium
-								</span>
-
-								<div class="one-third mb-4 mb-md-0">
-									<div class="job-post-item-header align-items-center">
-										<span class="subadge">Full-Time</span>
-										<h2 class="mr-3 text-black"><a href="view-job.php?id=5">Customer Experience
-												Agent</a></h2>
-									</div>
-									<div class="job-post-item-body d-block d-md-flex">
-										<div class="mr-3"><span class="icon-layers"></span> <a href="#">PlayOrbit
-												Ltd</a></div>
-										<div><span class="icon-my_location"></span> <span>Milan, Italy</span></div>
-									</div>
-								</div>
-
-								<a href="view-job.php?id=5" class="btn py-2 px-3 px-lg-5 mr-2 text-nowrap"
-									style="background-color:#fff9c4; color:#8d6e00; border:1px solid #fdd835; transition:all 0.3s ease;"
-									onmouseover="this.style.backgroundColor='#fdd835'; this.style.color='#000000';"
-									onmouseout="this.style.backgroundColor='#fff9c4'; this.style.color='#8d6e00';">
-									View Job
-								</a>
-
-								<?php if (isLoggedIn()): ?>
-									<a href="apply-job.php?id=5" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php else: ?>
-									<a href="sign-in.php" class="btn py-2 px-3 px-lg-5 text-nowrap"
-										style="background-color:#fbc02d; color:#000000; transition:all 0.3s ease;"
-										onmouseover="this.style.backgroundColor='#f9a825';"
-										onmouseout="this.style.backgroundColor='#fbc02d';">
-										Apply Job
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-
+						<?php endforeach; ?>
 					</div>
-
-					<!-- Pagination remains the same -->
-					<!-- <div class="row mt-5">
-						<div class="col text-center">
-							<div class="block-27">
-								<ul>
-									<li><a href="#">&lt;</a></li>
-									<li class="active"><span>1</span></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&gt;</a></li>
-								</ul>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>
 	</section>
-
-
-	<!-- <section class="ftco-section-parallax">
-		<div class="parallax-img d-flex align-items-center">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-						<h2>Subcribe to our Newsletter</h2>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-							there live the blind texts. Separated they live in</p>
-						<div class="row d-flex justify-content-center mt-4 mb-4">
-							<div class="col-md-12">
-								<form action="#" class="subscribe-form">
-									<div class="form-group d-flex">
-										<input type="text" class="form-control" placeholder="Enter email address">
-										<input type="submit" value="Subscribe" class="submit px-3">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> -->
 
 	<footer class="ftco-footer ftco-bg-dark ftco-section">
 		<div class="container">
