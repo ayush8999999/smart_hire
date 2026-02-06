@@ -212,7 +212,7 @@ $jobs = require __DIR__ . '/jobs.php';
 													</a>
 												</h2>
 												<div class="mt-1 text-muted" style="font-size:14px; font-weight:600;">
-													<?= htmlspecialchars($job['category']) ?>
+													<span class="icon-tags mr-1"></span><?= htmlspecialchars($job['category']) ?>
 												</div>
 												<div class="job-post-item-body d-block d-md-flex">
 													<div class="mr-3">
